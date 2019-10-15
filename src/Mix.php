@@ -3,6 +3,9 @@ namespace Mix;
 
 use Exception;
 
+/**
+ * Paths related to mix files, generate by laravel mix.
+ */
 class Mix
 {
     /**
