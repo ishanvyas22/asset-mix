@@ -6,6 +6,9 @@ use Mix\Mix;
 
 /**
  * Mix helper
+ *
+ * @property \Cake\View\Helper\HtmlHelper $Html
+ * @property \Cake\View\Helper\UrlHelper $Url
  */
 class MixHelper extends Helper
 {
