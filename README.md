@@ -4,18 +4,18 @@ Provides integration with your CakePHP application & [Laravel Mix](https://larav
 
 ## Installation
 
-Get project into your system
+Get project into your system:
 
-- Via [composer](https://packagist.org/packages/ishanvyas22/asset-mix):
+Via [composer](https://packagist.org/packages/ishanvyas22/asset-mix):
 
     ```bash
     composer require ishanvyas22/asset-mix
     ```
 
-OR
+Or
 
     
-- Via cloning the project into your server:
+Via cloning the project into your server:
 
     ```bash
     git clone git@github.com:ishanvyas22/asset-mix.git
