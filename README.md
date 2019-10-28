@@ -23,4 +23,18 @@ Provides integration with your CakePHP application & [Laravel Mix](https://larav
     $this->loadHelper('Mix.Mix');
     ```
 
+## Usage
 
+After compiling your assets(js, css) with laravel mix, it creates a `mix-manifest.json` file into your `webroot` directory which contains information to map the files.
+
+- To generate script tag for compiled javascript file:
+
+    ```php
+    echo $this->Mix->script('app');
+    ```
+    
+Above code with render:
+
+    ```html
+    <script src="/js/app.js"></script>
+    ```
