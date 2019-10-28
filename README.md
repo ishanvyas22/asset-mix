@@ -1,11 +1,23 @@
 # Mix plugin for CakePHP
 
+Provides integration with your CakePHP application & [Laravel Mix](https://laravel-mix.com).
+
 ## Installation
 
-You can install this plugin into your CakePHP application using [composer](https://getcomposer.org).
+Get project into your system
 
-The recommended way to install composer packages is:
+- Via [composer](https://packagist.org/packages/ishanvyas22/asset-mix):
 
-```
-composer require ishanvyas22/asset-mix
-```
+    ```bash
+    composer require ishanvyas22/asset-mix
+    ```
+
+OR
+
+    
+- Via cloning the project into your server:
+
+    ```bash
+    git clone git@github.com:ishanvyas22/asset-mix.git
+    ```
+
