@@ -1,21 +1,21 @@
 <?php
 namespace AssetMix\Test\TestCase\View\Helper;
 
-use Cake\TestSuite\TestCase;
 use Cake\View\View;
-use AssetMix\View\Helper\MixHelper;
+use Cake\TestSuite\TestCase;
+use AssetMix\View\Helper\AssetMixHelper;
 
 /**
- * AssetMix\View\Helper\MixHelper Test Case
+ * AssetMix\View\Helper\AssetMixHelper Test Case
  */
 class MixHelperTest extends TestCase
 {
     /**
      * Test subject
      *
-     * @var \AssetMix\View\Helper\MixHelper
+     * @var \AssetMix\View\Helper\AssetMixHelper
      */
-    public $Mix;
+    public $AssetMix;
 
     /**
      * setUp method
@@ -26,7 +26,7 @@ class MixHelperTest extends TestCase
     {
         parent::setUp();
         $view = new View();
-        $this->Mix = new MixHelper($view);
+        $this->AssetMix = new AssetMixHelper($view);
     }
 
     /**
@@ -36,7 +36,7 @@ class MixHelperTest extends TestCase
      */
     public function tearDown()
     {
-        unset($this->Mix);
+        unset($this->AssetMix);
 
         parent::tearDown();
     }
