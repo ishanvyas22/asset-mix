@@ -19,5 +19,9 @@
             "AssetMix\\Test\\": "tests/",
             "Cake\\Test\\": "vendor/cakephp/cakephp/tests/"
         }
+    },
+    "scripts": {
+        "test": "phpunit --colors=always",
+        "test-setup": "cp composer.json composer.backup && composer require --dev phpunit/phpunit:\"^5.7.14|^6.0\" && mv composer.backup composer.json"
     }
 }
