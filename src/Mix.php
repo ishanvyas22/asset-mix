@@ -1,5 +1,5 @@
 <?php
-namespace Mix;
+namespace AssetMix;
 
 use Exception;
 
@@ -50,7 +50,7 @@ class Mix
 
         $manifest = $manifests[$manifestPath];
         if (! isset($manifest[$path])) {
-            throw new Exception("Unable to locate Mix file: {$path}.");
+            throw new Exception("Unable to locate AssetMix file: {$path}.");
         }
 
         return $manifestDirectory . $manifest[$path];

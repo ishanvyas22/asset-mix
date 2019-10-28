@@ -1,19 +1,19 @@
 <?php
-namespace Mix\Test\TestCase\View\Helper;
+namespace AssetMix\Test\TestCase\View\Helper;
 
 use Cake\TestSuite\TestCase;
 use Cake\View\View;
-use Mix\View\Helper\MixHelper;
+use AssetMix\View\Helper\MixHelper;
 
 /**
- * Mix\View\Helper\MixHelper Test Case
+ * AssetMix\View\Helper\MixHelper Test Case
  */
 class MixHelperTest extends TestCase
 {
     /**
      * Test subject
      *
-     * @var \Mix\View\Helper\MixHelper
+     * @var \AssetMix\View\Helper\MixHelper
      */
     public $Mix;
 

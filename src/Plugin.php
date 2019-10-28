@@ -1,11 +1,11 @@
 <?php
 
-namespace Mix;
+namespace AssetMix;
 
 use Cake\Core\BasePlugin;
 
 /**
- * Plugin for Mix
+ * Plugin for AssetMix
  */
 class Plugin extends BasePlugin
 {

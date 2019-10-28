@@ -1,16 +1,16 @@
 <?php
-namespace Mix\View\Helper;
+namespace AssetMix\View\Helper;
 
 use Cake\View\Helper;
-use Mix\Mix;
+use AssetMix\Mix;
 
 /**
- * Mix helper
+ * AssetMix helper
  *
  * @property \Cake\View\Helper\HtmlHelper $Html
  * @property \Cake\View\Helper\UrlHelper $Url
  */
-class MixHelper extends Helper
+class AssetMixHelper extends Helper
 {
     /**
      * Default configuration.

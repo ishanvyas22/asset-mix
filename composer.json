@@ -11,12 +11,12 @@
     },
     "autoload": {
         "psr-4": {
-            "Mix\\": "src/"
+            "AssetMix\\": "src/"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "Mix\\Test\\": "tests/",
+            "AssetMix\\Test\\": "tests/",
             "Cake\\Test\\": "vendor/cakephp/cakephp/tests/"
         }
     }
