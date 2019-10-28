@@ -33,7 +33,7 @@ After compiling your assets(js, css) with laravel mix, it creates a `mix-manifes
 echo $this->Mix->script('app');
 ```
     
-Above code with render:
+Above code will render:
 
 ```html
 <script src="/js/app.js"></script>
