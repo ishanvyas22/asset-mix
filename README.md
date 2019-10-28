@@ -54,3 +54,9 @@ If [versioning](https://laravel-mix.com/docs/4.0/versioning) is enabled, output 
 ```html
 <link rel="stylesheet" href="/css/main.css?id=9c4259d5465e35535a2a">
 ```
+
+## Reference
+To see this plugin into action you can refer to this [project](https://github.com/ishanvyas22/cakephpvue-spa), which will provide more insight.
+
+## Issues
+Feel free to submit issues and enhancement requests.
