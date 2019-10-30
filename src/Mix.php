@@ -20,7 +20,7 @@ class Mix
     public function __invoke($path, $manifestDirectory = '')
     {
         static $manifests = [];
-        $publicPath = $_SERVER['DOCUMENT_ROOT'];
+        $publicPath = env('DOCUMENT_ROOT');
 
         if (! starts_with($path, '/')) {
             $path = "/{$path}";
