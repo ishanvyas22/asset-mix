@@ -8,7 +8,7 @@ use AssetMix\View\Helper\AssetMixHelper;
 /**
  * AssetMix\View\Helper\AssetMixHelper Test Case
  */
-class MixHelperTest extends TestCase
+class AssetMixHelperTest extends TestCase
 {
     /**
      * Test subject
@@ -24,7 +24,10 @@ class MixHelperTest extends TestCase
      */
     public function setUp()
     {
+        $this->_compareBasePath = APP . 'tests' . DS . 'comparisons' . DS;
+
         parent::setUp();
+
         $view = new View();
         $this->AssetMix = new AssetMixHelper($view);
     }
@@ -42,12 +45,12 @@ class MixHelperTest extends TestCase
     }
 
     /**
-     * Test initial setup
+     * Test script function returns proper tag without versioning
      *
      * @return void
      */
-    public function testInitialization()
+    public function testScriptTagWithoutVersion()
     {
-        $this->markTestIncomplete('Not implemented yet.');
+        $this->AssetMix->css('main');
     }
 }
