@@ -1,5 +1,5 @@
 <?php
-namespace Mix;
+namespace AssetMix;
 
 use Exception;
 
@@ -20,7 +20,7 @@ class Mix
     public function __invoke($path, $manifestDirectory = '')
     {
         static $manifests = [];
-        $publicPath = $_SERVER['DOCUMENT_ROOT'];
+        $publicPath = env('DOCUMENT_ROOT');
 
         if (! starts_with($path, '/')) {
             $path = "/{$path}";
@@ -50,7 +50,7 @@ class Mix
 
         $manifest = $manifests[$manifestPath];
         if (! isset($manifest[$path])) {
-            throw new Exception("Unable to locate Mix file: {$path}.");
+            throw new Exception("Unable to locate AssetMix file: {$path}.");
         }
 
         return $manifestDirectory . $manifest[$path];

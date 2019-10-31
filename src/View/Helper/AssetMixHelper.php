@@ -1,16 +1,16 @@
 <?php
-namespace Mix\View\Helper;
+namespace AssetMix\View\Helper;
 
 use Cake\View\Helper;
-use Mix\Mix;
+use AssetMix\Mix;
 
 /**
- * Mix helper
+ * AssetMix helper
  *
  * @property \Cake\View\Helper\HtmlHelper $Html
  * @property \Cake\View\Helper\UrlHelper $Url
  */
-class MixHelper extends Helper
+class AssetMixHelper extends Helper
 {
     /**
      * Default configuration.
@@ -56,6 +56,8 @@ class MixHelper extends Helper
      */
     public function script(string $url, array $options = [])
     {
+        $options = array_merge($options, ['defer' => true]);
+
         // Get css file path, add extension if not provided, skip if url provided
         if (strpos($url, '//') !== false) {
             return $this->Html->script($url, $options);

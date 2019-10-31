@@ -1,4 +1,4 @@
-# Mix plugin for CakePHP
+# AssetMix plugin for CakePHP
 
 Provides integration with your CakePHP application & [Laravel Mix](https://laravel-mix.com).
 
@@ -12,11 +12,11 @@ Provides integration with your CakePHP application & [Laravel Mix](https://larav
     ```
 2. Load plugin using below command:
     ```bash
-    bin/cake plugin load Mix -b
+    bin/cake plugin load AssetMix
     ```
-3. Load `Mix` helper from the plugin into your `AppView.php` file:
+3. Load `AssetMix` helper from the plugin into your `AppView.php` file:
     ```php
-    $this->loadHelper('Mix.Mix');
+    $this->loadHelper('AssetMix.AssetMix');
     ```
 
 ## Usage
@@ -26,13 +26,13 @@ After compiling your assets(js, css) with laravel mix, it creates a `mix-manifes
 - To generate script tag for compiled javascript file(s):
 
 ```php
-echo $this->Mix->script('app');
+echo $this->AssetMix->script('app');
 ```
     
 Above code will render:
 
 ```html
-<script src="/js/app.js"></script>
+<script src="/js/app.js" defer="defer"></script>
 ```
 
 As you can see it works same as [Html helper](https://book.cakephp.org/3.0/en/views/helpers/html.html#linking-to-javascript-files). There is not need to provide full path or even file extension.
@@ -40,7 +40,7 @@ As you can see it works same as [Html helper](https://book.cakephp.org/3.0/en/vi
 - To generate style tag for compiled css file(s):
 
 ```php
-echo $this->Mix->css('main');
+echo $this->AssetMix->css('main');
 ```
 
 Output:

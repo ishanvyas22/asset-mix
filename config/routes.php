@@ -4,8 +4,8 @@ use Cake\Routing\Router;
 use Cake\Routing\Route\DashedRoute;
 
 Router::plugin(
-    'Mix',
-    ['path' => '/mix'],
+    'AssetMix',
+    ['path' => '/asset-mix'],
     function (RouteBuilder $routes) {
         $routes->fallbacks(DashedRoute::class);
     }
