@@ -1,5 +1,9 @@
 # AssetMix plugin for CakePHP
 
+[![Latest Stable Version](https://poser.pugx.org/ishanvyas22/asset-mix/v/stable)](https://packagist.org/packages/ishanvyas22/asset-mix)
+[![Total Downloads](https://poser.pugx.org/ishanvyas22/asset-mix/downloads)](https://packagist.org/packages/ishanvyas22/asset-mix)
+[![License](https://poser.pugx.org/ishanvyas22/asset-mix/license)](https://packagist.org/packages/ishanvyas22/asset-mix)
+
 Provides integration with your CakePHP application & [Laravel Mix](https://laravel-mix.com).
 
 ## Installation
