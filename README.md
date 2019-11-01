@@ -4,7 +4,7 @@
 [![Total Downloads](https://poser.pugx.org/ishanvyas22/asset-mix/downloads)](https://packagist.org/packages/ishanvyas22/asset-mix)
 [![License](https://poser.pugx.org/ishanvyas22/asset-mix/license)](https://packagist.org/packages/ishanvyas22/asset-mix)
 
-Provides integration with your CakePHP application & [Laravel Mix](https://laravel-mix.com).
+Provides integration with your [CakePHP application](https://cakephp.org/) & [Laravel Mix](https://laravel-mix.com).
 
 ## Installation
 
