@@ -2,9 +2,9 @@
 namespace AssetMix\Test\TestCase\View\Helper;
 
 use AssetMix\Mix;
-use Cake\View\View;
-use Cake\TestSuite\TestCase;
 use AssetMix\View\Helper\AssetMixHelper;
+use Cake\TestSuite\TestCase;
+use Cake\View\View;
 
 /**
  * AssetMix\View\Helper\AssetMixHelper Test Case

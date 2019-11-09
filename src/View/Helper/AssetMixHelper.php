@@ -1,8 +1,8 @@
 <?php
 namespace AssetMix\View\Helper;
 
-use Cake\View\Helper;
 use AssetMix\Mix;
+use Cake\View\Helper;
 
 /**
  * AssetMix helper
