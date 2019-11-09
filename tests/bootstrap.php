@@ -1,8 +1,9 @@
 <?php
-use Cake\Cache\Cache;
-use Cake\Core\Configure;
-use Cake\Core\Plugin;
 use Cake\I18n\I18n;
+use Cake\Cache\Cache;
+use Cake\Core\Plugin;
+use Cake\Core\Configure;
+use Cake\Datasource\ConnectionManager;
 
 require_once 'vendor/autoload.php';
 
@@ -63,5 +64,15 @@ Cache::setConfig([
         'serialize' => true
     ],
 ]);
+
+// Ensure default test connection is defined
+if (!getenv('db_dsn')) {
+    putenv('db_dsn=sqlite://127.0.0.1/' . TMP . 'debug_kit_test.sqlite');
+}
+$config = [
+    'url' => getenv('db_dsn'),
+    'timezone' => 'UTC',
+];
+ConnectionManager::setConfig('test', $config);
 
 Plugin::getCollection()->add(new \AssetMix\Plugin());
