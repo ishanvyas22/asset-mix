@@ -37,6 +37,6 @@
     },
     "scripts": {
         "test": "phpunit --colors=always",
-        "test-setup": "cp composer.json composer.backup && composer require --dev phpunit/phpunit:\"^5.7.14|^6.0\" && mv composer.backup composer.json"
+        "test-setup": "cp composer.json composer.backup && composer require --dev phpunit/phpunit:\"^5.7.14|^6.0\" && mv composer.backup composer.json && cp phpunit.xml.dist phpunit.xml"
     }
 }
