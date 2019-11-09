@@ -31,7 +31,6 @@ matrix:
 before_script:
   - if [[ $DEFAULT = 1 ]]; then composer install --no-interaction; fi
   - if [[ $DEFAULT = 1 ]]; then composer test-setup; fi
-  - if [[ $DEFAULT = 1 ]]; then composer run-script post-install-cmd --no-interaction; fi
 
   # - if [[ $CODECOVERAGE = 1 ]]; then composer install --no-interaction; fi
   # - if [[ $CODECOVERAGE = 1 ]]; then composer run-script post-install-cmd --no-interaction; fi
