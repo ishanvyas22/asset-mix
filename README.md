@@ -1,5 +1,6 @@
 # AssetMix plugin for CakePHP
 
+[![Build Status](https://travis-ci.com/ishanvyas22/asset-mix.svg?branch=master)](https://travis-ci.com/ishanvyas22/asset-mix)
 [![Latest Stable Version](https://poser.pugx.org/ishanvyas22/asset-mix/v/stable)](https://packagist.org/packages/ishanvyas22/asset-mix)
 [![Total Downloads](https://poser.pugx.org/ishanvyas22/asset-mix/downloads)](https://packagist.org/packages/ishanvyas22/asset-mix)
 [![License](https://poser.pugx.org/ishanvyas22/asset-mix/license)](https://packagist.org/packages/ishanvyas22/asset-mix)
