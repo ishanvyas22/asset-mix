@@ -62,4 +62,17 @@ class AssetMixCommandTest extends TestCase
         // TODO
     }
     */
+
+    /**
+     * tearDown method
+     *
+     * @return void
+     */
+    public function tearDown()
+    {
+        parent::tearDown();
+
+        unlink(APP . 'package.json');
+        unlink(APP . 'webpack.mix.js');
+    }
 }
