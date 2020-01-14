@@ -58,9 +58,10 @@ class AssetMixCommand extends Command
         // Copy package.json file at the project root
         $this->copyPackageJsonFile($io);
 
-        // Copy resources directory at the project root
-
         // Copy webpack.mix.js file at the project root
+        $this->copyWebpackMixJsFile($io);
+
+        // Copy resources directory at the project root
     }
 
     /**
@@ -76,5 +77,20 @@ class AssetMixCommand extends Command
         $this->filesystem->copy($path['from'], $path['to']);
 
         $io->success(__('package.json file created successfully.'));
+    }
+
+    /**
+     * Copy `webpack.mix.js` file in project root
+     *
+     * @param ConsoleIo $io Console input/output
+     * @return void
+     */
+    private function copyWebpackMixJsFile($io)
+    {
+        $path = $this->getVueWebpackMixJsPath();
+
+        $this->filesystem->copy($path['from'], $path['to']);
+
+        $io->success(__('webpack.mix.js file created successfully.'));
     }
 }

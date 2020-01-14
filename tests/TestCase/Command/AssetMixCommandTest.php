@@ -43,12 +43,20 @@ class AssetMixCommandTest extends TestCase
         $this->assertContains('vue', $contents);
     }
 
-    /*
+
     public function testGenerateCommandCreatesWebpackMixConfigFileAtProjectRoot()
     {
-        // TODO
+        $this->exec('asset_mix generate');
+
+        $contents = file_get_contents($this->getVueWebpackMixJsPath()['to']);
+
+        $this->assertOutputContains('webpack.mix.js file created successfully.');
+        $this->assertContains('mix.setPublicPath', $contents);
+        $this->assertContains('resources/js/app.js', $contents);
+        $this->assertContains(".setPublicPath('./webroot')", $contents);
     }
 
+    /*
     public function testGenerateCommandCreatesResourcesDirectoryAtProjectRoot()
     {
         // TODO
