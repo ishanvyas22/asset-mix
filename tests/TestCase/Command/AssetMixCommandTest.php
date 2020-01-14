@@ -1,11 +1,11 @@
 <?php
 namespace AssetMix\Test\TestCase\Command;
 
-use Cake\Console\Command;
 use AssetMix\StubsPathTrait;
+use Cake\Console\Command;
+use Cake\TestSuite\ConsoleIntegrationTestTrait;
 use Cake\TestSuite\TestCase;
 use Symfony\Component\Filesystem\Filesystem;
-use Cake\TestSuite\ConsoleIntegrationTestTrait;
 
 /**
  * Class to test `asset_mix` command
@@ -55,7 +55,6 @@ class AssetMixCommandTest extends TestCase
         $this->assertContains('laravel-mix', $contents);
         $this->assertContains('vue', $contents);
     }
-
 
     public function testGenerateCommandCreatesWebpackMixConfigFileAtProjectRoot()
     {

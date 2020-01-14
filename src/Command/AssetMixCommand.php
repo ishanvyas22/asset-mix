@@ -1,10 +1,10 @@
 <?php
 namespace AssetMix\Command;
 
-use Cake\Console\Command;
-use Cake\Console\Arguments;
-use Cake\Console\ConsoleIo;
 use AssetMix\StubsPathTrait;
+use Cake\Console\Arguments;
+use Cake\Console\Command;
+use Cake\Console\ConsoleIo;
 use Cake\Console\ConsoleOptionParser;
 use Symfony\Component\Filesystem\Filesystem;
 

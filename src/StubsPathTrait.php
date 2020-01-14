@@ -26,7 +26,7 @@ trait StubsPathTrait
 
         return [
             'from' => $packageJsonPath,
-            'to' => APP . basename($packageJsonPath)
+            'to' => APP . basename($packageJsonPath),
         ];
     }
 
@@ -41,7 +41,7 @@ trait StubsPathTrait
 
         return [
             'from' => $webpackConfigPath,
-            'to' => APP . basename($webpackConfigPath)
+            'to' => APP . basename($webpackConfigPath),
         ];
     }
 

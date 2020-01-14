@@ -2,14 +2,17 @@
 
 namespace AssetMix;
 
-use Cake\Core\BasePlugin;
 use AssetMix\Command\AssetMixCommand;
+use Cake\Core\BasePlugin;
 
 /**
  * Plugin for AssetMix
  */
 class Plugin extends BasePlugin
 {
+    /**
+     * {@inheritDoc}
+     */
     public function console($commands)
     {
         parent::console($commands);
