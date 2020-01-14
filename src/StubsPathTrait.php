@@ -1,6 +1,8 @@
 <?php
 namespace AssetMix;
 
+use AssetMix\Command\AssetMixCommand;
+
 trait StubsPathTrait
 {
     /**
@@ -46,11 +48,16 @@ trait StubsPathTrait
     /**
      * Returns paths for `assets` directory files
      *
+     * @param string|null $dirname Custom directory name.
      * @return array
      */
-    public function getVueAssetsDirPaths()
+    public function getVueAssetsDirPaths($dirname = null)
     {
-        $assetsDirPath = $this->getBaseVueStubsPath() . 'assets';
+        if ($dirname === null) {
+            $dirname = AssetMixCommand::ASSETS_DIR_NAME;
+        }
+
+        $assetsDirPath = $this->getBaseVueStubsPath() . $dirname;
 
         return [
             'from_assets' => $assetsDirPath,

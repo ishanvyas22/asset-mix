@@ -75,6 +75,21 @@ class AssetMixCommandTest extends TestCase
 
         $this->exec('asset_mix generate');
 
+        $this->commonDirectoryExistsAssertions($paths);
+    }
+
+    public function testGenerateCommandCreatesDirectoryWithCustomNameFromAssetsDirectory()
+    {
+        $customDirName = 'resources';
+        $paths = $this->getVueAssetsDirPaths($customDirName);
+
+        $this->exec(sprintf('asset_mix generate --dir=%s', $customDirName));
+
+        $this->commonDirectoryExistsAssertions($paths);
+    }
+
+    private function commonDirectoryExistsAssertions($paths)
+    {
         $appJsContents = file_get_contents($paths['to_assets_js_app']);
         $appSassContents = file_get_contents($paths['to_assets_sass_app']);
 
@@ -98,7 +113,8 @@ class AssetMixCommandTest extends TestCase
         $this->filesystem->remove([
             APP . 'package.json',
             APP . 'webpack.mix.js',
-            APP . 'assets'
+            APP . 'assets',
+            APP . 'resources',
         ]);
     }
 }

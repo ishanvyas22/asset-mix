@@ -22,7 +22,7 @@ class AssetMixCommand extends Command
     /**
      * Directory name where all assets(js, css) files will reside.
      */
-    private const ASSETS_DIR_NAME = 'assets';
+    public const ASSETS_DIR_NAME = 'assets';
 
     /**
      * {@inheritDoc}
