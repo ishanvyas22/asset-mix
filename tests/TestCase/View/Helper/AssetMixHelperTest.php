@@ -19,9 +19,7 @@ class AssetMixHelperTest extends TestCase
     public $AssetMix;
 
     /**
-     * setUp method
-     *
-     * @return void
+     * {@inheritDoc}
      */
     public function setUp()
     {
@@ -32,9 +30,7 @@ class AssetMixHelperTest extends TestCase
     }
 
     /**
-     * tearDown method
-     *
-     * @return void
+     * {@inheritDoc}
      */
     public function tearDown()
     {

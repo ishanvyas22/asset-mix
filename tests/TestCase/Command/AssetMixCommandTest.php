@@ -14,6 +14,9 @@ class AssetMixCommandTest extends TestCase
     use ConsoleIntegrationTestTrait;
     use StubsPathTrait;
 
+    /**
+     * {@inheritDoc}
+     */
     public function setUp()
     {
         parent::setUp();
@@ -64,9 +67,7 @@ class AssetMixCommandTest extends TestCase
     */
 
     /**
-     * tearDown method
-     *
-     * @return void
+     * {@inheritDoc}
      */
     public function tearDown()
     {
