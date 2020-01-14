@@ -69,7 +69,7 @@ class AssetMixCommandTest extends TestCase
         $this->assertContains(".setPublicPath('./webroot')", $contents);
     }
 
-    public function testGenerateCommandCreatesResourcesDirectoryAtProjectRoot()
+    public function testGenerateCommandCreatesAssetsDirectoryAtProjectRoot()
     {
         $paths = $this->getVueAssetsDirPaths();
 
