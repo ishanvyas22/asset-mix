@@ -1,6 +1,6 @@
 const mix = require('laravel-mix');
 
 mix.setPublicPath('./webroot')
-  .js('resources/js/app.js', 'webroot/js')
-  .sass('resources/sass/app.sass', 'webroot/css')
+  .js('assets/js/app.js', 'webroot/js')
+  .sass('assets/sass/app.sass', 'webroot/css')
   .version();

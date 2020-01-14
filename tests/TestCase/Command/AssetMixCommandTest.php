@@ -4,6 +4,7 @@ namespace AssetMix\Test\TestCase\Command;
 use Cake\Console\Command;
 use AssetMix\StubsPathTrait;
 use Cake\TestSuite\TestCase;
+use Symfony\Component\Filesystem\Filesystem;
 use Cake\TestSuite\ConsoleIntegrationTestTrait;
 
 /**
@@ -15,6 +16,13 @@ class AssetMixCommandTest extends TestCase
     use StubsPathTrait;
 
     /**
+     * Filesystem object
+     *
+     * @var Filesystem
+     */
+    private $filesystem;
+
+    /**
      * {@inheritDoc}
      */
     public function setUp()
@@ -22,6 +30,8 @@ class AssetMixCommandTest extends TestCase
         parent::setUp();
 
         $this->useCommandRunner();
+
+        $this->filesystem = new Filesystem();
     }
 
     public function testAssetMixGenerateCommandReturnsSuccessCode()
@@ -29,7 +39,7 @@ class AssetMixCommandTest extends TestCase
         $this->exec('asset_mix generate --help');
 
         $this->assertExitCode(Command::CODE_SUCCESS);
-        $this->assertOutputContains('Auto generate configuration files, resources directory');
+        $this->assertOutputContains('Auto generate configuration files, assets directory');
     }
 
     public function testGenerateCommandCreatesPackageJsonFileAtProjectRoot()
@@ -55,16 +65,28 @@ class AssetMixCommandTest extends TestCase
 
         $this->assertOutputContains('webpack.mix.js file created successfully.');
         $this->assertContains('mix.setPublicPath', $contents);
-        $this->assertContains('resources/js/app.js', $contents);
+        $this->assertContains('assets/js/app.js', $contents);
         $this->assertContains(".setPublicPath('./webroot')", $contents);
     }
 
-    /*
     public function testGenerateCommandCreatesResourcesDirectoryAtProjectRoot()
     {
-        // TODO
+        $paths = $this->getVueAssetsDirPaths();
+
+        $this->exec('asset_mix generate');
+
+        $appJsContents = file_get_contents($paths['to_assets_js_app']);
+        $appSassContents = file_get_contents($paths['to_assets_sass_app']);
+
+        $this->assertDirectoryExists($paths['to_assets']);
+        $this->assertDirectoryExists($paths['to_assets_css']);
+        $this->assertDirectoryExists($paths['to_assets_js']);
+        $this->assertDirectoryExists($paths['to_assets_js_components']);
+        $this->assertDirectoryExists($paths['to_assets_sass']);
+        $this->assertFileExists($paths['to_assets_sass_app']);
+        $this->assertContains("import Vue from 'vue';", $appJsContents);
+        $this->assertContains('$primary: grey', $appSassContents);
     }
-    */
 
     /**
      * {@inheritDoc}
@@ -73,7 +95,10 @@ class AssetMixCommandTest extends TestCase
     {
         parent::tearDown();
 
-        unlink(APP . 'package.json');
-        unlink(APP . 'webpack.mix.js');
+        $this->filesystem->remove([
+            APP . 'package.json',
+            APP . 'webpack.mix.js',
+            APP . 'assets'
+        ]);
     }
 }

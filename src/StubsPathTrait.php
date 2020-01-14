@@ -32,4 +32,29 @@ trait StubsPathTrait
             'to' => APP . basename($webpackConfigPath)
         ];
     }
+
+    /**
+     * Returns paths for `assets` directory files
+     *
+     * @return array
+     */
+    public function getVueAssetsDirPaths()
+    {
+        $assetsDirPath = __DIR__ . DS . '..' . DS . 'stubs' . DS . 'vue' . DS . 'assets';
+
+        return [
+            'from_assets' => $assetsDirPath,
+            // 'from_assets_css' => $assetsDirPath . DS . 'css',
+            // 'from_assets_js' => $assetsDirPath . DS . 'js',
+            // 'from_assets_js_components' => $assetsDirPath . DS . 'js' . DS . 'components',
+            // 'from_assets_sass' => $assetsDirPath . DS . 'sass',
+            'to_assets' => APP . basename($assetsDirPath),
+            'to_assets_css' => APP . basename($assetsDirPath) . DS . 'css',
+            'to_assets_js' => APP . basename($assetsDirPath) . DS . 'js',
+            'to_assets_js_app' => APP . basename($assetsDirPath) . DS . 'js' . DS . 'app.js',
+            'to_assets_js_components' => APP . basename($assetsDirPath) . DS . 'js' . DS . 'components',
+            'to_assets_sass' => APP . basename($assetsDirPath) . DS . 'sass',
+            'to_assets_sass_app' => APP . basename($assetsDirPath) . DS . 'sass' . DS . 'app.sass',
+        ];
+    }
 }

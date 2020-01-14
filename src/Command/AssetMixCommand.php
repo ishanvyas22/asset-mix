@@ -22,7 +22,7 @@ class AssetMixCommand extends Command
     /**
      * Directory name where all assets(js, css) files will reside.
      */
-    private const ASSET_DIR_NAME = 'resources';
+    private const ASSETS_DIR_NAME = 'assets';
 
     /**
      * {@inheritDoc}
@@ -38,11 +38,11 @@ class AssetMixCommand extends Command
     protected function buildOptionParser(ConsoleOptionParser $parser)
     {
         $parser
-            ->setDescription(__('Auto generate configuration files, resources directory'))
+            ->setDescription(__('Auto generate configuration files, assets directory'))
             ->addOption('dir', [
                 'short' => 'd',
                 'help' => __('Directory name to create'),
-                'default' => self::ASSET_DIR_NAME,
+                'default' => self::ASSETS_DIR_NAME,
             ]);
 
         return $parser;
@@ -53,8 +53,6 @@ class AssetMixCommand extends Command
      */
     public function execute(Arguments $args, ConsoleIo $io)
     {
-        // debug($args->getOption('dir'));
-
         // Copy package.json file at the project root
         $this->copyPackageJsonFile($io);
 
@@ -62,6 +60,7 @@ class AssetMixCommand extends Command
         $this->copyWebpackMixJsFile($io);
 
         // Copy resources directory at the project root
+        $this->copyAssetsDirectory($args, $io);
     }
 
     /**
@@ -92,5 +91,26 @@ class AssetMixCommand extends Command
         $this->filesystem->copy($path['from'], $path['to']);
 
         $io->success(__('webpack.mix.js file created successfully.'));
+    }
+
+    /**
+     * Create, copy `assets` directory to project of the root
+     *
+     * @param Arguments $args Arguments
+     * @param ConsoleIo $io Console input/output
+     * @return void
+     */
+    private function copyAssetsDirectory($args, $io)
+    {
+        $assetPath = APP . DS . $args->getOption('dir');
+        $stubsPaths = $this->getVueAssetsDirPaths();
+
+        if ($this->filesystem->exists($assetPath)) {
+            // Ask if they want to overwrite existing directory with stubs
+        }
+
+        $this->filesystem->mkdir($assetPath, 0776);
+
+        $this->filesystem->mirror($stubsPaths['from_assets'], $assetPath);
     }
 }
