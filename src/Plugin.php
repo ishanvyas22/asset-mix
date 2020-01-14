@@ -2,6 +2,7 @@
 
 namespace AssetMix;
 
+use AssetMix\Command\AssetMixCommand;
 use Cake\Core\BasePlugin;
 
 /**
@@ -9,4 +10,15 @@ use Cake\Core\BasePlugin;
  */
 class Plugin extends BasePlugin
 {
+    /**
+     * {@inheritDoc}
+     */
+    public function console($commands)
+    {
+        parent::console($commands);
+
+        $commands->add('asset_mix generate', AssetMixCommand::class);
+
+        return $commands;
+    }
 }
