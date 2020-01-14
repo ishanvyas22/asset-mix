@@ -52,7 +52,7 @@ class AssetMixHelperTest extends TestCase
      *
      * @return void
      */
-    private function _copy($withVersion = false)
+    protected function _copy($withVersion = false)
     {
         $sourceFilename = 'mix-manifest.json';
         $destinationFilename = 'mix-manifest.json';
