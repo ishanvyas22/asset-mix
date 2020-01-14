@@ -2,6 +2,7 @@
 namespace AssetMix\Test\TestCase\Command;
 
 use Cake\Console\Command;
+use AssetMix\StubsPathTrait;
 use Cake\TestSuite\TestCase;
 use Cake\TestSuite\ConsoleIntegrationTestTrait;
 
@@ -11,6 +12,7 @@ use Cake\TestSuite\ConsoleIntegrationTestTrait;
 class AssetMixCommandTest extends TestCase
 {
     use ConsoleIntegrationTestTrait;
+    use StubsPathTrait;
 
     public function setUp()
     {
@@ -27,18 +29,21 @@ class AssetMixCommandTest extends TestCase
         $this->assertOutputContains('Auto generate configuration files, resources directory');
     }
 
-    public function testAssetMixGenerateCommandWorks()
+    public function testGenerateCommandCreatesPackageJsonFileAtProjectRoot()
     {
         $this->exec('asset_mix generate');
 
-        $this->assertExitCode(Command::CODE_SUCCESS);
+        $contents = file_get_contents($this->getVuePackageJsonPath()['to']);
+
+        $this->assertOutputContains('package.json file created successfully.');
+        $this->assertContains('"scripts"', $contents);
+        $this->assertContains('npm run development', $contents);
+        $this->assertContains('axios', $contents);
+        $this->assertContains('laravel-mix', $contents);
+        $this->assertContains('vue', $contents);
     }
 
-    public function testGenerateCommandCreatesPackageJsonFileAtProjectRoot()
-    {
-        // TODO
-    }
-
+    /*
     public function testGenerateCommandCreatesWebpackMixConfigFileAtProjectRoot()
     {
         // TODO
@@ -48,4 +53,5 @@ class AssetMixCommandTest extends TestCase
     {
         // TODO
     }
+    */
 }
