@@ -4,13 +4,23 @@ namespace AssetMix;
 trait StubsPathTrait
 {
     /**
+     * Returns base directory path of vue stubs path
+     *
+     * @return string
+     */
+    public function getBaseVueStubsPath()
+    {
+        return __DIR__ . DS . '..' . DS . 'stubs' . DS . 'vue' . DS;
+    }
+
+    /**
      * Returns `package.json` file paths for vue
      *
      * @return array
      */
     public function getVuePackageJsonPath()
     {
-        $packageJsonPath = __DIR__ . DS . '..' . DS . 'stubs' . DS . 'vue' . DS . 'package.json';
+        $packageJsonPath = $this->getBaseVueStubsPath() . 'package.json';
 
         return [
             'from' => $packageJsonPath,
@@ -25,7 +35,7 @@ trait StubsPathTrait
      */
     public function getVueWebpackMixJsPath()
     {
-        $webpackConfigPath = __DIR__ . DS . '..' . DS . 'stubs' . DS . 'vue' . DS . 'webpack.mix.js';
+        $webpackConfigPath = $this->getBaseVueStubsPath() . 'webpack.mix.js';
 
         return [
             'from' => $webpackConfigPath,
@@ -40,7 +50,7 @@ trait StubsPathTrait
      */
     public function getVueAssetsDirPaths()
     {
-        $assetsDirPath = __DIR__ . DS . '..' . DS . 'stubs' . DS . 'vue' . DS . 'assets';
+        $assetsDirPath = $this->getBaseVueStubsPath() . 'assets';
 
         return [
             'from_assets' => $assetsDirPath,
