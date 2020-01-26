@@ -19,7 +19,7 @@ Provides integration with your [CakePHP application](https://cakephp.org/) & [La
     ```bash
     bin/cake plugin load -b AssetMix
     ```
-3. [Generate basic Javascript, CSS & Sass scaffolding]():
+3. [Generate basic Javascript, CSS & Sass scaffolding](#generate-command):
     ```bash
     bin/cake asset_mix generate
     ```
