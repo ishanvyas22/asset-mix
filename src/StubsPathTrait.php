@@ -12,7 +12,7 @@ trait StubsPathTrait
      */
     public function getBaseVueStubsPath()
     {
-        return 'stubs' . DS . 'vue' . DS;
+        return ASSET_MIX_ROOT . DS . 'stubs' . DS . 'vue' . DS;
     }
 
     /**
@@ -26,7 +26,7 @@ trait StubsPathTrait
 
         return [
             'from' => $packageJsonPath,
-            'to' => basename($packageJsonPath),
+            'to' => ROOT . basename($packageJsonPath),
         ];
     }
 

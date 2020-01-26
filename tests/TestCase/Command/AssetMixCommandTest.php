@@ -110,10 +110,10 @@ class AssetMixCommandTest extends TestCase
         parent::tearDown();
 
         $this->filesystem->delete([
-            'package.json',
-            'webpack.mix.js',
-            'assets',
-            'resources',
+            ASSET_MIX_ROOT . DS . 'package.json',
+            ASSET_MIX_ROOT . DS . 'webpack.mix.js',
+            ASSET_MIX_ROOT . DS . 'assets',
+            ASSET_MIX_ROOT . DS . 'resources',
         ]);
     }
 }

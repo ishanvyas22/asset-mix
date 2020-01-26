@@ -102,14 +102,14 @@ class AssetMixCommand extends Command
      */
     private function copyAssetsDirectory($args, $io)
     {
-        $assetPath = $args->getOption('dir');
+        $assetPath = ROOT . $args->getOption('dir');
         $stubsPaths = $this->getVueAssetsDirPaths();
 
         if ($this->filesystem->exists($assetPath)) {
             // Ask if they want to overwrite existing directory with stubs
         }
 
-        $this->filesystem->mkdir($assetPath, 0755);
+        $this->filesystem->mkdir($assetPath);
         $this->filesystem->recursiveCopy($stubsPaths['from_assets'], $assetPath);
     }
 }

@@ -3,6 +3,8 @@ namespace AssetMix\Utility;
 
 use League\Flysystem\Adapter\Local;
 use League\Flysystem\Filesystem;
+use RecursiveDirectoryIterator;
+use RecursiveIteratorIterator;
 
 /**
  * Class that handles manipulation of files and directories
@@ -10,28 +12,15 @@ use League\Flysystem\Filesystem;
 class FileUtility implements FileUtilityInterface
 {
     /**
-     * Filesystem object
-     *
-     * @var null|Filesystem
-     */
-    private $filesystem = null;
-
-    /**
-     * Constructor.
-     *
-     * @return void
-     */
-    public function __construct()
-    {
-        $this->filesystem = new Filesystem(new Local(ROOT));
-    }
-
-    /**
      * {@inheritDoc}
      */
     public function copy($from, $to)
     {
-        return $this->filesystem->copy($from, $to);
+        if (copy($from, $to)) {
+            return true;
+        }
+
+        return false;
     }
 
     /**
@@ -39,16 +28,16 @@ class FileUtility implements FileUtilityInterface
      */
     public function recursiveCopy($source, $destination)
     {
-        $iterator = new \RecursiveIteratorIterator(
-            new \RecursiveDirectoryIterator($source, \RecursiveDirectoryIterator::SKIP_DOTS),
-            \RecursiveIteratorIterator::SELF_FIRST
+        $iterator = new RecursiveIteratorIterator(
+            new RecursiveDirectoryIterator($source, RecursiveDirectoryIterator::SKIP_DOTS),
+            RecursiveIteratorIterator::SELF_FIRST
         );
 
         foreach ($iterator as $item) {
             if ($item->isDir()) {
-                mkdir($destination . DS . $iterator->getSubPathName());
+                $this->mkdir($destination . DS . $iterator->getSubPathName());
             } else {
-                copy($item, $destination . DS . $iterator->getSubPathName());
+                $this->copy($item, $destination . DS . $iterator->getSubPathName());
             }
         }
     }
@@ -58,7 +47,7 @@ class FileUtility implements FileUtilityInterface
      */
     public function exists($path)
     {
-        return $this->filesystem->has($path);
+        return file_exists($path);
     }
 
     /**
@@ -66,7 +55,11 @@ class FileUtility implements FileUtilityInterface
      */
     public function mkdir($path, $options = [])
     {
-        return $this->filesystem->createDir($path);
+        if ($this->exists($path)) {
+            return false;
+        }
+
+        return mkdir($path, 0755);
     }
 
     /**
@@ -74,7 +67,7 @@ class FileUtility implements FileUtilityInterface
      */
     public function delete($paths)
     {
-        if (!is_array($paths)) {
+        if (! is_array($paths)) {
             $paths = [$paths];
         }
 
@@ -83,10 +76,35 @@ class FileUtility implements FileUtilityInterface
                 continue;
             }
 
-            if (! $this->filesystem->delete($path)) {
-                // Use `deleteDir()` if `delete()` doesn't work
-                $this->filesystem->deleteDir($path);
+            if (is_dir($path)) {
+                $this->deleteDir($path);
+            } else {
+                unlink($path);
             }
         }
+    }
+
+    /**
+     * Force delete non-empty directory.
+     *
+     * @param string $path Path of the directory to remove.
+     * @return void
+     */
+    private function deleteDir($path)
+    {
+        $it = new RecursiveDirectoryIterator($path, RecursiveDirectoryIterator::SKIP_DOTS);
+        $files = new RecursiveIteratorIterator(
+            $it,
+            RecursiveIteratorIterator::CHILD_FIRST
+        );
+        foreach ($files as $file) {
+            if ($file->isDir()) {
+                rmdir($file->getRealPath());
+            } else {
+                unlink($file->getRealPath());
+            }
+        }
+
+        rmdir($path);
     }
 }
