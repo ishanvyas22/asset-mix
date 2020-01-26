@@ -19,7 +19,7 @@ Provides integration with your [CakePHP application](https://cakephp.org/) & [La
     ```bash
     bin/cake plugin load -b AssetMix
     ```
-3. Generate basic Javascript, CSS & Sass scaffolding
+3. [Generate basic Javascript, CSS & Sass scaffolding]():
     ```bash
     bin/cake asset_mix generate
     ```
@@ -29,7 +29,7 @@ Provides integration with your [CakePHP application](https://cakephp.org/) & [La
     npm install
     ```
     or
-    - Using [yarn](https://yarnpkg.com/)
+    - Using [yarn](https://yarnpkg.com/):
     ```bash
     yarn install
     ```
@@ -73,6 +73,39 @@ If [versioning](https://laravel-mix.com/docs/4.0/versioning) is enabled, output 
 ```html
 <link rel="stylesheet" href="/css/main.css?id=9c4259d5465e35535a2a">
 ```
+
+## Generate command
+
+Generate command is used to auto generate basic scaffolding to quickly start developing and using the assets into your project.
+
+Get help:
+
+```bash
+bin/cake asset_mix -h
+```
+
+Generate default scaffolding:
+
+```bash
+bin/cake asset_mix generate
+```
+
+Above command will generate:
+- `package.json`
+- `webpack.mix.js`
+- `assets/`
+    - `css/`
+    - `js/`
+    - `sass/`
+
+`assets/` directory is where you will store your js, css files which will compile down into your respective `webroot/` directory.
+
+Custom directory name:
+
+```bash
+bin/cake asset_mix generate --dir=resources
+```
+You can also use custom directory name instead of default `assets` directory, above command will create `resources` directory where you can put your js, css, etc asset files.
 
 ## Reference
 To see this plugin into action you can refer to this [project](https://github.com/ishanvyas22/cakephpvue-spa), which will provide more insight.
