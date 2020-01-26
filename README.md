@@ -17,9 +17,23 @@ Provides integration with your [CakePHP application](https://cakephp.org/) & [La
     ```
 2. Load plugin using below command:
     ```bash
-    bin/cake plugin load AssetMix
+    bin/cake plugin load -b AssetMix
     ```
-3. Load `AssetMix` helper from the plugin into your `AppView.php` file:
+3. Generate basic Javascript, CSS & Sass scaffolding
+    ```bash
+    bin/cake asset_mix generate
+    ```
+4. Install frontend dependencies
+    - Using [npm](https://www.npmjs.com/):
+    ```bash
+    npm install
+    ```
+    or
+    - Using [yarn](https://yarnpkg.com/)
+    ```bash
+    yarn install
+    ```
+4. Load `AssetMix` helper from the plugin into your `AppView.php` file:
     ```php
     $this->loadHelper('AssetMix.AssetMix');
     ```
@@ -33,7 +47,7 @@ After compiling your assets(js, css) with laravel mix, it creates a `mix-manifes
 ```php
 echo $this->AssetMix->script('app');
 ```
-    
+
 Above code will render:
 
 ```html
