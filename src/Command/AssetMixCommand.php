@@ -75,7 +75,7 @@ class AssetMixCommand extends Command
 
         $this->filesystem->copy($path['from'], $path['to']);
 
-        $io->success(__('package.json file created successfully.'));
+        $io->success(__('\'package.json\' file created successfully.'));
     }
 
     /**
@@ -90,7 +90,7 @@ class AssetMixCommand extends Command
 
         $this->filesystem->copy($path['from'], $path['to']);
 
-        $io->success(__('webpack.mix.js file created successfully.'));
+        $io->success(__('\'webpack.mix.js\' file created successfully.'));
     }
 
     /**
@@ -102,7 +102,8 @@ class AssetMixCommand extends Command
      */
     private function copyAssetsDirectory($args, $io)
     {
-        $assetPath = ROOT . DS . $args->getOption('dir');
+        $dirName = $args->getOption('dir');
+        $assetPath = ROOT . DS . $dirName;
         $stubsPaths = $this->getVueAssetsDirPaths();
 
         if ($this->filesystem->exists($assetPath)) {
@@ -111,5 +112,7 @@ class AssetMixCommand extends Command
 
         $this->filesystem->mkdir($assetPath);
         $this->filesystem->recursiveCopy($stubsPaths['from_assets'], $assetPath);
+
+        $io->success(__(sprintf('\'%s\' directory created successfully.', $dirName)));
     }
 }
