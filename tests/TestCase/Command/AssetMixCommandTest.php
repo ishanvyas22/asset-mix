@@ -2,10 +2,10 @@
 namespace AssetMix\Test\TestCase\Command;
 
 use AssetMix\StubsPathTrait;
+use AssetMix\Utility\FileUtility;
 use Cake\Console\Command;
 use Cake\TestSuite\ConsoleIntegrationTestTrait;
 use Cake\TestSuite\TestCase;
-use Symfony\Component\Filesystem\Filesystem;
 
 /**
  * Class to test `asset_mix` command
@@ -16,9 +16,9 @@ class AssetMixCommandTest extends TestCase
     use StubsPathTrait;
 
     /**
-     * Filesystem object
+     * Filesystem utility object
      *
-     * @var Filesystem
+     * @var FileUtility
      */
     private $filesystem;
 
@@ -31,7 +31,7 @@ class AssetMixCommandTest extends TestCase
 
         $this->useCommandRunner();
 
-        $this->filesystem = new Filesystem();
+        $this->filesystem = new FileUtility();
     }
 
     public function testAssetMixGenerateCommandReturnsSuccessCode()
@@ -109,11 +109,11 @@ class AssetMixCommandTest extends TestCase
     {
         parent::tearDown();
 
-        $this->filesystem->remove([
-            APP . 'package.json',
-            APP . 'webpack.mix.js',
-            APP . 'assets',
-            APP . 'resources',
+        $this->filesystem->delete([
+            'package.json',
+            'webpack.mix.js',
+            'assets',
+            'resources',
         ]);
     }
 }

@@ -18,7 +18,7 @@
     },
     "require": {
         "cakephp/cakephp": ">=3.5.0 <4.0.0",
-        "symfony/filesystem": "3.4.*"
+        "league/flysystem": "^1.0"
     },
     "require-dev": {
         "phpunit/phpunit": "^5.7.14|^6.0",
@@ -37,6 +37,7 @@
         }
     },
     "scripts": {
+        "cs-check": "vendor/bin/phpcs -p --extensions=php ./src ./tests",
         "test": "phpunit --colors=always",
         "test-setup": "cp composer.json composer.backup && composer require --dev phpunit/phpunit:\"^5.7.14|^6.0\" && mv composer.backup composer.json && cp phpunit.xml.dist phpunit.xml"
     }

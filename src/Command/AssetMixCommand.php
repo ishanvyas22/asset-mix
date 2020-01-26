@@ -2,20 +2,20 @@
 namespace AssetMix\Command;
 
 use AssetMix\StubsPathTrait;
+use AssetMix\Utility\FileUtility;
 use Cake\Console\Arguments;
 use Cake\Console\Command;
 use Cake\Console\ConsoleIo;
 use Cake\Console\ConsoleOptionParser;
-use Symfony\Component\Filesystem\Filesystem;
 
 class AssetMixCommand extends Command
 {
     use StubsPathTrait;
 
     /**
-     * Filesystem object
+     * Filesystem utility object
      *
-     * @var Filesystem
+     * @var FileUtility
      */
     private $filesystem;
 
@@ -29,7 +29,7 @@ class AssetMixCommand extends Command
      */
     public function initialize()
     {
-        $this->filesystem = new Filesystem();
+        $this->filesystem = new FileUtility();
     }
 
     /**
@@ -102,15 +102,14 @@ class AssetMixCommand extends Command
      */
     private function copyAssetsDirectory($args, $io)
     {
-        $assetPath = APP . DS . $args->getOption('dir');
+        $assetPath = $args->getOption('dir');
         $stubsPaths = $this->getVueAssetsDirPaths();
 
         if ($this->filesystem->exists($assetPath)) {
             // Ask if they want to overwrite existing directory with stubs
         }
 
-        $this->filesystem->mkdir($assetPath, 0776);
-
-        $this->filesystem->mirror($stubsPaths['from_assets'], $assetPath);
+        $this->filesystem->mkdir($assetPath, 0755);
+        $this->filesystem->recursiveCopy($stubsPaths['from_assets'], $assetPath);
     }
 }
