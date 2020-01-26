@@ -12,7 +12,7 @@ trait StubsPathTrait
      */
     public function getBaseVueStubsPath()
     {
-        return __DIR__ . DS . '..' . DS . 'stubs' . DS . 'vue' . DS;
+        return 'stubs' . DS . 'vue' . DS;
     }
 
     /**
@@ -26,7 +26,7 @@ trait StubsPathTrait
 
         return [
             'from' => $packageJsonPath,
-            'to' => APP . basename($packageJsonPath),
+            'to' => basename($packageJsonPath),
         ];
     }
 
@@ -41,7 +41,7 @@ trait StubsPathTrait
 
         return [
             'from' => $webpackConfigPath,
-            'to' => APP . basename($webpackConfigPath),
+            'to' => basename($webpackConfigPath),
         ];
     }
 
@@ -61,13 +61,13 @@ trait StubsPathTrait
 
         return [
             'from_assets' => $assetsDirPath,
-            'to_assets' => APP . basename($assetsDirPath),
-            'to_assets_css' => APP . basename($assetsDirPath) . DS . 'css',
-            'to_assets_js' => APP . basename($assetsDirPath) . DS . 'js',
-            'to_assets_js_app' => APP . basename($assetsDirPath) . DS . 'js' . DS . 'app.js',
-            'to_assets_js_components' => APP . basename($assetsDirPath) . DS . 'js' . DS . 'components',
-            'to_assets_sass' => APP . basename($assetsDirPath) . DS . 'sass',
-            'to_assets_sass_app' => APP . basename($assetsDirPath) . DS . 'sass' . DS . 'app.sass',
+            'to_assets' => basename($assetsDirPath),
+            'to_assets_css' => basename($assetsDirPath) . DS . 'css',
+            'to_assets_js' => basename($assetsDirPath) . DS . 'js',
+            'to_assets_js_app' => basename($assetsDirPath) . DS . 'js' . DS . 'app.js',
+            'to_assets_js_components' => basename($assetsDirPath) . DS . 'js' . DS . 'components',
+            'to_assets_sass' => basename($assetsDirPath) . DS . 'sass',
+            'to_assets_sass_app' => basename($assetsDirPath) . DS . 'sass' . DS . 'app.sass',
         ];
     }
 }

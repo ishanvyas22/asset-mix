@@ -13,13 +13,14 @@ define('CAKE_CORE_INCLUDE_PATH', ROOT . 'vendor' . DS . 'cakephp' . DS . 'cakeph
 define('CORE_PATH', ROOT . 'vendor' . DS . 'cakephp' . DS . 'cakephp' . DS);
 define('CAKE', CORE_PATH . 'src' . DS);
 define('TESTS', ROOT . 'tests');
-define('APP', ROOT . 'tests' . DS . 'test_app' . DS);
+define('TEST_APP_DIR', ROOT . 'tests' . DS . 'test_app' . DS);
+define('APP_DIR', 'src');
+define('APP', ROOT . 'tests' . DS . 'test_app' . DS . APP_DIR . DS);
 define('COMPARE_PATH', ROOT . 'tests' . DS . 'test_files' . DS);
-define('APP_DIR', 'test_app');
 define('WEBROOT_DIR', 'webroot');
 define('TMP', sys_get_temp_dir() . DS);
-define('CONFIG', APP . 'config' . DS);
-define('WWW_ROOT', APP . 'webroot' . DS);
+define('CONFIG', TEST_APP_DIR . 'config' . DS);
+define('WWW_ROOT', TEST_APP_DIR . 'webroot' . DS);
 define('CACHE', TMP);
 define('LOGS', TMP);
 
@@ -42,8 +43,8 @@ Configure::write('App', [
     'jsBaseUrl' => 'js/',
     'cssBaseUrl' => 'css/',
     'paths' => [
-        'plugins' => [APP . 'plugins' . DS],
-        'templates' => [APP . 'src' . DS . 'Template' . DS],
+        'plugins' => [TEST_APP_DIR . 'plugins' . DS],
+        'templates' => [TEST_APP_DIR . 'src' . DS . 'Template' . DS],
     ],
 ]);
 
