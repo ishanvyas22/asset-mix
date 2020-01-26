@@ -1,8 +1,8 @@
 <?php
 namespace AssetMix\Utility;
 
-use League\Flysystem\Filesystem;
 use League\Flysystem\Adapter\Local;
+use League\Flysystem\Filesystem;
 
 /**
  * Class that handles manipulation of files and directories

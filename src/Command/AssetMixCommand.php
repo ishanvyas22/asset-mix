@@ -1,11 +1,11 @@
 <?php
 namespace AssetMix\Command;
 
-use Cake\Console\Command;
-use Cake\Console\Arguments;
-use Cake\Console\ConsoleIo;
 use AssetMix\StubsPathTrait;
 use AssetMix\Utility\FileUtility;
+use Cake\Console\Arguments;
+use Cake\Console\Command;
+use Cake\Console\ConsoleIo;
 use Cake\Console\ConsoleOptionParser;
 
 class AssetMixCommand extends Command
@@ -106,7 +106,7 @@ class AssetMixCommand extends Command
         $stubsPaths = $this->getVueAssetsDirPaths();
 
         if ($this->filesystem->exists($assetPath)) {
-            // TODO: Ask if they want to overwrite existing directory with stubs
+            // Ask if they want to overwrite existing directory with stubs
         }
 
         $this->filesystem->mkdir($assetPath, 0755);
