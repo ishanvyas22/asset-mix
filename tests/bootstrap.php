@@ -8,15 +8,15 @@ use Cake\I18n\I18n;
 require_once __DIR__ . '/../vendor/autoload.php';
 
 // Path constants to a few helpful things.
-define('ROOT', dirname(__DIR__) . DS);
-define('CAKE_CORE_INCLUDE_PATH', ROOT . 'vendor' . DS . 'cakephp' . DS . 'cakephp');
-define('CORE_PATH', ROOT . 'vendor' . DS . 'cakephp' . DS . 'cakephp' . DS);
+define('ROOT', dirname(__DIR__));
+define('CAKE_CORE_INCLUDE_PATH', ROOT . DS . 'vendor' . DS . 'cakephp' . DS . 'cakephp');
+define('CORE_PATH', ROOT . DS . 'vendor' . DS . 'cakephp' . DS . 'cakephp' . DS);
 define('CAKE', CORE_PATH . 'src' . DS);
-define('TESTS', ROOT . 'tests');
-define('TEST_APP_DIR', ROOT . 'tests' . DS . 'test_app' . DS);
+define('TESTS', ROOT . DS . 'tests');
+define('TEST_APP_DIR', ROOT . DS . 'tests' . DS . 'test_app' . DS);
 define('APP_DIR', 'src');
-define('APP', ROOT . 'tests' . DS . 'test_app' . DS . APP_DIR . DS);
-define('COMPARE_PATH', ROOT . 'tests' . DS . 'test_files' . DS);
+define('APP', ROOT . DS . 'tests' . DS . 'test_app' . DS . APP_DIR . DS);
+define('COMPARE_PATH', ROOT . DS . 'tests' . DS . 'test_files' . DS);
 define('WEBROOT_DIR', 'webroot');
 define('TMP', sys_get_temp_dir() . DS);
 define('CONFIG', TEST_APP_DIR . 'config' . DS);

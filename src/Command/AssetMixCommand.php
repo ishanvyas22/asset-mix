@@ -102,7 +102,7 @@ class AssetMixCommand extends Command
      */
     private function copyAssetsDirectory($args, $io)
     {
-        $assetPath = ROOT . $args->getOption('dir');
+        $assetPath = ROOT . DS . $args->getOption('dir');
         $stubsPaths = $this->getVueAssetsDirPaths();
 
         if ($this->filesystem->exists($assetPath)) {

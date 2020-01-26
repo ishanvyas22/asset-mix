@@ -26,7 +26,7 @@ trait StubsPathTrait
 
         return [
             'from' => $packageJsonPath,
-            'to' => ROOT . basename($packageJsonPath),
+            'to' => ROOT . DS . basename($packageJsonPath),
         ];
     }
 
