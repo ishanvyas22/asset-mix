@@ -33,7 +33,21 @@ Provides integration with your [CakePHP application](https://cakephp.org/) & [La
     ```bash
     yarn install
     ```
-4. Load `AssetMix` helper from the plugin into your `AppView.php` file:
+5. [Compile your assets](https://laravel-mix.com/docs/4.0/workflow#step-4-compilation)
+    - For development:
+    ```bash
+    npm run dev
+    ```
+    - To watch changes:
+    ```bash
+    npm run watch
+    ```
+    
+    - For production:
+    ```bash
+    npm run prod
+    ```
+6. Load `AssetMix` helper from the plugin into your `AppView.php` file:
     ```php
     $this->loadHelper('AssetMix.AssetMix');
     ```
