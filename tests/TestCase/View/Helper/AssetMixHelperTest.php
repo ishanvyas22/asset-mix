@@ -57,8 +57,6 @@ class AssetMixHelperTest extends TestCase
             $sourceFilename = 'mix-manifest-with-version.json';
         }
 
-        var_dump(COMPARE_PATH . $sourceFilename);
-        var_dump(WWW_ROOT . $destinationFilename);
         if (! copy(COMPARE_PATH . $sourceFilename, WWW_ROOT . $destinationFilename)) {
             throw new \Exception('Unable to copy mix-manifest.json file');
         }
