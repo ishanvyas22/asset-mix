@@ -9,6 +9,7 @@ require_once __DIR__ . '/../vendor/autoload.php';
 
 // Path constants to a few helpful things.
 define('ROOT', dirname(__DIR__));
+var_dump(dirname(__DIR__));
 define('CAKE_CORE_INCLUDE_PATH', ROOT . DS . 'vendor' . DS . 'cakephp' . DS . 'cakephp');
 define('CORE_PATH', ROOT . DS . 'vendor' . DS . 'cakephp' . DS . 'cakephp' . DS);
 define('CAKE', CORE_PATH . 'src' . DS);
