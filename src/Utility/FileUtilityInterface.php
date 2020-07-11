@@ -27,7 +27,7 @@ interface FileUtilityInterface
     /**
      * Checks if give file or directory exists
      *
-     * @param strin $path Location of a file/directory
+     * @param string $path Location of a file/directory
      * @return bool
      */
     public function exists($path);
