@@ -39,7 +39,7 @@ before_script:
 script:
   - if [[ $PHPCS = 1 ]]; then vendor/bin/phpcs -p --extensions=php ./src ./tests; fi
 
-  # - if [[ $DEFAULT = 1 ]]; then composer test; fi
+  - if [[ $DEFAULT = 1 ]]; then composer test; fi
 
   # - if [[ $CODECOVERAGE == 1 ]]; then phpdbg -qrr vendor/bin/phpunit --coverage-clover=clover.xml; fi
 
