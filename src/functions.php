@@ -5,7 +5,7 @@ if (!function_exists('starts_with')) {
      * Determine if a given string starts with a given substring.
      *
      * @param string $haystack Haystack to find in.
-     * @param string|array $needles Needle to search from haystack.
+     * @param string|array<string> $needles Needle to search from haystack.
      * @return bool
      */
     function starts_with($haystack, $needles)
