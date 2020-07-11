@@ -30,6 +30,10 @@ if (!function_exists('str_after')) {
      */
     function str_after($subject, $search)
     {
+        if (explode($search, $subject, 2) === false) {
+            return '';
+        }
+
         return $search === '' ? $subject : array_reverse(explode($search, $subject, 2))[0];
     }
 }

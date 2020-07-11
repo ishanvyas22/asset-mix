@@ -36,7 +36,7 @@ interface FileUtilityInterface
      * Create new directory
      *
      * @param string $path Location of a directory
-     * @param array $options Configuration options
+     * @param array<string> $options Configuration options
      * @return bool
      */
     public function mkdir($path, $options = []);
@@ -44,7 +44,7 @@ interface FileUtilityInterface
     /**
      * Remove(delete) files or directories
      *
-     * @param string|array $paths Path of a file/directory to delete
+     * @param string|array<string> $paths Path of a file/directory to delete
      * @return void
      */
     public function delete($paths);

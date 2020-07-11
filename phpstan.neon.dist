@@ -1,6 +1,7 @@
 parameters:
     bootstrapFiles:
         - config/bootstrap.php
+        - vendor/cakephp/cakephp/tests/bootstrap.php
     level: max
     paths:
         - src

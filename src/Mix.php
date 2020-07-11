@@ -11,7 +11,7 @@ class Mix
     /**
      * Mix manifests array
      *
-     * @var array
+     * @var array<string>
      */
     private static $manifests = [];
 
@@ -21,7 +21,6 @@ class Mix
      * @param string $path Path of the asset file.
      * @param string $manifestDirectory Custom manifest directory.
      * @return string
-     *
      * @throws \Exception
      */
     public function __invoke($path, $manifestDirectory = '')
@@ -35,7 +34,13 @@ class Mix
         }
 
         if (file_exists(WWW_ROOT . $manifestDirectory . '/hot')) {
-            $url = rtrim(file_get_contents(WWW_ROOT . $manifestDirectory . '/hot'));
+            $content = file_get_contents(WWW_ROOT . $manifestDirectory . '/hot');
+
+            if ($content === false) {
+                throw new \Exception('Invalid manifest directory contents');
+            }
+
+            $url = rtrim($content);
             if (starts_with($url, ['http://', 'https://'])) {
                 return str_after($url, ':') . $path;
             }
@@ -49,7 +54,13 @@ class Mix
                 throw new Exception('The Mix manifest does not exist.');
             }
 
-            self::$manifests[$manifestPath] = json_decode(file_get_contents($manifestPath), true);
+            $manifestFileContent = file_get_contents($manifestPath);
+
+            if ($manifestFileContent === false) {
+                throw new Exception('The Mix manifest file content is not valid.');
+            }
+
+            self::$manifests[$manifestPath] = json_decode($manifestFileContent, true);
         }
 
         $manifest = self::$manifests[$manifestPath];

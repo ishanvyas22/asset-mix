@@ -11,7 +11,10 @@ use Cake\Core\BasePlugin;
 class Plugin extends BasePlugin
 {
     /**
-     * {@inheritDoc}
+     * Add console commands for the plugin.
+     *
+     * @param \Cake\Console\CommandCollection<mixed> $commands The command collection to update
+     * @return \Cake\Console\CommandCollection<mixed>
      */
     public function console($commands)
     {
