@@ -27,6 +27,7 @@ class AssetMixHelperTest extends TestCase
 
         $view = new View();
         $this->AssetMix = new AssetMixHelper($view);
+        mkdir(TEST_APP_DIR . 'webroot');
     }
 
     /**
