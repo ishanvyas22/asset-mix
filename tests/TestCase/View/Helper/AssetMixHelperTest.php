@@ -5,6 +5,7 @@ use AssetMix\Mix;
 use AssetMix\View\Helper\AssetMixHelper;
 use Cake\TestSuite\TestCase;
 use Cake\View\View;
+use Cake\Filesystem\Folder;
 
 /**
  * AssetMix\View\Helper\AssetMixHelper Test Case
@@ -25,9 +26,10 @@ class AssetMixHelperTest extends TestCase
     {
         parent::setUp();
 
+        mkdir(TEST_APP_DIR . 'webroot');
+
         $view = new View();
         $this->AssetMix = new AssetMixHelper($view);
-        mkdir(TEST_APP_DIR . 'webroot');
     }
 
     /**
@@ -38,6 +40,9 @@ class AssetMixHelperTest extends TestCase
         unset($this->AssetMix);
 
         parent::tearDown();
+
+        $dir = new Folder(TEST_APP_DIR . 'webroot');
+        $dir->delete();
 
         $this->_cleanUp();
 
