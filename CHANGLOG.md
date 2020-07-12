@@ -4,6 +4,7 @@
 
 ### Added
 - Add phpstan dependency ([#10](https://github.com/ishanvyas22/asset-mix/pull/10))
+- Add CHANGLOG.md file ([#11](https://github.com/ishanvyas22/asset-mix/pull/11))
 
 ### Fixed
 - Errors from phpstan ([#10](https://github.com/ishanvyas22/asset-mix/pull/10))
