@@ -18,12 +18,12 @@ matrix:
 
   include:
     - php: 7.2
-      env: PHPCS=1 DEFAULT=1
+      env: PHPCS=1 DEFAULT=0
     - php: 7.2
-      env: PHPSTAN=1 DEFAULT=1
+      env: PHPSTAN=1 DEFAULT=0
 
 install:
-  - if [[ $DEFAULT = 1 ]]; then composer install --no-interaction; fi
+  - composer install --no-interaction
   - if [[ $DEFAULT = 1 ]]; then composer test-setup; fi
 
 script:
