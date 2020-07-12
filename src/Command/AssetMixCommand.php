@@ -38,7 +38,7 @@ class AssetMixCommand extends Command
     protected function buildOptionParser(ConsoleOptionParser $parser)
     {
         $parser
-            ->setDescription(__('Auto generate configuration files, assets directory'))
+            ->setDescription('Auto generate configuration files, assets directory')
             ->addOption('dir', [
                 'short' => 'd',
                 'help' => __('Directory name to create'),
@@ -61,6 +61,8 @@ class AssetMixCommand extends Command
 
         // Copy resources directory at the project root
         $this->copyAssetsDirectory($args, $io);
+
+        return null;
     }
 
     /**

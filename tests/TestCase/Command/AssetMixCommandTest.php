@@ -48,7 +48,7 @@ class AssetMixCommandTest extends TestCase
 
         $contents = file_get_contents($this->getVuePackageJsonPath()['to']);
 
-        $this->assertOutputContains('package.json file created successfully.');
+        $this->assertOutputContains("'package.json' file created successfully.");
         $this->assertContains('"scripts"', $contents);
         $this->assertContains('npm run development', $contents);
         $this->assertContains('axios', $contents);
@@ -62,7 +62,7 @@ class AssetMixCommandTest extends TestCase
 
         $contents = file_get_contents($this->getVueWebpackMixJsPath()['to']);
 
-        $this->assertOutputContains('webpack.mix.js file created successfully.');
+        $this->assertOutputContains("'webpack.mix.js' file created successfully.");
         $this->assertContains('mix.setPublicPath', $contents);
         $this->assertContains('assets/js/app.js', $contents);
         $this->assertContains(".setPublicPath('./webroot')", $contents);

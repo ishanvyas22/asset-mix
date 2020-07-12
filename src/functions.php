@@ -5,7 +5,7 @@ if (!function_exists('starts_with')) {
      * Determine if a given string starts with a given substring.
      *
      * @param string $haystack Haystack to find in.
-     * @param string|array $needles Needle to search from haystack.
+     * @param string|array<string> $needles Needle to search from haystack.
      * @return bool
      */
     function starts_with($haystack, $needles)
@@ -30,6 +30,10 @@ if (!function_exists('str_after')) {
      */
     function str_after($subject, $search)
     {
+        if (explode($search, $subject, 2) === false) {
+            return '';
+        }
+
         return $search === '' ? $subject : array_reverse(explode($search, $subject, 2))[0];
     }
 }

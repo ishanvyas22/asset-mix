@@ -13,14 +13,9 @@ use Cake\View\Helper;
 class AssetMixHelper extends Helper
 {
     /**
-     * Default configuration.
+     * List of helpers used by this helper
      *
-     * @var array
-     */
-    protected $_defaultConfig = [];
-
-    /**
-     * @inheritDoc
+     * @var array<string>
      */
     protected $helpers = ['Html', 'Url'];
 
@@ -28,7 +23,7 @@ class AssetMixHelper extends Helper
      * Creates a link element for CSS stylesheets with versioned asset.
      *
      * @param string $path Path to css file.
-     * @param array $options Options array.
+     * @param array<mixed> $options Options array.
      * @return string|null CSS `<link />` or `<style />` tag, depending on the type of link.
      */
     public function css(string $path, array $options = [])
@@ -50,7 +45,7 @@ class AssetMixHelper extends Helper
      * Returns one or many `<script>` tags depending on the number of scripts given.
      *
      * @param string $url String or array of javascript files to include
-     * @param array $options Array of options, and html attributes see above.
+     * @param array<mixed> $options Array of options, and html attributes see above.
      * @return string|null String of `<script />` tags or null if block is specified in options
      *   or if $once is true and the file has been included before.
      */

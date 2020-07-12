@@ -21,7 +21,8 @@
     },
     "require-dev": {
         "phpunit/phpunit": "^5.7.14|^6.0",
-        "cakephp/cakephp-codesniffer": "^3.0"
+        "cakephp/cakephp-codesniffer": "^3.0",
+        "phpstan/phpstan": "^0.12.32"
     },
     "autoload": {
         "psr-4": {
@@ -37,6 +38,7 @@
     },
     "scripts": {
         "cs-check": "vendor/bin/phpcs -p --extensions=php ./src ./tests",
+        "test:types": "phpstan analyse --ansi --memory-limit=-1",
         "test": "phpunit --colors=always",
         "test-setup": "cp composer.json composer.backup && composer require --dev phpunit/phpunit:\"^5.7.14|^6.0\" && mv composer.backup composer.json && cp phpunit.xml.dist phpunit.xml"
     }

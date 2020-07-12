@@ -18,7 +18,7 @@ trait StubsPathTrait
     /**
      * Returns `package.json` file paths for vue
      *
-     * @return array
+     * @return array<string>
      */
     public function getVuePackageJsonPath()
     {
@@ -33,7 +33,7 @@ trait StubsPathTrait
     /**
      * Returns `webpack.mix.js` file patha for vue
      *
-     * @return array
+     * @return array<string>
      */
     public function getVueWebpackMixJsPath()
     {
@@ -49,7 +49,7 @@ trait StubsPathTrait
      * Returns paths for `assets` directory files
      *
      * @param string|null $dirname Custom directory name.
-     * @return array
+     * @return array<string>
      */
     public function getVueAssetsDirPaths($dirname = null)
     {
