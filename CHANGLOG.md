@@ -60,7 +60,7 @@
 - Reference section into README.md file ([#1](https://github.com/ishanvyas22/asset-mix/pull/1))
 - Issues section into README.md file ([#1](https://github.com/ishanvyas22/asset-mix/pull/1))
 
-## [0.1.0 (2019-10-26)]
+## 0.1.0 (2019-10-26)
 
 **Initial release.**
 
