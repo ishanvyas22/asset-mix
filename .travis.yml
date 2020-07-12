@@ -29,7 +29,7 @@ matrix:
   # - if [[ $CODECOVERAGE = 1 ]]; then composer test-setup; fi
 
 install:
-  - if [[ $DEFAULT = 1 ]]; then composer install --prefer-dist --no-interaction --dev; fi
+  - if [[ $DEFAULT = 1 ]]; then composer install --no-interaction; fi
   - if [[ $DEFAULT = 1 ]]; then composer test-setup; fi
 
 script:
