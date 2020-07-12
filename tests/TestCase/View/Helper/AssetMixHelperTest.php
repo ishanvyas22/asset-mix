@@ -3,9 +3,9 @@ namespace AssetMix\Test\TestCase\View\Helper;
 
 use AssetMix\Mix;
 use AssetMix\View\Helper\AssetMixHelper;
+use Cake\Filesystem\Folder;
 use Cake\TestSuite\TestCase;
 use Cake\View\View;
-use Cake\Filesystem\Folder;
 
 /**
  * AssetMix\View\Helper\AssetMixHelper Test Case
