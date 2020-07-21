@@ -37,7 +37,10 @@ class FileUtility implements FileUtilityInterface
             if ($item->isDir()) {
                 $this->mkdir($destination . DS . $iterator->getSubPathName());
             } else {
-                $this->copy($item, $destination . DS . $iterator->getSubPathName());
+                $this->copy(
+                    $item->getPath() . DS . $item->getFilename(),
+                    $destination . DS . $iterator->getSubPathName()
+                );
             }
         }
     }
