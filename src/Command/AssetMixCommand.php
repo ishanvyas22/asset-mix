@@ -29,7 +29,7 @@ class AssetMixCommand extends Command
     /**
      * @inheritDoc
      */
-    public function initialize()
+    public function initialize(): void
     {
         $this->filesystem = new FileUtility();
     }
@@ -37,7 +37,7 @@ class AssetMixCommand extends Command
     /**
      * @inheritDoc
      */
-    protected function buildOptionParser(ConsoleOptionParser $parser)
+    protected function buildOptionParser(ConsoleOptionParser $parser): ConsoleOptionParser
     {
         $parser
             ->setDescription('Auto generate configuration files, assets directory')

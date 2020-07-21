@@ -119,9 +119,9 @@ class AssetMixHelperTest extends TestCase
 
         $result = $this->AssetMix->css('main');
 
-        $this->assertContains('<link', $result);
-        $this->assertContains('rel="stylesheet"', $result);
-        $this->assertContains('href="/css/main.css"', $result);
+        $this->assertStringContainsString('<link', $result);
+        $this->assertStringContainsString('rel="stylesheet"', $result);
+        $this->assertStringContainsString('href="/css/main.css"', $result);
     }
 
     /**
@@ -135,9 +135,9 @@ class AssetMixHelperTest extends TestCase
 
         $result = $this->AssetMix->script('app');
 
-        $this->assertContains('<script', $result);
-        $this->assertContains('/js/app.js', $result);
-        $this->assertContains('defer="defer"', $result);
+        $this->assertStringContainsString('<script', $result);
+        $this->assertStringContainsString('/js/app.js', $result);
+        $this->assertStringContainsString('defer="defer"', $result);
     }
 
     /**
@@ -152,9 +152,9 @@ class AssetMixHelperTest extends TestCase
 
         $result = $this->AssetMix->css('main');
 
-        $this->assertContains('<link', $result);
-        $this->assertContains('rel="stylesheet"', $result);
-        $this->assertContains('href="/css/main.css?id=9c4259d5465e35535a2a"', $result);
+        $this->assertStringContainsString('<link', $result);
+        $this->assertStringContainsString('rel="stylesheet"', $result);
+        $this->assertStringContainsString('href="/css/main.css?id=9c4259d5465e35535a2a"', $result);
     }
 
     /**
@@ -169,8 +169,8 @@ class AssetMixHelperTest extends TestCase
 
         $result = $this->AssetMix->script('app');
 
-        $this->assertContains('<script', $result);
-        $this->assertContains('/js/app.js?id=f059fcadc7eba26be9ae', $result);
-        $this->assertContains('defer="defer"', $result);
+        $this->assertStringContainsString('<script', $result);
+        $this->assertStringContainsString('/js/app.js?id=f059fcadc7eba26be9ae', $result);
+        $this->assertStringContainsString('defer="defer"', $result);
     }
 }
