@@ -51,11 +51,11 @@ class AssetMixCommandTest extends TestCase
         $contents = file_get_contents($this->getVuePackageJsonPath()['to']);
 
         $this->assertOutputContains("'package.json' file created successfully.");
-        $this->assertContains('"scripts"', $contents);
-        $this->assertContains('npm run development', $contents);
-        $this->assertContains('axios', $contents);
-        $this->assertContains('laravel-mix', $contents);
-        $this->assertContains('vue', $contents);
+        $this->assertStringContainsString('"scripts"', $contents);
+        $this->assertStringContainsString('npm run development', $contents);
+        $this->assertStringContainsString('axios', $contents);
+        $this->assertStringContainsString('laravel-mix', $contents);
+        $this->assertStringContainsString('vue', $contents);
     }
 
     public function testGenerateCommandCreatesWebpackMixConfigFileAtProjectRoot()
@@ -65,9 +65,9 @@ class AssetMixCommandTest extends TestCase
         $contents = file_get_contents($this->getVueWebpackMixJsPath()['to']);
 
         $this->assertOutputContains("'webpack.mix.js' file created successfully.");
-        $this->assertContains('mix.setPublicPath', $contents);
-        $this->assertContains('assets/js/app.js', $contents);
-        $this->assertContains(".setPublicPath('./webroot')", $contents);
+        $this->assertStringContainsString('mix.setPublicPath', $contents);
+        $this->assertStringContainsString('assets/js/app.js', $contents);
+        $this->assertStringContainsString(".setPublicPath('./webroot')", $contents);
     }
 
     public function testGenerateCommandCreatesAssetsDirectoryAtProjectRoot()
@@ -100,8 +100,8 @@ class AssetMixCommandTest extends TestCase
         $this->assertDirectoryExists($paths['to_assets_js_components']);
         $this->assertDirectoryExists($paths['to_assets_sass']);
         $this->assertFileExists($paths['to_assets_sass_app']);
-        $this->assertContains("import Vue from 'vue';", $appJsContents);
-        $this->assertContains('$primary: grey', $appSassContents);
+        $this->assertStringContainsString("import Vue from 'vue';", $appJsContents);
+        $this->assertStringContainsString('$primary: grey', $appSassContents);
     }
 
     /**
