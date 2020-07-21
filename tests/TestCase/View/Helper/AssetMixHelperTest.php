@@ -22,7 +22,7 @@ class AssetMixHelperTest extends TestCase
     /**
      * {@inheritDoc}
      */
-    public function setUp()
+    public function setUp(): void
     {
         parent::setUp();
 
@@ -35,7 +35,7 @@ class AssetMixHelperTest extends TestCase
     /**
      * {@inheritDoc}
      */
-    public function tearDown()
+    public function tearDown(): void
     {
         unset($this->AssetMix);
 
