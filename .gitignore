@@ -2,3 +2,4 @@
 /phpunit.xml
 /vendor
 /phpstan.neon
+/.phpunit.result.cache
