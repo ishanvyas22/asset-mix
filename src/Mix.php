@@ -23,7 +23,7 @@ class Mix
      * @return string
      * @throws \Exception
      */
-    public function __invoke($path, $manifestDirectory = '')
+    public function __invoke($path, $manifestDirectory = ''): string
     {
         if (! starts_with($path, '/')) {
             $path = "/{$path}";
@@ -76,7 +76,7 @@ class Mix
      *
      * @return void
      */
-    public static function reset()
+    public static function reset(): void
     {
         self::$manifests = [];
     }

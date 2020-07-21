@@ -10,7 +10,7 @@ trait StubsPathTrait
      *
      * @return string
      */
-    public function getBaseVueStubsPath()
+    public function getBaseVueStubsPath(): string
     {
         return ASSET_MIX_ROOT . DS . 'stubs' . DS . 'vue' . DS;
     }
@@ -20,7 +20,7 @@ trait StubsPathTrait
      *
      * @return array<string>
      */
-    public function getVuePackageJsonPath()
+    public function getVuePackageJsonPath(): array
     {
         $packageJsonPath = $this->getBaseVueStubsPath() . 'package.json';
 
@@ -35,7 +35,7 @@ trait StubsPathTrait
      *
      * @return array<string>
      */
-    public function getVueWebpackMixJsPath()
+    public function getVueWebpackMixJsPath(): array
     {
         $webpackConfigPath = $this->getBaseVueStubsPath() . 'webpack.mix.js';
 
@@ -51,7 +51,7 @@ trait StubsPathTrait
      * @param string|null $dirname Custom directory name.
      * @return array<string>
      */
-    public function getVueAssetsDirPaths($dirname = null)
+    public function getVueAssetsDirPaths($dirname = null): array
     {
         if ($dirname === null) {
             $dirname = AssetMixCommand::ASSETS_DIR_NAME;

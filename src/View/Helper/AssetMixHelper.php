@@ -26,7 +26,7 @@ class AssetMixHelper extends Helper
      * @param array<mixed> $options Options array.
      * @return string|null CSS `<link />` or `<style />` tag, depending on the type of link.
      */
-    public function css(string $path, array $options = [])
+    public function css(string $path, array $options = []): ?string
     {
         // Get css file path, add extension if not provided, skip if url provided
         if (strpos($path, '//') !== false) {
@@ -49,7 +49,7 @@ class AssetMixHelper extends Helper
      * @return string|null String of `<script />` tags or null if block is specified in options
      *   or if $once is true and the file has been included before.
      */
-    public function script(string $url, array $options = [])
+    public function script(string $url, array $options = []): ?string
     {
         $options = array_merge($options, ['defer' => true]);
 

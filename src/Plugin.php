@@ -3,6 +3,7 @@
 namespace AssetMix;
 
 use AssetMix\Command\AssetMixCommand;
+use Cake\Console\CommandCollection;
 use Cake\Core\BasePlugin;
 
 /**
@@ -16,7 +17,7 @@ class Plugin extends BasePlugin
      * @param \Cake\Console\CommandCollection<mixed> $commands The command collection to update
      * @return \Cake\Console\CommandCollection<mixed>
      */
-    public function console($commands)
+    public function console($commands): CommandCollection
     {
         parent::console($commands);
 
