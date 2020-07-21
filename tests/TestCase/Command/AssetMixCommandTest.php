@@ -1,4 +1,6 @@
 <?php
+declare(strict_types=1);
+
 namespace AssetMix\Test\TestCase\Command;
 
 use AssetMix\StubsPathTrait;
@@ -23,7 +25,7 @@ class AssetMixCommandTest extends TestCase
     private $filesystem;
 
     /**
-     * {@inheritDoc}
+     * @inheritDoc
      */
     public function setUp(): void
     {
@@ -103,7 +105,7 @@ class AssetMixCommandTest extends TestCase
     }
 
     /**
-     * {@inheritDoc}
+     * @inheritDoc
      */
     public function tearDown(): void
     {

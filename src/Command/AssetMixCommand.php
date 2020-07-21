@@ -1,4 +1,6 @@
 <?php
+declare(strict_types=1);
+
 namespace AssetMix\Command;
 
 use AssetMix\StubsPathTrait;
@@ -15,7 +17,7 @@ class AssetMixCommand extends Command
     /**
      * Filesystem utility object
      *
-     * @var FileUtility
+     * @var \AssetMix\Utility\FileUtility
      */
     private $filesystem;
 
@@ -25,7 +27,7 @@ class AssetMixCommand extends Command
     public const ASSETS_DIR_NAME = 'assets';
 
     /**
-     * {@inheritDoc}
+     * @inheritDoc
      */
     public function initialize()
     {
@@ -33,7 +35,7 @@ class AssetMixCommand extends Command
     }
 
     /**
-     * {@inheritDoc}
+     * @inheritDoc
      */
     protected function buildOptionParser(ConsoleOptionParser $parser)
     {
@@ -49,7 +51,7 @@ class AssetMixCommand extends Command
     }
 
     /**
-     * {@inheritDoc}
+     * @inheritDoc
      */
     public function execute(Arguments $args, ConsoleIo $io)
     {
@@ -68,7 +70,7 @@ class AssetMixCommand extends Command
     /**
      * Copy `package.json` file in project root
      *
-     * @param ConsoleIo $io Console input/output
+     * @param \Cake\Console\ConsoleIo $io Console input/output
      * @return void
      */
     private function copyPackageJsonFile($io)
@@ -83,7 +85,7 @@ class AssetMixCommand extends Command
     /**
      * Copy `webpack.mix.js` file in project root
      *
-     * @param ConsoleIo $io Console input/output
+     * @param \Cake\Console\ConsoleIo $io Console input/output
      * @return void
      */
     private function copyWebpackMixJsFile($io)
@@ -98,8 +100,8 @@ class AssetMixCommand extends Command
     /**
      * Create, copy `assets` directory to project of the root
      *
-     * @param Arguments $args Arguments
-     * @param ConsoleIo $io Console input/output
+     * @param \Cake\Console\Arguments $args Arguments
+     * @param \Cake\Console\ConsoleIo $io Console input/output
      * @return void
      */
     private function copyAssetsDirectory($args, $io)

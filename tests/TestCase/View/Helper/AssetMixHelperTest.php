@@ -1,4 +1,6 @@
 <?php
+declare(strict_types=1);
+
 namespace AssetMix\Test\TestCase\View\Helper;
 
 use AssetMix\Mix;
@@ -20,7 +22,7 @@ class AssetMixHelperTest extends TestCase
     public $AssetMix;
 
     /**
-     * {@inheritDoc}
+     * @inheritDoc
      */
     public function setUp(): void
     {
@@ -33,7 +35,7 @@ class AssetMixHelperTest extends TestCase
     }
 
     /**
-     * {@inheritDoc}
+     * @inheritDoc
      */
     public function tearDown(): void
     {
