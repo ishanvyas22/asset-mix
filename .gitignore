@@ -7,7 +7,6 @@
 /config/Migrations/schema-dump-default.lock
 /vendor/*
 /phpstan.neon
-/.phpunit.result.cache
 
 # OS generated files #
 ######################
