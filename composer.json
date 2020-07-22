@@ -17,6 +17,7 @@
         "source": "https://github.com/ishanvyas22/asset-mix"
     },
     "require": {
+        "ext-json": "*",
         "cakephp/cakephp": "4.1.*",
         "cakephp/cakephp-codesniffer": "~4.2.0"
     },
