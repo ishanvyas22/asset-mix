@@ -1,6 +1,8 @@
 # Release Notes
 
-## [Unreleased](https://github.com/ishanvyas22/asset-mix/compare/1.0.0...master)
+## [Unreleased](https://github.com/ishanvyas22/asset-mix/compare/1.0.1...master)
+
+## [1.0.1 (2020-07-23)](https://github.com/ishanvyas22/asset-mix/compare/1.0.0...1.0.1)
 
 ### Fixed
 - Error: Unknown short option `b`. ([#13](https://github.com/ishanvyas22/asset-mix/issues/13))
