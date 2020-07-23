@@ -7,6 +7,8 @@
 
 Provides integration with your [CakePHP application](https://cakephp.org/) & [Laravel Mix](https://laravel-mix.com).
 
+This branch works with **CakePHP 4.0+**, see [version map](#version-map) for more details.
+
 ## Installation
 
 1. Get project into your system
@@ -42,7 +44,7 @@ Provides integration with your [CakePHP application](https://cakephp.org/) & [La
     ```bash
     npm run watch
     ```
-    
+
     - For production:
     ```bash
     npm run prod
@@ -119,7 +121,15 @@ Custom directory name:
 ```bash
 bin/cake asset_mix generate --dir=resources
 ```
+
 You can also use custom directory name instead of default `assets` directory, above command will create `resources` directory where you can put your js, css, etc asset files.
+
+## Version map
+
+AssetMix version | Branch | CakePHP version | PHP minimum version |
+--- | --- | --- | --- |
+1.x | master | >=4.0.0 | >=7.2 |
+0.x | cake3 | >=3.5.0 | >=5.6 |
 
 ## Reference
 To see this plugin into action you can refer to this [project](https://github.com/ishanvyas22/cakephpvue-spa), which will provide more insight.

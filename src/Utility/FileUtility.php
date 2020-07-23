@@ -1,8 +1,8 @@
 <?php
+declare(strict_types=1);
+
 namespace AssetMix\Utility;
 
-use League\Flysystem\Adapter\Local;
-use League\Flysystem\Filesystem;
 use RecursiveDirectoryIterator;
 use RecursiveIteratorIterator;
 
@@ -12,7 +12,7 @@ use RecursiveIteratorIterator;
 class FileUtility implements FileUtilityInterface
 {
     /**
-     * {@inheritDoc}
+     * @inheritDoc
      */
     public function copy($from, $to)
     {
@@ -24,7 +24,7 @@ class FileUtility implements FileUtilityInterface
     }
 
     /**
-     * {@inheritDoc}
+     * @inheritDoc
      */
     public function recursiveCopy($source, $destination)
     {
@@ -37,13 +37,16 @@ class FileUtility implements FileUtilityInterface
             if ($item->isDir()) {
                 $this->mkdir($destination . DS . $iterator->getSubPathName());
             } else {
-                $this->copy($item, $destination . DS . $iterator->getSubPathName());
+                $this->copy(
+                    $item->getPath() . DS . $item->getFilename(),
+                    $destination . DS . $iterator->getSubPathName()
+                );
             }
         }
     }
 
     /**
-     * {@inheritDoc}
+     * @inheritDoc
      */
     public function exists($path)
     {
@@ -51,7 +54,7 @@ class FileUtility implements FileUtilityInterface
     }
 
     /**
-     * {@inheritDoc}
+     * @inheritDoc
      */
     public function mkdir($path, $options = [])
     {
@@ -63,7 +66,7 @@ class FileUtility implements FileUtilityInterface
     }
 
     /**
-     * {@inheritDoc}
+     * @inheritDoc
      */
     public function delete($paths)
     {
