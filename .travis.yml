@@ -3,6 +3,7 @@ language: php
 branches:
   only:
     - master
+    - cake3
 
 php:
   - 7.1
