@@ -1,6 +1,12 @@
 # Release Notes
 
-## [Unreleased](https://github.com/ishanvyas22/asset-mix/compare/0.4.1...cake3)
+## [Unreleased](https://github.com/ishanvyas22/asset-mix/compare/0.4.2...cake3)
+
+## [0.4.2 (2020-07-23)](https://github.com/ishanvyas22/asset-mix/compare/0.4.1...0.4.2)
+
+### Added
+-  Added cs-fix alias to auto fix coding standard ([77ef0f2](https://github.com/ishanvyas22/asset-mix/commit/77ef0f2dab115abaf051087b020fe5966042f52d))
+-  Added version map in `README.md` file to notify that `cake3` branch is supported for CakePHP 3.5+ ([b184e00](https://github.com/ishanvyas22/asset-mix/commit/b184e000cc57baa7b5527845cbe4268cef1a7ecb))
 
 ## [0.4.1 (2020-07-23)](https://github.com/ishanvyas22/asset-mix/compare/0.4.0...0.4.1)
 
