@@ -13,6 +13,7 @@
 - Remove check for PHP 7.0 in travis ci ([#10](https://github.com/ishanvyas22/asset-mix/pull/10))
 - Add check for PHP 7.3 in travis ci ([#10](https://github.com/ishanvyas22/asset-mix/pull/10))
 - Optimize travis checks by removing unit test command for each build ([#10](https://github.com/ishanvyas22/asset-mix/pull/10))
+- Rename `CHANGLOG.md` to `CHANGELOG-0.x.md` file ([1248653](https://github.com/ishanvyas22/asset-mix/commit/1248653fb1e72980af11ac9e4e654fb8d8c13073))
 
 ## [0.4.0 (2019-11-09)](https://github.com/ishanvyas22/asset-mix/compare/0.3.2...0.4.0)
 
