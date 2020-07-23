@@ -19,7 +19,7 @@ This branch works with **CakePHP 4.0+**, see [version map](#version-map) for mor
     ```
 2. Load plugin using below command:
     ```bash
-    bin/cake plugin load -b AssetMix
+    bin/cake plugin load AssetMix
     ```
 3. [Generate basic Javascript, CSS & Sass scaffolding](#generate-command):
     ```bash
