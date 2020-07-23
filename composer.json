@@ -37,6 +37,7 @@
         }
     },
     "scripts": {
+        "cs-fix": "vendor/bin/phpcbf --extensions=php ./src ./tests",
         "cs-check": "vendor/bin/phpcs -p --extensions=php ./src ./tests",
         "test:types": "phpstan analyse --ansi --memory-limit=-1",
         "test": "phpunit --colors=always",
