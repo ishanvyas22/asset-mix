@@ -1,6 +1,6 @@
 # Release Notes
 
-## [Unreleased](https://github.com/ishanvyas22/asset-mix/compare/0.4.0...master)
+## [Unreleased](https://github.com/ishanvyas22/asset-mix/compare/0.4.0...cake3)
 
 ### Added
 - Add phpstan dependency ([#10](https://github.com/ishanvyas22/asset-mix/pull/10))
