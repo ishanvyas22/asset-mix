@@ -2,6 +2,9 @@
 
 ## [Unreleased](https://github.com/ishanvyas22/asset-mix/compare/1.0.1...master)
 
+### Fixed
+- Wrong directory name in `webpack.mix.js` file for custom directory ([#14](https://github.com/ishanvyas22/asset-mix/issues/14))
+
 ## [1.0.1 (2020-07-23)](https://github.com/ishanvyas22/asset-mix/compare/1.0.0...1.0.1)
 
 ### Fixed

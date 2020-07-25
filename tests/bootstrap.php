@@ -67,6 +67,8 @@ Cache::setConfig([
     ],
 ]);
 
+require ROOT . DS . 'config' . DS . 'bootstrap.php';
+
 // Ensure default test connection is defined
 if (!getenv('db_dsn')) {
     putenv('db_dsn=sqlite://127.0.0.1/' . TMP . 'debug_kit_test.sqlite');

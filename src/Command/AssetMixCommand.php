@@ -9,6 +9,7 @@ use Cake\Console\Arguments;
 use Cake\Console\Command;
 use Cake\Console\ConsoleIo;
 use Cake\Console\ConsoleOptionParser;
+use Exception;
 
 class AssetMixCommand extends Command
 {
@@ -59,7 +60,7 @@ class AssetMixCommand extends Command
         $this->copyPackageJsonFile($io);
 
         // Copy webpack.mix.js file at the project root
-        $this->copyWebpackMixJsFile($io);
+        $this->copyWebpackMixJsFile($args, $io);
 
         // Copy resources directory at the project root
         $this->copyAssetsDirectory($args, $io);
@@ -85,14 +86,22 @@ class AssetMixCommand extends Command
     /**
      * Copy `webpack.mix.js` file in project root
      *
+     * @param \Cake\Console\Arguments $args Arguments
      * @param \Cake\Console\ConsoleIo $io Console input/output
      * @return void
      */
-    private function copyWebpackMixJsFile($io)
+    private function copyWebpackMixJsFile($args, $io)
     {
-        $path = $this->getVueWebpackMixJsPath();
+        $dirName = $args->getOption('dir');
 
-        $this->filesystem->copy($path['from'], $path['to']);
+        if (! is_string($dirName)) {
+            throw new Exception('Invalid directory name');
+        }
+
+        $path = $this->getVueWebpackMixJsPath();
+        $content = $this->setWebpackMixFileContents($path['from'], $dirName);
+
+        $this->filesystem->write($path['to'], $content);
 
         $io->success(__('\'webpack.mix.js\' file created successfully.'));
     }
@@ -118,5 +127,33 @@ class AssetMixCommand extends Command
         $this->filesystem->recursiveCopy($stubsPaths['from_assets'], $assetPath);
 
         $io->success(__(sprintf('\'%s\' directory created successfully.', $dirName)));
+    }
+
+    /**
+     * Update `webpack.mix.js` file contents with given directory name.
+     *
+     * @param string $filePath Path to file.
+     * @param string $dirName Directory name.
+     * @return string Updated file contents.
+     */
+    private function setWebpackMixFileContents($filePath, $dirName)
+    {
+        $currentWebpackContents = file_get_contents($filePath);
+
+        if (! is_string($currentWebpackContents)) {
+            throw new Exception('Invalid webpack.mix.js file contents');
+        }
+
+        $updatedFileContents = preg_replace(
+            '/\b' . self::ASSETS_DIR_NAME . '\b/',
+            $dirName,
+            $currentWebpackContents
+        );
+
+        if (! is_string($updatedFileContents)) {
+            throw new Exception('Unable to replace file content');
+        }
+
+        return $updatedFileContents;
     }
 }
