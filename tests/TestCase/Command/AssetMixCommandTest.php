@@ -84,6 +84,12 @@ class AssetMixCommandTest extends TestCase
 
         $this->exec(sprintf('asset_mix generate --dir=%s', $customDirName));
 
+        $webpackMixFileContents = file_get_contents($this->getVueWebpackMixJsPath()['to']);
+        $this->assertContains(
+            sprintf(".js('%s/js/app.js', 'webroot/js')", $customDirName),
+            $webpackMixFileContents
+        );
+
         $this->commonDirectoryExistsAssertions($paths);
     }
 

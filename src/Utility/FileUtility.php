@@ -1,6 +1,7 @@
 <?php
 namespace AssetMix\Utility;
 
+use Exception;
 use League\Flysystem\Adapter\Local;
 use League\Flysystem\Filesystem;
 use RecursiveDirectoryIterator;
@@ -106,5 +107,32 @@ class FileUtility implements FileUtilityInterface
         }
 
         rmdir($path);
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function write($filename, $content)
+    {
+        if (! file_exists($filename)) {
+            touch($filename);
+        }
+
+        if (! is_writable($filename)) {
+            throw new Exception('File is not writable, please fix permission');
+        }
+
+        $file = fopen($filename, 'w');
+        if (! $file) {
+            throw new Exception('Unable to open file');
+        }
+
+        if (! fwrite($file, $content)) {
+            throw new Exception('Unable to open file');
+        }
+
+        fclose($file);
+
+        return true;
     }
 }
