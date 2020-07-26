@@ -1,6 +1,11 @@
 # Release Notes
 
-## [Unreleased](https://github.com/ishanvyas22/asset-mix/compare/0.4.2...cake3)
+## [Unreleased](https://github.com/ishanvyas22/asset-mix/compare/0.4.3...cake3)
+
+## [0.4.3 (2020-07-26)](https://github.com/ishanvyas22/asset-mix/compare/0.4.2...0.4.3)
+
+### Fixed
+- Wrong directory name in webpack.mix.js file for custom directory ([#14](https://github.com/ishanvyas22/asset-mix/issues/14))
 
 ## [0.4.2 (2020-07-23)](https://github.com/ishanvyas22/asset-mix/compare/0.4.1...0.4.2)
 
