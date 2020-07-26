@@ -48,4 +48,15 @@ interface FileUtilityInterface
      * @return void
      */
     public function delete($paths);
+
+    /**
+     * Writes into a file with give contents.
+     * Creates file if not exist.
+     *
+     * @param string $filename File name with absolute path.
+     * @param string $content Content to write into the file.
+     * @return bool Returns true on success, false otherwise.
+     * @throws \Exception In case of failure.
+     */
+    public function write($filename, $content);
 }
