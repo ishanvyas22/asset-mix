@@ -131,8 +131,24 @@ AssetMix version | Branch | CakePHP version | PHP minimum version |
 1.x | master | >=4.0.0 | >=7.2 |
 0.x | cake3 | >=3.5.0 | >=5.6 |
 
+## ❤️  Support The Development
+**Do you like this project? Support it by donating:**
+
+<a href="https://www.buymeacoffee.com/ishanvyas" target="_blank">
+    <img src="https://www.buymeacoffee.com/assets/img/custom_images/purple_img.png" alt="Buy Me A Coffee" style="height: 41px !important;width: 174px !important;box-shadow: 0px 3px 2px 0px rgba(190, 190, 190, 0.5) !important;-webkit-box-shadow: 0px 3px 2px 0px rgba(190, 190, 190, 0.5) !important;" >
+</a>
+
+<a href="https://www.patreon.com/ishanvyas">
+    <img src="https://c5.patreon.com/external/logo/become_a_patron_button@2x.png" width="160">
+</a>
+
+**or** [Paypal me](https://paypal.me/IshanVyas?locale.x=en_GB)
+
+## Changelog
+Please see [CHANGELOG](CHANGELOG-1.x.md) for more information about recent changes.
+
 ## Reference
 To see this plugin into action you can refer to this [project](https://github.com/ishanvyas22/cakephpvue-spa), which will provide more insight.
 
-## Issues
-Feel free to submit issues and enhancement requests.
+## License
+The MIT License (MIT). Please see [License File](LICENSE.md) for more information.
