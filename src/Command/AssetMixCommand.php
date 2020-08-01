@@ -42,6 +42,10 @@ class AssetMixCommand extends Command
     {
         $parser
             ->setDescription('Auto generate configuration files, assets directory')
+            ->addArgument('preset', [
+                'help' => __('The preset/scaffolding type (bootstrap, vue, react), default is vue.'),
+                'choices' => ['bootstrap', 'vue', 'react']
+            ])
             ->addOption('dir', [
                 'short' => 'd',
                 'help' => __('Directory name to create'),
