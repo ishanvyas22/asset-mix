@@ -2,6 +2,9 @@
 
 ## [Unreleased](https://github.com/ishanvyas22/asset-mix/compare/1.0.2...master)
 
+### Added
+- Scaffolding for Bootstrap / Vue / React ([#3](https://github.com/ishanvyas22/asset-mix/issues/3))
+
 ## [1.0.2 (2020-07-23)](https://github.com/ishanvyas22/asset-mix/compare/1.0.1...1.0.2)
 
 ### Fixed
