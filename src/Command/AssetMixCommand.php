@@ -25,7 +25,7 @@ class AssetMixCommand extends Command
     /**
      * Preset type provided via argument.
      *
-     * @var string
+     * @var string|null
      */
     private $preset;
 
@@ -100,12 +100,16 @@ class AssetMixCommand extends Command
     /**
      * Writes `package.json` file.
      *
-     * @param  array $packages Content to write into the file.
+     * @param  array<mixed> $packages Content to write into the file.
      * @param  string $to Path to create the file.
      * @return void
      */
     private function writePackageJsonFile($packages, $to)
     {
+        if (! is_string($this->preset)) {
+            throw new Exception('Invalid preset value');
+        }
+
         $packageConfigKey = 'devDependencies';
         $updatePackagesMethodName = sprintf(
             'update%sPackagesArray',
@@ -203,6 +207,10 @@ class AssetMixCommand extends Command
      */
     private function getPackageJsonPath()
     {
+        if (! is_string($this->preset)) {
+            throw new Exception('Invalid preset value');
+        }
+
         $getPackgeJsonPathMethodName = sprintf(
             'get%sPackageJsonPath',
             ucwords($this->preset)
@@ -218,13 +226,21 @@ class AssetMixCommand extends Command
      */
     private function getPackageJsonFileContentsAsArray()
     {
+        if (! is_string($this->preset)) {
+            throw new Exception('Invalid preset value');
+        }
+
         $getPackgeJsonPathMethodName = sprintf(
             'get%sPackageJsonPath',
             ucwords($this->preset)
         );
         $path = $this->{$getPackgeJsonPathMethodName}();
 
-        return json_decode(file_get_contents($path['from']), true);
+        if (! is_string($path['from'])) {
+            throw new Exception('Invalid path');
+        }
+
+        return json_decode((string)file_get_contents($path['from']), true);
     }
 
     /**
@@ -234,6 +250,10 @@ class AssetMixCommand extends Command
      */
     private function getWebpackMixJsPath()
     {
+        if (! is_string($this->preset)) {
+            throw new Exception('Invalid preset value');
+        }
+
         $webpackMixJsPathMethodName = sprintf(
             'get%sWebpackMixJsPath',
             ucwords($this->preset)
@@ -249,6 +269,10 @@ class AssetMixCommand extends Command
      */
     private function getAssetsDirPaths()
     {
+        if (! is_string($this->preset)) {
+            throw new Exception('Invalid preset value');
+        }
+
         $assetsDirPathMethodName = sprintf(
             'get%sAssetsDirPaths',
             ucwords($this->preset)
@@ -261,8 +285,8 @@ class AssetMixCommand extends Command
      * Update packages array for vue.
      *
      * @phpcs:disable SlevomatCodingStandard.Classes.UnusedPrivateElements
-     * @param  array $packages Existing packages array to update.
-     * @return array
+     * @param  array<mixed> $packages Existing packages array to update.
+     * @return array<mixed>
      */
     private function updateVuePackagesArray($packages)
     {
@@ -278,8 +302,8 @@ class AssetMixCommand extends Command
     /**
      * Update packages array for bootstrap.
      *
-     * @param  array $packages Existing packages array to update.
-     * @return array
+     * @param  array<mixed> $packages Existing packages array to update.
+     * @return array<mixed>
      */
     private function updateBootstrapPackagesArray($packages)
     {
