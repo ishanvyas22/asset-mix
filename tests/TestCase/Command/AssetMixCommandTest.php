@@ -49,14 +49,14 @@ class AssetMixCommandTest extends TestCase
     {
         $this->exec('asset_mix generate');
 
-        $contents = file_get_contents($this->getVuePackageJsonPath()['to']);
+        $packageJsonContents = file_get_contents($this->getVuePackageJsonPath()['to']);
 
         $this->assertOutputContains("'package.json' file created successfully.");
-        $this->assertStringContainsString('"scripts"', $contents);
-        $this->assertStringContainsString('npm run development', $contents);
-        $this->assertStringContainsString('axios', $contents);
-        $this->assertStringContainsString('laravel-mix', $contents);
-        $this->assertStringContainsString('vue', $contents);
+        $this->assertStringContainsString('"scripts"', $packageJsonContents);
+        $this->assertStringContainsString('npm run development', $packageJsonContents);
+        $this->assertStringContainsString('axios', $packageJsonContents);
+        $this->assertStringContainsString('laravel-mix', $packageJsonContents);
+        $this->assertStringContainsString('vue', $packageJsonContents);
     }
 
     public function testGenerateCommandCreatesWebpackMixConfigFileAtProjectRoot()
@@ -69,6 +69,7 @@ class AssetMixCommandTest extends TestCase
         $this->assertStringContainsString('mix.setPublicPath', $contents);
         $this->assertStringContainsString('assets/js/app.js', $contents);
         $this->assertStringContainsString(".setPublicPath('./webroot')", $contents);
+        $this->assertStringContainsString(".sass('assets/sass/app.scss', 'webroot/css')", $contents);
     }
 
     public function testGenerateCommandCreatesAssetsDirectoryAtProjectRoot()
