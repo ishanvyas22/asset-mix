@@ -51,7 +51,7 @@ class AssetMixCommand extends Command
             ->setDescription('Auto generate configuration files, assets directory')
             ->addArgument('preset', [
                 'help' => __('The preset/scaffolding type (bootstrap, vue, react), default is vue.'),
-                'choices' => ['bootstrap', 'vue', 'react']
+                'choices' => ['bootstrap', 'vue', 'react'],
             ])
             ->addOption('dir', [
                 'short' => 'd',
@@ -118,7 +118,7 @@ class AssetMixCommand extends Command
 
         file_put_contents(
             $to,
-            json_encode($packages, JSON_UNESCAPED_SLASHES | JSON_PRETTY_PRINT).PHP_EOL
+            json_encode($packages, JSON_UNESCAPED_SLASHES | JSON_PRETTY_PRINT) . PHP_EOL
         );
     }
 
