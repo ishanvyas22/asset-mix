@@ -260,6 +260,7 @@ class AssetMixCommand extends Command
     /**
      * Update packages array for vue.
      *
+     * @phpcs:disable SlevomatCodingStandard.Classes.UnusedPrivateElements
      * @param  array $packages Existing packages array to update.
      * @return array
      */
