@@ -141,6 +141,35 @@ class AssetMixCommandTest extends TestCase
         );
     }
 
+    public function testGenerateCommandCreatesReactScaffolding()
+    {
+        $directoryPaths = $this->getReactAssetsDirPaths();
+        $packagePaths = $this->getReactPackageJsonPath();
+
+        $this->exec('asset_mix generate react');
+
+        $webpackMixJsContents = file_get_contents($this->getReactWebpackMixJsPath()['to']);
+
+        $this->commonDirectoryExistsAssertions($directoryPaths);
+        $this->assertStringContainsString(
+            '"react": "',
+            file_get_contents($packagePaths['to'])
+        );
+        $this->assertStringContainsString(
+            '"react-dom": "',
+            file_get_contents($packagePaths['to'])
+        );
+        $this->assertStringContainsString(
+            "require('./components/Greet');",
+            file_get_contents($directoryPaths['to_assets_js_app'])
+        );
+        $this->assertStringContainsString(
+            "@import '~bootstrap/scss/bootstrap';",
+            file_get_contents($directoryPaths['to_assets_sass_app'])
+        );
+        $this->assertStringContainsString(".react('assets/js/app.js', 'webroot/js')", $webpackMixJsContents);
+    }
+
     private function commonDirectoryExistsAssertions($paths)
     {
         $this->assertDirectoryExists($paths['to_assets']);

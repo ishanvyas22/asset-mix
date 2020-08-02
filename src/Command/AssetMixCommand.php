@@ -313,4 +313,25 @@ class AssetMixCommand extends Command
             'popper.js' => '^1.12',
         ] + $packages;
     }
+
+    /**
+     * Update packages array for react.
+     *
+     * @param  array<mixed> $packages Existing packages array to update.
+     * @return array<mixed>
+     */
+    private function updateReactPackagesArray($packages)
+    {
+        foreach ($packages as $packageName => $version) {
+            if (in_array($packageName, ['vue', 'vue-template-compiler'])) {
+                unset($packages[$packageName]);
+            }
+        }
+
+        return [
+            '@babel/preset-react' => '^7.0.0',
+            'react' => '^16.2.0',
+            'react-dom' => '^16.2.0',
+        ] + $packages;
+    }
 }
