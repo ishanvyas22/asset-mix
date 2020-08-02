@@ -77,6 +77,8 @@ class AssetMixCommand extends Command
         $this->copyWebpackMixJsFile($args, $io);
         $this->copyAssetsDirectory($args, $io);
 
+        $io->info('Note: You should run "npm install && npm run dev" to compile your updated scaffolding.');
+
         return null;
     }
 
