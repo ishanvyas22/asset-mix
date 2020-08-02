@@ -127,7 +127,7 @@ You can also use custom directory name instead of default `assets` directory, ab
 
 Don't want to use Vue.js? Don't worry this plugin doesn't dictate on which javascript library you should use. This plugin provides ability to quickly generate scaffolding for Vue as well as Bootstrap, and React.
 
-#### Generate basic jQuery/Bootstrap scaffolding:
+#### Generate basic Bootstrap/jQuery scaffolding:
 
 ```bash
 bin/cake asset_mix generate bootstrap
