@@ -109,7 +109,7 @@ trait StubsPathTrait
             'to_assets_js_app' => basename($assetsDirPath) . DS . 'js' . DS . 'app.js',
             'to_assets_js_components' => basename($assetsDirPath) . DS . 'js' . DS . 'components',
             'to_assets_sass' => basename($assetsDirPath) . DS . 'sass',
-            'to_assets_sass_app' => basename($assetsDirPath) . DS . 'sass' . DS . 'app.sass',
+            'to_assets_sass_app' => basename($assetsDirPath) . DS . 'sass' . DS . 'app.scss',
         ];
     }
 
