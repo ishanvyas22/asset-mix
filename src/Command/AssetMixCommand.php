@@ -23,6 +23,13 @@ class AssetMixCommand extends Command
     private $filesystem;
 
     /**
+     * Preset type provided via argument.
+     *
+     * @var string
+     */
+    private $preset;
+
+    /**
      * Directory name where all assets(js, css) files will reside.
      */
     public const ASSETS_DIR_NAME = 'assets';
@@ -60,6 +67,12 @@ class AssetMixCommand extends Command
      */
     public function execute(Arguments $args, ConsoleIo $io)
     {
+        $this->preset = $args->getArgument('preset');
+
+        if ($this->preset === null) {
+            $this->preset = 'vue';
+        }
+
         // Copy package.json file at the project root
         $this->copyPackageJsonFile($io);
 
@@ -80,7 +93,7 @@ class AssetMixCommand extends Command
      */
     private function copyPackageJsonFile($io)
     {
-        $path = $this->getVuePackageJsonPath();
+        $path = $this->getPackageJsonPath();
 
         $this->filesystem->copy($path['from'], $path['to']);
 
@@ -102,7 +115,7 @@ class AssetMixCommand extends Command
             throw new Exception('Invalid directory name');
         }
 
-        $path = $this->getVueWebpackMixJsPath();
+        $path = $this->getWebpackMixJsPath();
         $content = $this->setWebpackMixFileContents($path['from'], $dirName);
 
         $this->filesystem->write($path['to'], $content);
@@ -121,10 +134,10 @@ class AssetMixCommand extends Command
     {
         $dirName = $args->getOption('dir');
         $assetPath = ROOT . DS . $dirName;
-        $stubsPaths = $this->getVueAssetsDirPaths();
+        $stubsPaths = $this->getAssetsDirPaths();
 
         if ($this->filesystem->exists($assetPath)) {
-            // Ask if they want to overwrite existing directory with stubs
+            // Ask if they want to overwrite existing directory with default stubs
         }
 
         $this->filesystem->mkdir($assetPath);
@@ -159,5 +172,50 @@ class AssetMixCommand extends Command
         }
 
         return $updatedFileContents;
+    }
+
+    /**
+     * Get `package.json` file path depending on preset.
+     *
+     * @return array<string>
+     */
+    private function getPackageJsonPath()
+    {
+        $packageMethodName = sprintf(
+            'get%sPackageJsonPath',
+            ucwords($this->preset)
+        );
+
+        return $this->{$packageMethodName}();
+    }
+
+    /**
+     * Returns `webpack.mix.js` file path depending on preset.
+     *
+     * @return array<string>
+     */
+    private function getWebpackMixJsPath()
+    {
+        $webpackMixJsPathMethodName = sprintf(
+            'get%sWebpackMixJsPath',
+            ucwords($this->preset)
+        );
+
+        return $this->{$webpackMixJsPathMethodName}();
+    }
+
+    /**
+     * Returns paths of `assets` directory files depending on preset.
+     *
+     * @return array<string>
+     */
+    private function getAssetsDirPaths()
+    {
+        $assetsDirPathMethodName = sprintf(
+            'get%sAssetsDirPaths',
+            ucwords($this->preset)
+        );
+
+        return $this->{$assetsDirPathMethodName}();
     }
 }
