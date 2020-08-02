@@ -18,6 +18,7 @@
     },
     "require": {
         "ext-json": "*",
+        "ext-mbstring": "*",
         "cakephp/cakephp": ">=4.0.0",
         "cakephp/cakephp-codesniffer": "~4.2.0"
     },
