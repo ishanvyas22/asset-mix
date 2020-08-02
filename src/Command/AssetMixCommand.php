@@ -332,6 +332,9 @@ class AssetMixCommand extends Command
             '@babel/preset-react' => '^7.0.0',
             'react' => '^16.2.0',
             'react-dom' => '^16.2.0',
+            'bootstrap' => '^4.0.0',
+            'jquery' => '^3.2',
+            'popper.js' => '^1.12',
         ] + $packages;
     }
 }

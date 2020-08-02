@@ -149,15 +149,24 @@ class AssetMixCommandTest extends TestCase
         $this->exec('asset_mix generate react');
 
         $webpackMixJsContents = file_get_contents($this->getReactWebpackMixJsPath()['to']);
+        $packageJsonContents = file_get_contents($packagePaths['to']);
 
         $this->commonDirectoryExistsAssertions($directoryPaths);
         $this->assertStringContainsString(
             '"react": "',
-            file_get_contents($packagePaths['to'])
+            $packageJsonContents
         );
         $this->assertStringContainsString(
             '"react-dom": "',
-            file_get_contents($packagePaths['to'])
+            $packageJsonContents
+        );
+        $this->assertStringContainsString(
+            '"bootstrap": "',
+            $packageJsonContents
+        );
+        $this->assertStringContainsString(
+            '"jquery": "',
+            $packageJsonContents
         );
         $this->assertStringContainsString(
             "require('./components/Greet');",
