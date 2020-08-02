@@ -12,6 +12,16 @@ trait StubsPathTrait
      *
      * @return string
      */
+    public function getBaseCommonStubsPath(): string
+    {
+        return ASSET_MIX_ROOT . DS . 'stubs' . DS . 'common' . DS;
+    }
+
+    /**
+     * Returns base directory path of vue stubs path.
+     *
+     * @return string
+     */
     public function getBaseVueStubsPath(): string
     {
         return ASSET_MIX_ROOT . DS . 'stubs' . DS . 'vue' . DS;
@@ -64,7 +74,7 @@ trait StubsPathTrait
      */
     public function getVueWebpackMixJsPath(): array
     {
-        $webpackConfigPath = $this->getBaseVueStubsPath() . 'webpack.mix.js';
+        $webpackConfigPath = $this->getBaseCommonStubsPath() . 'webpack.mix.js';
 
         return [
             'from' => $webpackConfigPath,
@@ -79,7 +89,7 @@ trait StubsPathTrait
      */
     public function getBootstrapWebpackMixJsPath(): array
     {
-        $webpackConfigPath = $this->getBaseBootstrapStubsPath() . 'webpack.mix.js';
+        $webpackConfigPath = $this->getBaseCommonStubsPath() . 'webpack.mix.js';
 
         return [
             'from' => $webpackConfigPath,
