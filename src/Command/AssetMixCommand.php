@@ -73,31 +73,53 @@ class AssetMixCommand extends Command
             $this->preset = 'vue';
         }
 
-        // Copy package.json file at the project root
-        $this->copyPackageJsonFile($io);
-
-        // Copy webpack.mix.js file at the project root
+        $this->updatePackageJsonFile($io);
         $this->copyWebpackMixJsFile($args, $io);
-
-        // Copy resources directory at the project root
         $this->copyAssetsDirectory($args, $io);
 
         return null;
     }
 
     /**
-     * Copy `package.json` file in project root
+     * Update `package.json` file from stubs directory and write into project root.
      *
      * @param \Cake\Console\ConsoleIo $io Console input/output
      * @return void
      */
-    private function copyPackageJsonFile($io)
+    private function updatePackageJsonFile($io)
     {
         $path = $this->getPackageJsonPath();
 
-        $this->filesystem->copy($path['from'], $path['to']);
+        $packages = $this->getPackageJsonFileContentsAsArray();
+
+        $this->writePackageJsonFile($packages, $path['to']);
 
         $io->success(__('\'package.json\' file created successfully.'));
+    }
+
+    /**
+     * Writes `package.json` file.
+     *
+     * @param  array $packages Content to write into the file.
+     * @param  string $to Path to create the file.
+     * @return void
+     */
+    private function writePackageJsonFile($packages, $to)
+    {
+        $packageConfigKey = 'devDependencies';
+        $updatePackagesMethodName = sprintf(
+            'update%sPackagesArray',
+            ucwords($this->preset)
+        );
+
+        $packages[$packageConfigKey] = $this->{$updatePackagesMethodName}($packages[$packageConfigKey]);
+
+        ksort($packages[$packageConfigKey]);
+
+        file_put_contents(
+            $to,
+            json_encode($packages, JSON_UNESCAPED_SLASHES | JSON_PRETTY_PRINT).PHP_EOL
+        );
     }
 
     /**
@@ -181,12 +203,28 @@ class AssetMixCommand extends Command
      */
     private function getPackageJsonPath()
     {
-        $packageMethodName = sprintf(
+        $getPackgeJsonPathMethodName = sprintf(
             'get%sPackageJsonPath',
             ucwords($this->preset)
         );
 
-        return $this->{$packageMethodName}();
+        return $this->{$getPackgeJsonPathMethodName}();
+    }
+
+    /**
+     * Get `package.json` file contents as array depending on preset.
+     *
+     * @return array<mixed>
+     */
+    private function getPackageJsonFileContentsAsArray()
+    {
+        $getPackgeJsonPathMethodName = sprintf(
+            'get%sPackageJsonPath',
+            ucwords($this->preset)
+        );
+        $path = $this->{$getPackgeJsonPathMethodName}();
+
+        return json_decode(file_get_contents($path['from']), true);
     }
 
     /**
@@ -217,5 +255,37 @@ class AssetMixCommand extends Command
         );
 
         return $this->{$assetsDirPathMethodName}();
+    }
+
+    /**
+     * Update packages array for vue.
+     *
+     * @param  array $packages Existing packages array to update.
+     * @return array
+     */
+    private function updateVuePackagesArray($packages)
+    {
+        return [
+            'resolve-url-loader' => '^2.3.1',
+            'sass' => '^1.20.1',
+            'sass-loader' => '^8.0.0',
+            'vue' => '^2.5.18',
+            'vue-template-compiler' => '^2.6.10',
+        ] + $packages;
+    }
+
+    /**
+     * Update packages array for bootstrap.
+     *
+     * @param  array $packages Existing packages array to update.
+     * @return array
+     */
+    private function updateBootstrapPackagesArray($packages)
+    {
+        return [
+            'bootstrap' => '^4.0.0',
+            'jquery' => '^3.2',
+            'popper.js' => '^1.12',
+        ] + $packages;
     }
 }

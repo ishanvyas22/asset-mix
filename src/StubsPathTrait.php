@@ -44,7 +44,7 @@ trait StubsPathTrait
      */
     public function getVuePackageJsonPath(): array
     {
-        $packageJsonPath = $this->getBaseVueStubsPath() . 'package.json';
+        $packageJsonPath = $this->getBaseCommonStubsPath() . 'package.json';
 
         return [
             'from' => $packageJsonPath,
@@ -59,7 +59,7 @@ trait StubsPathTrait
      */
     public function getBootstrapPackageJsonPath(): array
     {
-        $packageJsonPath = $this->getBaseBootstrapStubsPath() . 'package.json';
+        $packageJsonPath = $this->getBaseCommonStubsPath() . 'package.json';
 
         return [
             'from' => $packageJsonPath,
