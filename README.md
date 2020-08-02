@@ -25,7 +25,7 @@ This branch works with **CakePHP 4.0+**, see [version map](#version-map) for mor
     ```bash
     bin/cake asset_mix generate
     ```
-    **Note:** Above command will generate scaffolding for vue, but you can generate [Bootstrap/jQuery](#generate-basic-jquerybootstrap-scaffolding), or [React](#generate-react-scaffolding) scaffolding too.
+    **Note:** Above command will generate scaffolding for vue, but you can generate [Bootstrap/jQuery](#generate-basic-bootstrapjquery-scaffolding), or [React](#generate-react-scaffolding) scaffolding too.
 4. Install frontend dependencies
     - Using [npm](https://www.npmjs.com/):
     ```bash
