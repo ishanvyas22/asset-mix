@@ -4,10 +4,12 @@
 
 ## [0.5.1 (2020-08-08)](https://github.com/ishanvyas22/asset-mix/compare/0.5.0...0.5.1)
 
+### Added
+- Add "Support the development" section in README.md
+
 ### Changed
 - Change installation version to ^0.5 from ^0.4 in README.md
 - Move 0.x version up in version map table in README.md
-- Add "Support the development" section in README.md
 
 ## [0.5.0 (2020-08-08)](https://github.com/ishanvyas22/asset-mix/compare/0.4.3...0.5.0)
 
