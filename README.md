@@ -148,8 +148,8 @@ bin/cake asset_mix generate react --dir=resources
 
 AssetMix version | Branch | CakePHP version | PHP minimum version |
 --- | --- | --- | --- |
-1.x | master | >=4.0.0 | >=7.2 |
 0.x | cake3 | >=3.5.0 | >=5.6 |
+1.x | master | >=4.0.0 | >=7.2 |
 
 ## Reference
 To see this plugin into action you can refer to this [project](https://github.com/ishanvyas22/cakephpvue-spa), which will provide more insight.
