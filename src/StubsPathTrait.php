@@ -161,7 +161,6 @@ trait StubsPathTrait
         ];
     }
 
-
     /**
      * Returns paths of `assets` directory files for bootstrap.
      *
