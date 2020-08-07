@@ -40,20 +40,21 @@ class AssetMixCommandTest extends TestCase
 
         $this->assertExitCode(Command::CODE_SUCCESS);
         $this->assertOutputContains('Auto generate configuration files, assets directory');
+        $this->assertOutputContains('The preset/scaffolding type (bootstrap, vue, react), default');
     }
 
     public function testGenerateCommandCreatesPackageJsonFileAtProjectRoot()
     {
         $this->exec('asset_mix generate');
 
-        $contents = file_get_contents($this->getVuePackageJsonPath()['to']);
+        $packageJsonContents = file_get_contents($this->getVuePackageJsonPath()['to']);
 
         $this->assertOutputContains("'package.json' file created successfully.");
-        $this->assertContains('"scripts"', $contents);
-        $this->assertContains('npm run development', $contents);
-        $this->assertContains('axios', $contents);
-        $this->assertContains('laravel-mix', $contents);
-        $this->assertContains('vue', $contents);
+        $this->assertContains('"scripts"', $packageJsonContents);
+        $this->assertContains('npm run development', $packageJsonContents);
+        $this->assertContains('axios', $packageJsonContents);
+        $this->assertContains('laravel-mix', $packageJsonContents);
+        $this->assertContains('vue', $packageJsonContents);
     }
 
     public function testGenerateCommandCreatesWebpackMixConfigFileAtProjectRoot()
@@ -66,6 +67,7 @@ class AssetMixCommandTest extends TestCase
         $this->assertContains('mix.setPublicPath', $contents);
         $this->assertContains('assets/js/app.js', $contents);
         $this->assertContains(".setPublicPath('./webroot')", $contents);
+        $this->assertContains(".sass('assets/sass/app.scss', 'webroot/css')", $contents);
     }
 
     public function testGenerateCommandCreatesAssetsDirectoryAtProjectRoot()
@@ -75,6 +77,15 @@ class AssetMixCommandTest extends TestCase
         $this->exec('asset_mix generate');
 
         $this->commonDirectoryExistsAssertions($paths);
+
+        $this->assertContains(
+            "import Vue from 'vue';",
+            file_get_contents($paths['to_assets_js_app'])
+        );
+        $this->assertContains(
+            '$primary: grey',
+            file_get_contents($paths['to_assets_sass_app'])
+        );
     }
 
     public function testGenerateCommandCreatesDirectoryWithCustomNameFromAssetsDirectory()
@@ -84,28 +95,99 @@ class AssetMixCommandTest extends TestCase
 
         $this->exec(sprintf('asset_mix generate --dir=%s', $customDirName));
 
+        $this->commonDirectoryExistsAssertions($paths);
+
+        $this->assertContains(
+            "import Vue from 'vue';",
+            file_get_contents($paths['to_assets_js_app'])
+        );
+        $this->assertContains(
+            '$primary: grey',
+            file_get_contents($paths['to_assets_sass_app'])
+        );
+
         $webpackMixFileContents = file_get_contents($this->getVueWebpackMixJsPath()['to']);
         $this->assertContains(
             sprintf(".js('%s/js/app.js', 'webroot/js')", $customDirName),
             $webpackMixFileContents
         );
+    }
 
-        $this->commonDirectoryExistsAssertions($paths);
+    public function testGenerateCommandCreatesBootstrapScaffolding()
+    {
+        $directoryPaths = $this->getBootstrapAssetsDirPaths();
+        $packagePaths = $this->getBootstrapPackageJsonPath();
+
+        $this->exec('asset_mix generate bootstrap');
+
+        $this->commonDirectoryExistsAssertions($directoryPaths);
+        $this->assertContains(
+            '"bootstrap": "',
+            file_get_contents($packagePaths['to'])
+        );
+        $this->assertContains(
+            '"jquery": "',
+            file_get_contents($packagePaths['to'])
+        );
+        $this->assertContains(
+            "require('bootstrap');",
+            file_get_contents($directoryPaths['to_assets_js_app'])
+        );
+        $this->assertContains(
+            "@import '~bootstrap/scss/bootstrap';",
+            file_get_contents($directoryPaths['to_assets_sass_app'])
+        );
+    }
+
+    public function testGenerateCommandCreatesReactScaffolding()
+    {
+        $directoryPaths = $this->getReactAssetsDirPaths();
+        $packagePaths = $this->getReactPackageJsonPath();
+
+        $this->exec('asset_mix generate react');
+
+        $webpackMixJsContents = file_get_contents($this->getReactWebpackMixJsPath()['to']);
+        $packageJsonContents = file_get_contents($packagePaths['to']);
+
+        $this->commonDirectoryExistsAssertions($directoryPaths);
+        $this->assertContains(
+            '"react": "',
+            $packageJsonContents
+        );
+        $this->assertContains(
+            '"react-dom": "',
+            $packageJsonContents
+        );
+        $this->assertContains(
+            '"bootstrap": "',
+            $packageJsonContents
+        );
+        $this->assertContains(
+            '"jquery": "',
+            $packageJsonContents
+        );
+        $this->assertContains(
+            "require('./components/Greet');",
+            file_get_contents($directoryPaths['to_assets_js_app'])
+        );
+        $this->assertContains(
+            "@import '~bootstrap/scss/bootstrap';",
+            file_get_contents($directoryPaths['to_assets_sass_app'])
+        );
+        $this->assertContains(".react('assets/js/app.js', 'webroot/js')", $webpackMixJsContents);
     }
 
     private function commonDirectoryExistsAssertions($paths)
     {
-        $appJsContents = file_get_contents($paths['to_assets_js_app']);
-        $appSassContents = file_get_contents($paths['to_assets_sass_app']);
-
         $this->assertDirectoryExists($paths['to_assets']);
         $this->assertDirectoryExists($paths['to_assets_css']);
         $this->assertDirectoryExists($paths['to_assets_js']);
-        $this->assertDirectoryExists($paths['to_assets_js_components']);
         $this->assertDirectoryExists($paths['to_assets_sass']);
         $this->assertFileExists($paths['to_assets_sass_app']);
-        $this->assertContains("import Vue from 'vue';", $appJsContents);
-        $this->assertContains('$primary: grey', $appSassContents);
+
+        if (isset($paths['to_assets_js_components'])) {
+            $this->assertDirectoryExists($paths['to_assets_js_components']);
+        }
     }
 
     /**
