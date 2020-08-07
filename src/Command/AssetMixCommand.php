@@ -21,6 +21,13 @@ class AssetMixCommand extends Command
     private $filesystem;
 
     /**
+     * Preset type provided via argument.
+     *
+     * @var string|null
+     */
+    private $preset;
+
+    /**
      * Directory name where all assets(js, css) files will reside.
      */
     public const ASSETS_DIR_NAME = 'assets';
@@ -40,6 +47,10 @@ class AssetMixCommand extends Command
     {
         $parser
             ->setDescription('Auto generate configuration files, assets directory')
+            ->addArgument('preset', [
+                'help' => __('The preset/scaffolding type (bootstrap, vue, react), default is vue.'),
+                'choices' => ['bootstrap', 'vue', 'react'],
+            ])
             ->addOption('dir', [
                 'short' => 'd',
                 'help' => __('Directory name to create'),
@@ -54,31 +65,65 @@ class AssetMixCommand extends Command
      */
     public function execute(Arguments $args, ConsoleIo $io)
     {
-        // Copy package.json file at the project root
-        $this->copyPackageJsonFile($io);
+        $this->preset = $args->getArgument('preset');
 
-        // Copy webpack.mix.js file at the project root
+        if ($this->preset === null) {
+            $this->preset = 'vue';
+        }
+
+        $this->updatePackageJsonFile($io);
         $this->copyWebpackMixJsFile($args, $io);
-
-        // Copy resources directory at the project root
         $this->copyAssetsDirectory($args, $io);
+
+        $io->info('Note: You should run "npm install && npm run dev" to compile your updated scaffolding.');
 
         return null;
     }
 
     /**
-     * Copy `package.json` file in project root
+     * Update `package.json` file from stubs directory and write into project root.
      *
-     * @param ConsoleIo $io Console input/output
+     * @param \Cake\Console\ConsoleIo $io Console input/output
      * @return void
      */
-    private function copyPackageJsonFile($io)
+    private function updatePackageJsonFile($io)
     {
-        $path = $this->getVuePackageJsonPath();
+        $path = $this->getPackageJsonPath();
 
-        $this->filesystem->copy($path['from'], $path['to']);
+        $packages = $this->getPackageJsonFileContentsAsArray();
+
+        $this->writePackageJsonFile($packages, $path['to']);
 
         $io->success(__('\'package.json\' file created successfully.'));
+    }
+
+    /**
+     * Writes `package.json` file.
+     *
+     * @param  array $packages Content to write into the file.
+     * @param  string $to Path to create the file.
+     * @return void
+     */
+    private function writePackageJsonFile($packages, $to)
+    {
+        if (! is_string($this->preset)) {
+            throw new Exception('Invalid preset value');
+        }
+
+        $packageConfigKey = 'devDependencies';
+        $updatePackagesMethodName = sprintf(
+            'update%sPackagesArray',
+            ucwords($this->preset)
+        );
+
+        $packages[$packageConfigKey] = $this->{$updatePackagesMethodName}($packages[$packageConfigKey]);
+
+        ksort($packages[$packageConfigKey]);
+
+        file_put_contents(
+            $to,
+            json_encode($packages, JSON_UNESCAPED_SLASHES | JSON_PRETTY_PRINT) . PHP_EOL
+        );
     }
 
     /**
@@ -96,7 +141,7 @@ class AssetMixCommand extends Command
             throw new Exception('Invalid directory name');
         }
 
-        $path = $this->getVueWebpackMixJsPath();
+        $path = $this->getWebpackMixJsPath();
         $content = $this->setWebpackMixFileContents($path['from'], $dirName);
 
         $this->filesystem->write($path['to'], $content);
@@ -115,10 +160,10 @@ class AssetMixCommand extends Command
     {
         $dirName = $args->getOption('dir');
         $assetPath = ROOT . DS . $dirName;
-        $stubsPaths = $this->getVueAssetsDirPaths();
+        $stubsPaths = $this->getAssetsDirPaths();
 
         if ($this->filesystem->exists($assetPath)) {
-            // Ask if they want to overwrite existing directory with stubs
+            // Ask if they want to overwrite existing directory with default stubs
         }
 
         $this->filesystem->mkdir($assetPath);
@@ -153,5 +198,142 @@ class AssetMixCommand extends Command
         }
 
         return $updatedFileContents;
+    }
+
+    /**
+     * Get `package.json` file path depending on preset.
+     *
+     * @return array<string>
+     */
+    private function getPackageJsonPath()
+    {
+        if (! is_string($this->preset)) {
+            throw new Exception('Invalid preset value');
+        }
+
+        $getPackgeJsonPathMethodName = sprintf(
+            'get%sPackageJsonPath',
+            ucwords($this->preset)
+        );
+
+        return $this->{$getPackgeJsonPathMethodName}();
+    }
+
+    /**
+     * Get `package.json` file contents as array depending on preset.
+     *
+     * @return array
+     */
+    private function getPackageJsonFileContentsAsArray()
+    {
+        if (! is_string($this->preset)) {
+            throw new Exception('Invalid preset value');
+        }
+
+        $getPackgeJsonPathMethodName = sprintf(
+            'get%sPackageJsonPath',
+            ucwords($this->preset)
+        );
+        $path = $this->{$getPackgeJsonPathMethodName}();
+
+        if (! is_string($path['from'])) {
+            throw new Exception('Invalid path');
+        }
+
+        return json_decode((string)file_get_contents($path['from']), true);
+    }
+
+    /**
+     * Returns `webpack.mix.js` file path depending on preset.
+     *
+     * @return array
+     */
+    private function getWebpackMixJsPath()
+    {
+        if (! is_string($this->preset)) {
+            throw new Exception('Invalid preset value');
+        }
+
+        $webpackMixJsPathMethodName = sprintf(
+            'get%sWebpackMixJsPath',
+            ucwords($this->preset)
+        );
+
+        return $this->{$webpackMixJsPathMethodName}();
+    }
+
+    /**
+     * Returns paths of `assets` directory files depending on preset.
+     *
+     * @return array
+     */
+    private function getAssetsDirPaths()
+    {
+        if (! is_string($this->preset)) {
+            throw new Exception('Invalid preset value');
+        }
+
+        $assetsDirPathMethodName = sprintf(
+            'get%sAssetsDirPaths',
+            ucwords($this->preset)
+        );
+
+        return $this->{$assetsDirPathMethodName}();
+    }
+
+    /**
+     * Update packages array for vue.
+     *
+     * @param  array $packages Existing packages array to update.
+     * @return array
+     */
+    private function updateVuePackagesArray($packages)
+    {
+        return [
+            'resolve-url-loader' => '^2.3.1',
+            'sass' => '^1.20.1',
+            'sass-loader' => '^8.0.0',
+            'vue' => '^2.5.18',
+            'vue-template-compiler' => '^2.6.10',
+        ] + $packages;
+    }
+
+    /**
+     * Update packages array for bootstrap.
+     *
+     * @param  array $packages Existing packages array to update.
+     * @return array
+     */
+    private function updateBootstrapPackagesArray($packages)
+    {
+        return [
+            'bootstrap' => '^4.0.0',
+            'jquery' => '^3.2',
+            'popper.js' => '^1.12',
+        ] + $packages;
+    }
+
+    /**
+     * Update packages array for react.
+     *
+     * @param  array $packages Existing packages array to update.
+     * @return array
+     */
+    private function updateReactPackagesArray($packages)
+    {
+        foreach ($packages as $packageName => $version) {
+            if (in_array($packageName, ['vue', 'vue-template-compiler'])) {
+                unset($packages[$packageName]);
+            }
+        }
+
+        return [
+            '@babel/preset-react' => '^7.0.0',
+            'react' => '^16.2.0',
+            'react-dom' => '^16.2.0',
+            'bootstrap' => '^4.0.0',
+            'jquery' => '^3.2',
+            'popper.js' => '^1.12',
+        ] + $packages;
     }
 }

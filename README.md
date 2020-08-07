@@ -25,6 +25,7 @@ This branch works with **CakePHP 3.5+**, see [version map](#version-map) for mor
     ```bash
     bin/cake asset_mix generate
     ```
+    **Note:** Above command will generate scaffolding for vue, but you can generate [Bootstrap/jQuery](#generate-basic-bootstrapjquery-scaffolding), or [React](#generate-react-scaffolding) scaffolding too.
 4. Install frontend dependencies
     - Using [npm](https://www.npmjs.com/):
     ```bash
@@ -122,6 +123,26 @@ Custom directory name:
 bin/cake asset_mix generate --dir=resources
 ```
 You can also use custom directory name instead of default `assets` directory, above command will create `resources` directory where you can put your js, css, etc asset files.
+
+Don't want to use Vue.js? Don't worry this plugin doesn't dictate on which javascript library you should use. This plugin provides ability to quickly generate scaffolding for Vue as well as Bootstrap, and React.
+
+#### Generate basic Bootstrap/jQuery scaffolding:
+
+```bash
+bin/cake asset_mix generate bootstrap
+```
+
+#### Generate React scaffolding:
+
+```bash
+bin/cake asset_mix generate react
+```
+
+#### Generate React scaffolding inside `resources` directory:
+
+```bash
+bin/cake asset_mix generate react --dir=resources
+```
 
 ## Version map
 
