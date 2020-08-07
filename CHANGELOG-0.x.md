@@ -1,6 +1,11 @@
 # Release Notes
 
-## [Unreleased](https://github.com/ishanvyas22/asset-mix/compare/0.4.3...cake3)
+## [Unreleased](https://github.com/ishanvyas22/asset-mix/compare/0.5.0...cake3)
+
+## [0.5.0 (2020-08-08)](https://github.com/ishanvyas22/asset-mix/compare/0.4.3...0.5.0)
+
+### Added
+- Ability to generate scaffoldings for Bootstrap / Vue / React for CakePHP 3.x (#3)
 
 ## [0.4.3 (2020-07-26)](https://github.com/ishanvyas22/asset-mix/compare/0.4.2...0.4.3)
 
