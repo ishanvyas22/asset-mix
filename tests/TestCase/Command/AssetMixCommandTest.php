@@ -40,7 +40,8 @@ class AssetMixCommandTest extends TestCase
 
         $this->assertExitCode(Command::CODE_SUCCESS);
         $this->assertOutputContains('Auto generate configuration files, assets directory');
-        $this->assertOutputContains('The preset/scaffolding type (bootstrap, vue, react), default');
+        $this->assertOutputContains('The preset/scaffolding type (bootstrap, vue, react');
+        $this->assertOutputContains('choices: bootstrap|vue|react|inertia-vue');
     }
 
     public function testGenerateCommandCreatesPackageJsonFileAtProjectRoot()
@@ -175,6 +176,40 @@ class AssetMixCommandTest extends TestCase
             file_get_contents($directoryPaths['to_assets_sass_app'])
         );
         $this->assertContains(".react('assets/js/app.js', 'webroot/js')", $webpackMixJsContents);
+    }
+
+    public function testGenerateCommandCreatesInertiaVueScaffolding()
+    {
+        $directoryPaths = $this->getInertiaVueAssetsDirPaths();
+        $packagePaths = $this->getInertiaVuePackageJsonPath();
+
+        $this->exec('asset_mix generate inertia-vue');
+
+        $webpackMixJsContents = file_get_contents($this->getInertiaVueWebpackMixJsPath()['to']);
+        $packageJsonContents = file_get_contents($packagePaths['to']);
+
+        $this->commonDirectoryExistsAssertions($directoryPaths);
+        $this->assertContains(
+            '"@inertiajs/inertia": "',
+            $packageJsonContents
+        );
+        $this->assertContains(
+            '"@inertiajs/inertia-vue": "',
+            $packageJsonContents
+        );
+        $this->assertContains(
+            '"vue": "',
+            $packageJsonContents
+        );
+        $this->assertContains(
+            '"vue-meta": "',
+            $packageJsonContents
+        );
+        $this->assertContains(
+            "import { InertiaApp } from '@inertiajs/inertia-vue'",
+            file_get_contents($directoryPaths['to_assets_js_app'])
+        );
+        $this->assertContains("vue$: 'vue/dist/vue.runtime.esm.js", $webpackMixJsContents);
     }
 
     private function commonDirectoryExistsAssertions($paths)
