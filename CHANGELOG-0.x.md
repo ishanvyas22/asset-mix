@@ -1,6 +1,16 @@
 # Release Notes
 
-## [Unreleased](https://github.com/ishanvyas22/asset-mix/compare/0.5.1...cake3)
+## [Unreleased](https://github.com/ishanvyas22/asset-mix/compare/0.6.0...cake3)
+
+## [0.6.0 (2020-08-22)](https://github.com/ishanvyas22/asset-mix/compare/0.5.1...0.6.0)
+
+### Added
+- Added `inertia-vue` scaffolding ([#20](https://github.com/ishanvyas22/asset-mix/pull/20))
+- Added `check` script alias in composer.json file to run all the checks together ([03fe3fe](https://github.com/ishanvyas22/asset-mix/commit/03fe3feb94f6fb2032d4694a7d9d29db477ba199))
+
+### Changed
+- Changed js indent size from 2 to 4 in `.editorconfig` file ([3f2432f](https://github.com/ishanvyas22/asset-mix/commit/3f2432fe6b2e5fde79058303249255278898125e))
+- Changed vue indent size from 2 to 4 in `.editorconfig` file ([3aa86be](https://github.com/ishanvyas22/asset-mix/commit/3aa86be1405a55874a1e202480f2d748007c87e5))
 
 ## [0.5.1 (2020-08-08)](https://github.com/ishanvyas22/asset-mix/compare/0.5.0...0.5.1)
 
