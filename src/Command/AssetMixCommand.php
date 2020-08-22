@@ -353,7 +353,7 @@ class AssetMixCommand extends Command
             "portal-vue" => "^1.5.1",
             "vue" => "^2.6.11",
             "vue-meta" => "^2.3.1",
-            "vue-template-compiler" => "^2.6.11"
+            "vue-template-compiler" => "^2.6.11",
         ] + $packages;
     }
 }
