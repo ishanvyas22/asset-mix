@@ -346,14 +346,15 @@ class AssetMixCommand extends Command
     private function updateInertiavuePackagesArray($packages)
     {
         return [
-            "@fullhuman/postcss-purgecss" => "^1.3.0",
-            "@inertiajs/inertia" => "^0.1.7",
-            "@inertiajs/inertia-vue" => "^0.1.2",
-            "popper.js" => "^1.16.0",
-            "portal-vue" => "^1.5.1",
-            "vue" => "^2.6.11",
-            "vue-meta" => "^2.3.1",
-            "vue-template-compiler" => "^2.6.11",
+            '@fullhuman/postcss-purgecss' => '^1.3.0',
+            '@inertiajs/inertia' => '^0.1.7',
+            '@inertiajs/inertia-vue' => '^0.1.2',
+            'popper.js' => '^1.16.0',
+            'portal-vue' => '^1.5.1',
+            'vue' => '^2.6.11',
+            'vue-meta' => '^2.3.1',
+            'vue-template-compiler' => '^2.6.11',
+            'bootstrap' => '^4.0.0',
         ] + $packages;
     }
 }
