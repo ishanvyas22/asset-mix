@@ -177,6 +177,40 @@ class AssetMixCommandTest extends TestCase
         $this->assertContains(".react('assets/js/app.js', 'webroot/js')", $webpackMixJsContents);
     }
 
+    public function testGenerateCommandCreatesInertiaVueScaffolding()
+    {
+        $directoryPaths = $this->getInertiaVueAssetsDirPaths();
+        $packagePaths = $this->getInertiaVuePackageJsonPath();
+
+        $this->exec('asset_mix generate inertia-vue');
+
+        $webpackMixJsContents = file_get_contents($this->getInertiaVueWebpackMixJsPath()['to']);
+        $packageJsonContents = file_get_contents($packagePaths['to']);
+
+        $this->commonDirectoryExistsAssertions($directoryPaths);
+        $this->assertContains(
+            '"@inertiajs/inertia": "',
+            $packageJsonContents
+        );
+        $this->assertContains(
+            '"@inertiajs/inertia-vue": "',
+            $packageJsonContents
+        );
+        $this->assertContains(
+            '"vue": "',
+            $packageJsonContents
+        );
+        $this->assertContains(
+            '"vue-meta": "',
+            $packageJsonContents
+        );
+        $this->assertContains(
+            "import { InertiaApp } from '@inertiajs/inertia-vue'",
+            file_get_contents($directoryPaths['to_assets_js_app'])
+        );
+        $this->assertContains("vue$: 'vue/dist/vue.runtime.esm.js", $webpackMixJsContents);
+    }
+
     private function commonDirectoryExistsAssertions($paths)
     {
         $this->assertDirectoryExists($paths['to_assets']);
