@@ -124,7 +124,7 @@ bin/cake asset_mix generate --dir=resources
 ```
 You can also use custom directory name instead of default `assets` directory, above command will create `resources` directory where you can put your js, css, etc asset files.
 
-Don't want to use Vue.js? Don't worry this plugin doesn't dictate on which javascript library you should use. This plugin provides ability to quickly generate scaffolding for Vue as well as Bootstrap, and React.
+Don't want to use Vue.js? Don't worry this plugin doesn't dictate on which javascript library you should use. This plugin provides ability to quickly generate scaffolding for Vue as well as Bootstrap, React and Inertia.js.
 
 #### Generate basic Bootstrap/jQuery scaffolding:
 
