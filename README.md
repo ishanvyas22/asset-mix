@@ -138,7 +138,7 @@ bin/cake asset_mix generate bootstrap
 bin/cake asset_mix generate react
 ```
 
-#### Generate Inertia scaffolding:
+#### Generate scaffolding for [Inertia.js](https://inertiajs.com/):
 
 ```bash
 bin/cake asset_mix generate inertia-vue
