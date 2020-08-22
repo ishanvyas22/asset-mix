@@ -1,5 +1,5 @@
-const mix = require('laravel-mix')
-const path = require('path')
+const mix = require('laravel-mix');
+const path = require('path');
 
 mix.setPublicPath('./webroot')
     .js('assets/js/app.js', 'public/js')
@@ -14,4 +14,4 @@ mix.setPublicPath('./webroot')
         },
     })
     .version()
-    .sourceMaps()
+    .sourceMaps();
