@@ -15,7 +15,7 @@ This branch works with **CakePHP 3.5+**, see [version map](#version-map) for mor
 
     Via [composer](https://packagist.org/packages/ishanvyas22/asset-mix):
     ```bash
-    composer require ishanvyas22/asset-mix:^0.5
+    composer require ishanvyas22/asset-mix:^0.6
     ```
 2. Load plugin using below command:
     ```bash
