@@ -40,7 +40,8 @@ class AssetMixCommandTest extends TestCase
 
         $this->assertExitCode(Command::CODE_SUCCESS);
         $this->assertOutputContains('Auto generate configuration files, assets directory');
-        $this->assertOutputContains('The preset/scaffolding type (bootstrap, vue, react), default');
+        $this->assertOutputContains('The preset/scaffolding type (bootstrap, vue, react');
+        $this->assertOutputContains('choices: bootstrap|vue|react|inertia-vue');
     }
 
     public function testGenerateCommandCreatesPackageJsonFileAtProjectRoot()
