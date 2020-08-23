@@ -2,8 +2,8 @@ const mix = require('laravel-mix');
 const path = require('path');
 
 mix.setPublicPath('./webroot')
-    .js('assets/js/app.js', 'public/js')
-    .sass('assets/css/app.css', 'public/css/app.css')
+    .js('assets/js/app.js', 'webroot/js')
+    .sass('assets/sass/app.scss', 'webroot/css')
     .webpackConfig({
         output: { chunkFilename: 'js/[name].js?id=[chunkhash]' },
             resolve: {

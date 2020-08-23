@@ -209,7 +209,9 @@ class AssetMixCommandTest extends TestCase
             "import { InertiaApp } from '@inertiajs/inertia-vue'",
             file_get_contents($directoryPaths['to_assets_js_app'])
         );
+        $this->assertContains(".setPublicPath('./webroot')", $webpackMixJsContents);
         $this->assertContains("vue$: 'vue/dist/vue.runtime.esm.js", $webpackMixJsContents);
+        $this->assertContains("'@': path.resolve('assets/js'),", $webpackMixJsContents);
     }
 
     private function commonDirectoryExistsAssertions($paths)
