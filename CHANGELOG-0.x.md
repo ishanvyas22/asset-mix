@@ -1,6 +1,11 @@
 # Release Notes
 
-## [Unreleased](https://github.com/ishanvyas22/asset-mix/compare/0.6.0...cake3)
+## [Unreleased](https://github.com/ishanvyas22/asset-mix/compare/0.6.1...cake3)
+
+## [0.6.1 (2020-08-23)](https://github.com/ishanvyas22/asset-mix/compare/0.6.0...0.6.1)
+
+### Fixed
+- Invalid directory name in webpack.mix.js file for `inertia-vue` scaffolding ([82f0a49](https://github.com/ishanvyas22/asset-mix/commit/82f0a49beb71853217d9e070cb1cddc55cec209a))
 
 ## [0.6.0 (2020-08-22)](https://github.com/ishanvyas22/asset-mix/compare/0.5.1...0.6.0)
 
