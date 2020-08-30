@@ -1,6 +1,15 @@
 # Release Notes
 
-## [Unreleased](https://github.com/ishanvyas22/asset-mix/compare/0.6.1...cake3)
+## [Unreleased](https://github.com/ishanvyas22/asset-mix/compare/0.6.2...cake3)
+
+## [0.6.2 (2020-08-30)](https://github.com/ishanvyas22/asset-mix/compare/0.6.1...0.6.2)
+
+### Fixed
+- Fix CS in `app.js` file for inertia-vue scaffolding ([6e3a7c0](https://github.com/ishanvyas22/asset-mix/commit/6e3a7c042115f0119e71be0867cc50020182b088))
+- Fix indentation in `webpack.mix.js` file for inertia-vue scaffolding ([594a428](https://github.com/ishanvyas22/asset-mix/commit/594a428239e7169565c8de1d364ad872ed7b4fa4))
+
+### Removed
+- Remove route mixin for inertia-vue scaffolding ([8165af9](https://github.com/ishanvyas22/asset-mix/commit/8165af98e2c3bb174482e0d53267465f07db8b0a))
 
 ## [0.6.1 (2020-08-23)](https://github.com/ishanvyas22/asset-mix/compare/0.6.0...0.6.1)
 
