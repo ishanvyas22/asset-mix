@@ -7,6 +7,7 @@
 
 ### Changed
 - Update `LICENSE` file to 2020 year ([a896239](https://github.com/ishanvyas22/asset-mix/commit/a896239b9fe2b22c5b885fa9405df4406e4d7907))
+- Indent size for `vue` files to 4 from 2 in `.editorconfig` file ([99c1f0e](https://github.com/ishanvyas22/asset-mix/commit/99c1f0e71717826e93142ed7584cb33127a37793))
 
 ## [1.1.1 (2020-10-29)](https://github.com/ishanvyas22/asset-mix/compare/1.1.0...1.1.1)
 
