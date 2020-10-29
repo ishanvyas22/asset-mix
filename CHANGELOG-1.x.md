@@ -1,6 +1,11 @@
 # Release Notes
 
-## [Unreleased](https://github.com/ishanvyas22/asset-mix/compare/1.1.0...master)
+## [Unreleased](https://github.com/ishanvyas22/asset-mix/compare/1.1.1...master)
+
+## [1.1.1 (2020-10-29)](https://github.com/ishanvyas22/asset-mix/compare/1.1.0...1.1.1)
+
+### Fixed
+- Move `cakephp/cakephp-codesniffer` to be part of dev dependency. Thanks to @dereuromark ([#21](https://github.com/ishanvyas22/asset-mix/pull/21))
 
 ## [1.1.0 (2020-07-23)](https://github.com/ishanvyas22/asset-mix/compare/1.0.2...1.1.0)
 
