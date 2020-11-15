@@ -7,7 +7,7 @@ on:
     branches: [ cake3 ]
 
 jobs:
-  check-coding-style:
+  run-tests:
 
     runs-on: ubuntu-latest
 
