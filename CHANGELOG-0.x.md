@@ -1,6 +1,11 @@
 # Release Notes
 
-## [Unreleased](https://github.com/ishanvyas22/asset-mix/compare/0.6.2...cake3)
+## [Unreleased](https://github.com/ishanvyas22/asset-mix/compare/0.6.3...cake3)
+
+## [0.6.3 (2020-11-15)](https://github.com/ishanvyas22/asset-mix/compare/0.6.2...0.6.3)
+
+### Changed
+- Move CI to github actions
 
 ## [0.6.2 (2020-08-30)](https://github.com/ishanvyas22/asset-mix/compare/0.6.1...0.6.2)
 
