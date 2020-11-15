@@ -1,6 +1,8 @@
 # Release Notes
 
-## [Unreleased](https://github.com/ishanvyas22/asset-mix/compare/1.1.1...master)
+## [Unreleased](https://github.com/ishanvyas22/asset-mix/compare/1.1.2...master)
+
+## [1.1.2 (2020-11-15)](https://github.com/ishanvyas22/asset-mix/compare/1.1.1...1.1.2)
 
 ### Added
 - Alias `check` script to run all the checks in `composer.json` file ([d731777](https://github.com/ishanvyas22/asset-mix/commit/d7317779fc88d6cf50f2815c9606a279a59c9629))
