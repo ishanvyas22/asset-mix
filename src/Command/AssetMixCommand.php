@@ -5,8 +5,8 @@ namespace AssetMix\Command;
 
 use AssetMix\StubsPathTrait;
 use AssetMix\Utility\FileUtility;
+use Cake\Command\Command;
 use Cake\Console\Arguments;
-use Cake\Console\Command;
 use Cake\Console\ConsoleIo;
 use Cake\Console\ConsoleOptionParser;
 use Exception;
@@ -50,8 +50,8 @@ class AssetMixCommand extends Command
         $parser
             ->setDescription('Auto generate configuration files, assets directory')
             ->addArgument('preset', [
-                'help' => __('The preset/scaffolding type (bootstrap, vue, react), default is vue.'),
-                'choices' => ['bootstrap', 'vue', 'react'],
+                'help' => __('The preset/scaffolding type (bootstrap, vue, react, inertia-vue), default is vue.'),
+                'choices' => ['bootstrap', 'vue', 'react', 'inertia-vue'],
             ])
             ->addOption('dir', [
                 'short' => 'd',
@@ -115,7 +115,7 @@ class AssetMixCommand extends Command
         $packageConfigKey = 'devDependencies';
         $updatePackagesMethodName = sprintf(
             'update%sPackagesArray',
-            ucwords($this->preset)
+            ucwords(str_replace('-', '', $this->preset))
         );
 
         $packages[$packageConfigKey] = $this->{$updatePackagesMethodName}($packages[$packageConfigKey]);
@@ -215,7 +215,7 @@ class AssetMixCommand extends Command
 
         $getPackgeJsonPathMethodName = sprintf(
             'get%sPackageJsonPath',
-            ucwords($this->preset)
+            ucwords(str_replace('-', '', $this->preset))
         );
 
         return $this->{$getPackgeJsonPathMethodName}();
@@ -234,7 +234,7 @@ class AssetMixCommand extends Command
 
         $getPackgeJsonPathMethodName = sprintf(
             'get%sPackageJsonPath',
-            ucwords($this->preset)
+            ucwords(str_replace('-', '', $this->preset))
         );
         $path = $this->{$getPackgeJsonPathMethodName}();
 
@@ -258,7 +258,7 @@ class AssetMixCommand extends Command
 
         $webpackMixJsPathMethodName = sprintf(
             'get%sWebpackMixJsPath',
-            ucwords($this->preset)
+            ucwords(str_replace('-', '', $this->preset))
         );
 
         return $this->{$webpackMixJsPathMethodName}();
@@ -277,7 +277,7 @@ class AssetMixCommand extends Command
 
         $assetsDirPathMethodName = sprintf(
             'get%sAssetsDirPaths',
-            ucwords($this->preset)
+            ucwords(str_replace('-', '', $this->preset))
         );
 
         return $this->{$assetsDirPathMethodName}();
@@ -337,6 +337,27 @@ class AssetMixCommand extends Command
             'bootstrap' => '^4.0.0',
             'jquery' => '^3.2',
             'popper.js' => '^1.12',
+        ] + $packages;
+    }
+
+    /**
+     * Update packages array for inertia-vue.
+     *
+     * @param  array<string> $packages Existing packages array to update.
+     * @return array<string>
+     */
+    private function updateInertiavuePackagesArray($packages)
+    {
+        return [
+            '@fullhuman/postcss-purgecss' => '^1.3.0',
+            '@inertiajs/inertia' => '^0.1.7',
+            '@inertiajs/inertia-vue' => '^0.1.2',
+            'popper.js' => '^1.16.0',
+            'portal-vue' => '^1.5.1',
+            'vue' => '^2.6.11',
+            'vue-meta' => '^2.3.1',
+            'vue-template-compiler' => '^2.6.11',
+            'bootstrap' => '^4.0.0',
         ] + $packages;
     }
 }
