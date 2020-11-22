@@ -343,8 +343,8 @@ class AssetMixCommand extends Command
     /**
      * Update packages array for inertia-vue.
      *
-     * @param  array $packages Existing packages array to update.
-     * @return array
+     * @param  array<string> $packages Existing packages array to update.
+     * @return array<string>
      */
     private function updateInertiavuePackagesArray($packages)
     {
