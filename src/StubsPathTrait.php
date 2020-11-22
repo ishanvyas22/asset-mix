@@ -102,7 +102,6 @@ trait StubsPathTrait
         ];
     }
 
-
     /**
      * Returns `package.json` file paths for react.
      *
