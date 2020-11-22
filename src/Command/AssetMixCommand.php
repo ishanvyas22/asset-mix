@@ -5,8 +5,8 @@ namespace AssetMix\Command;
 
 use AssetMix\StubsPathTrait;
 use AssetMix\Utility\FileUtility;
+use Cake\Command\Command;
 use Cake\Console\Arguments;
-use Cake\Console\Command;
 use Cake\Console\ConsoleIo;
 use Cake\Console\ConsoleOptionParser;
 use Exception;
