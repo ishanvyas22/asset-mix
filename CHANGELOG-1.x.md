@@ -2,6 +2,9 @@
 
 ## [Unreleased](https://github.com/ishanvyas22/asset-mix/compare/1.1.2...master)
 
+### Added
+- Add `inertia-vue` scaffolding ([#22](https://github.com/ishanvyas22/asset-mix/pull/22))
+
 ## [1.1.2 (2020-11-15)](https://github.com/ishanvyas22/asset-mix/compare/1.1.1...1.1.2)
 
 ### Added
