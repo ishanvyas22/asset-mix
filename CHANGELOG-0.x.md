@@ -1,6 +1,11 @@
 # Release Notes
 
-## [Unreleased](https://github.com/ishanvyas22/asset-mix/compare/0.6.3...cake3)
+## [Unreleased](https://github.com/ishanvyas22/asset-mix/compare/0.6.4...cake3)
+
+## [0.6.4 (2020-11-22)](https://github.com/ishanvyas22/asset-mix/compare/0.6.3...0.6.4)
+
+### Changed
+- Badges to use GitHub Actions workflow status ([a43f7dc](https://github.com/ishanvyas22/asset-mix/commit/a43f7dce6ccead62a151f3c8afa5dd5f14e9bffb))
 
 ## [0.6.3 (2020-11-15)](https://github.com/ishanvyas22/asset-mix/compare/0.6.2...0.6.3)
 
