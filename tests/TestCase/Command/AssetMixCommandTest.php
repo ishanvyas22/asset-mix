@@ -5,7 +5,7 @@ namespace AssetMix\Test\TestCase\Command;
 
 use AssetMix\StubsPathTrait;
 use AssetMix\Utility\FileUtility;
-use Cake\Console\Command;
+use Cake\Command\Command;
 use Cake\TestSuite\ConsoleIntegrationTestTrait;
 use Cake\TestSuite\TestCase;
 
@@ -42,7 +42,8 @@ class AssetMixCommandTest extends TestCase
 
         $this->assertExitCode(Command::CODE_SUCCESS);
         $this->assertOutputContains('Auto generate configuration files, assets directory');
-        $this->assertOutputContains('The preset/scaffolding type (bootstrap, vue, react), default');
+        $this->assertOutputContains('The preset/scaffolding type (bootstrap, vue, react');
+        $this->assertOutputContains('choices: bootstrap|vue|react|inertia-vue');
     }
 
     public function testGenerateCommandCreatesPackageJsonFileAtProjectRoot()
