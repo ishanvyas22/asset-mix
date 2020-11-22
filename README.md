@@ -1,9 +1,12 @@
 # AssetMix plugin for CakePHP
 
-[![Build Status](https://travis-ci.com/ishanvyas22/asset-mix.svg?branch=master)](https://travis-ci.com/ishanvyas22/asset-mix)
 [![Latest Stable Version](https://poser.pugx.org/ishanvyas22/asset-mix/v/stable)](https://packagist.org/packages/ishanvyas22/asset-mix)
 [![Total Downloads](https://poser.pugx.org/ishanvyas22/asset-mix/downloads)](https://packagist.org/packages/ishanvyas22/asset-mix)
 [![License](https://poser.pugx.org/ishanvyas22/asset-mix/license)](https://packagist.org/packages/ishanvyas22/asset-mix)
+[![CakePHP](https://img.shields.io/badge/cakephp->=3.5.0%20<4.0.0-red?logo=cakephp)](https://book.cakephp.org/3/en/index.html)
+![Run tests](https://github.com/ishanvyas22/asset-mix/workflows/Run%20tests/badge.svg?branch=cake3)
+![Run PHPStan](https://github.com/ishanvyas22/asset-mix/workflows/Run%20PHPStan/badge.svg?branch=cake3)
+![Check Coding Style](https://github.com/ishanvyas22/asset-mix/workflows/Check%20Coding%20Style/badge.svg?branch=cake3)
 
 Provides integration with your [CakePHP application](https://cakephp.org/) & [Laravel Mix](https://laravel-mix.com).
 
