@@ -1,9 +1,14 @@
 # Release Notes
 
-## [Unreleased](https://github.com/ishanvyas22/asset-mix/compare/1.1.2...master)
+## [Unreleased](https://github.com/ishanvyas22/asset-mix/compare/1.2.0...master)
+
+## [1.2.0 (2020-11-22)](https://github.com/ishanvyas22/asset-mix/compare/1.1.2...1.2.0)
 
 ### Added
-- Add `inertia-vue` scaffolding ([#22](https://github.com/ishanvyas22/asset-mix/pull/22))
+- New `inertia-vue` scaffolding ([#22](https://github.com/ishanvyas22/asset-mix/pull/22))
+
+### Changed
+- Badges to use GitHub Actions workflow status ([199f48b](https://github.com/ishanvyas22/asset-mix/commit/199f48baa9aedbe5174edc9d99aa8eceaa35491b))
 
 ## [1.1.2 (2020-11-15)](https://github.com/ishanvyas22/asset-mix/compare/1.1.1...1.1.2)
 
