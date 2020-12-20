@@ -1,4 +1,4 @@
-import React from "react";
+import React from 'react';
 
 /**
  * This view component will be rendered when visiting /pages/greet
