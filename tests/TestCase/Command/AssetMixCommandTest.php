@@ -41,9 +41,9 @@ class AssetMixCommandTest extends TestCase
         $this->exec('asset_mix generate --help');
 
         $this->assertExitCode(Command::CODE_SUCCESS);
-        $this->assertOutputContains('Auto generate configuration files, assets directory');
-        $this->assertOutputContains('The preset/scaffolding type (bootstrap, vue, react');
-        $this->assertOutputContains('choices: bootstrap|vue|react|inertia-vue');
+        $this->assertOutputContains('Generate configuration files, and assets directory skeleton');
+        $this->assertOutputContains('The preset/scaffolding type');
+        $this->assertOutputContains('bootstrap|vue|react|inertia-vue|inertia-react');
     }
 
     public function testGenerateCommandCreatesPackageJsonFileAtProjectRoot()
@@ -214,6 +214,40 @@ class AssetMixCommandTest extends TestCase
         $this->assertStringContainsString(".setPublicPath('./webroot')", $webpackMixJsContents);
         $this->assertStringContainsString("vue$: 'vue/dist/vue.runtime.esm.js", $webpackMixJsContents);
         $this->assertStringContainsString("'@': path.resolve('assets/js'),", $webpackMixJsContents);
+    }
+
+    public function testGenerateCommandCreatesInertiaReactScaffolding()
+    {
+        $directoryPaths = $this->getInertiaReactAssetsDirPaths();
+        $packagePaths = $this->getInertiaReactPackageJsonPath();
+
+        $this->exec('asset_mix generate inertia-react');
+
+        $webpackMixJsContents = file_get_contents($this->getInertiaReactWebpackMixJsPath()['to']);
+        $packageJsonContents = file_get_contents($packagePaths['to']);
+
+        $this->commonDirectoryExistsAssertions($directoryPaths);
+        $this->assertStringContainsString(
+            '"@inertiajs/inertia": "',
+            $packageJsonContents
+        );
+        $this->assertStringContainsString(
+            '"@inertiajs/inertia-react": "',
+            $packageJsonContents
+        );
+        $this->assertStringContainsString(
+            '"react": "',
+            $packageJsonContents
+        );
+        $this->assertStringContainsString(
+            '"react-dom": "',
+            $packageJsonContents
+        );
+        $this->assertStringContainsString(
+            "import { InertiaApp } from '@inertiajs/inertia-react'",
+            file_get_contents($directoryPaths['to_assets_js_app'])
+        );
+        $this->assertStringContainsString(".setPublicPath('./webroot')", $webpackMixJsContents);
     }
 
     private function commonDirectoryExistsAssertions($paths)

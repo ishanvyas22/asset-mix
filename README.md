@@ -14,7 +14,7 @@ This branch works with **CakePHP 4.0+**, see [version map](#version-map) for mor
 
 ## Installation
 
-1. Get project into your system
+1. Install the AssetMix plugin with composer:
 
     Via [composer](https://packagist.org/packages/ishanvyas22/asset-mix):
     ```bash
@@ -74,7 +74,7 @@ Above code will render:
 <script src="/js/app.js" defer="defer"></script>
 ```
 
-As you can see it works same as [Html helper](https://book.cakephp.org/3.0/en/views/helpers/html.html#linking-to-javascript-files). There is not need to provide full path or even file extension.
+As you can see it works same as [HtmlHelper](https://book.cakephp.org/3.0/en/views/helpers/html.html#linking-to-javascript-files). There is not need to provide full path or even file extension.
 
 - To generate style tag for compiled css file(s):
 
@@ -96,7 +96,7 @@ If [versioning](https://laravel-mix.com/docs/4.0/versioning) is enabled, output 
 
 ## Generate command
 
-Generate command is used to auto generate basic scaffolding to quickly start developing and using the assets into your project.
+The generate command is used to generate starter code for your Javascript application to get you started developing your frontend.
 
 Get help:
 
@@ -104,7 +104,7 @@ Get help:
 bin/cake asset_mix -h
 ```
 
-Generate default scaffolding:
+Generate default scaffolding (with vue):
 
 ```bash
 bin/cake asset_mix generate
@@ -128,7 +128,7 @@ bin/cake asset_mix generate --dir=resources
 
 You can also use custom directory name instead of default `assets` directory, above command will create `resources` directory where you can put your js, css, etc asset files.
 
-Don't want to use Vue.js? Don't worry this plugin doesn't dictate on which javascript library you should use. This plugin provides ability to quickly generate scaffolding for Vue as well as Bootstrap, and React.
+Don't want to use Vue.js? Don't worry this plugin doesn't dictate on which Javascript library you should use. This plugin provides ability to quickly generate scaffolding for Vue as well as Bootstrap, and React.
 
 #### Generate basic Bootstrap/jQuery scaffolding:
 
@@ -145,7 +145,11 @@ bin/cake asset_mix generate react
 #### Generate scaffolding for [Inertia.js](https://inertiajs.com/):
 
 ```bash
+# for vue
 bin/cake asset_mix generate inertia-vue
+
+# or for react
+bin/cake asset_mix generate inertia-react
 ```
 
 #### Generate React scaffolding inside `resources` directory:

@@ -48,10 +48,11 @@ class AssetMixCommand extends Command
     protected function buildOptionParser(ConsoleOptionParser $parser): ConsoleOptionParser
     {
         $parser
-            ->setDescription('Auto generate configuration files, assets directory')
+            ->setDescription('Generate configuration files, and assets directory skeleton')
             ->addArgument('preset', [
-                'help' => __('The preset/scaffolding type (bootstrap, vue, react, inertia-vue), default is vue.'),
-                'choices' => ['bootstrap', 'vue', 'react', 'inertia-vue'],
+                'help' => __('The preset/scaffolding type. Defaults to <info>vue</info>'),
+                'choices' => ['bootstrap', 'vue', 'react', 'inertia-vue', 'inertia-react'],
+                'default' => 'vue',
             ])
             ->addOption('dir', [
                 'short' => 'd',
@@ -358,6 +359,23 @@ class AssetMixCommand extends Command
             'vue-meta' => '^2.3.1',
             'vue-template-compiler' => '^2.6.11',
             'bootstrap' => '^4.0.0',
+        ] + $packages;
+    }
+
+    /**
+     * Update packages array for inertia-react.
+     *
+     * @param  array<string> $packages Existing packages array to update.
+     * @return array<string>
+     */
+    private function updateInertiareactPackagesArray($packages)
+    {
+        return [
+            '@babel/preset-react' => '^7.0.0',
+            '@inertiajs/inertia' => '^0.6.1',
+            '@inertiajs/inertia-react' => '^0.4.1',
+            'react-dom' => '^16.2.0',
+            'react' => '^16.2.0',
         ] + $packages;
     }
 }
