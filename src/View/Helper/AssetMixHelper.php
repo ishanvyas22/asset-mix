@@ -53,7 +53,8 @@ class AssetMixHelper extends Helper
      */
     public function script(string $url, array $options = []): ?string
     {
-        $options = array_merge($options, ['defer' => true]);
+        $defaults = ['defer' => true];
+        $options += $defaults;
 
         // Get css file path, add extension if not provided, skip if url provided
         if (strpos($url, '//') !== false) {
