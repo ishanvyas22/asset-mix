@@ -173,4 +173,21 @@ class AssetMixHelperTest extends TestCase
         $this->assertStringContainsString('/js/app.js?id=f059fcadc7eba26be9ae', $result);
         $this->assertStringContainsString('defer="defer"', $result);
     }
+
+    /**
+     * Test `script()` function returns proper tag
+     * without defer option
+     *
+     * @return void
+     */
+    public function testScriptTagWithoutDefer()
+    {
+        $this->_copyWithVersion();
+
+        $result = $this->AssetMix->script('app', ['defer' => false]);
+
+        $this->assertStringContainsString('<script', $result);
+        $this->assertStringContainsString('/js/app.js?id=f059fcadc7eba26be9ae', $result);
+        $this->assertStringNotContainsString('defer', $result);
+    }
 }
