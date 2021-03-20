@@ -1,6 +1,14 @@
 # Release Notes
 
-## [Unreleased](https://github.com/ishanvyas22/asset-mix/compare/1.2.0...master)
+## [Unreleased](https://github.com/ishanvyas22/asset-mix/compare/1.3.0...master)
+
+## [1.3.0 (2021-03-20)](https://github.com/ishanvyas22/asset-mix/compare/1.2.0...1.3.0)
+
+### Added
+- New template for `react-inertia` scaffolding. Thanks to @markstory ([#23](https://github.com/ishanvyas22/asset-mix/pull/23))
+
+### Fixed
+-  `script()` method was including `defer` attribute even when setting `'defer' => false`. Thanks to @hevertonfreitas ([#24](https://github.com/ishanvyas22/asset-mix/pull/24))
 
 ## [1.2.0 (2020-11-22)](https://github.com/ishanvyas22/asset-mix/compare/1.1.2...1.2.0)
 
