@@ -1,6 +1,15 @@
 # Release Notes
 
-## [Unreleased](https://github.com/ishanvyas22/asset-mix/compare/1.3.0...master)
+## [Unreleased](https://github.com/ishanvyas22/asset-mix/compare/1.4.0...master)
+
+## [1.4.0 (2021-07-11)](https://github.com/ishanvyas22/asset-mix/compare/1.3.0...1.4.0)
+
+### Updated
+- `bootstrap` scaffolding to `^5.0.0` ([#29](https://github.com/ishanvyas22/asset-mix/pull/29))
+- `jquery` scaffolding to `^3.6` ([#29](https://github.com/ishanvyas22/asset-mix/pull/29))
+- `popper.js` scaffolding to `@popperjs/core` version `^2.9` ([#29](https://github.com/ishanvyas22/asset-mix/pull/29))
+
+Thanks to @LordSimal
 
 ## [1.3.0 (2021-03-20)](https://github.com/ishanvyas22/asset-mix/compare/1.2.0...1.3.0)
 
