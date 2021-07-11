@@ -1,8 +1,8 @@
 # Release Notes
 
-## [Unreleased](https://github.com/ishanvyas22/asset-mix/compare/1.4.0...master)
+## [Unreleased](https://github.com/ishanvyas22/asset-mix/compare/1.3.1...master)
 
-## [1.4.0 (2021-07-11)](https://github.com/ishanvyas22/asset-mix/compare/1.3.0...1.4.0)
+## [1.3.1 (2021-07-11)](https://github.com/ishanvyas22/asset-mix/compare/1.3.0...1.3.1)
 
 ### Updated
 - `bootstrap` scaffolding to `^5.0.0` ([#29](https://github.com/ishanvyas22/asset-mix/pull/29))
