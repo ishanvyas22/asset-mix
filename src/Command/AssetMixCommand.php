@@ -311,9 +311,9 @@ class AssetMixCommand extends Command
     private function updateBootstrapPackagesArray($packages)
     {
         return [
-            'bootstrap' => '^4.0.0',
-            'jquery' => '^3.2',
-            'popper.js' => '^1.12',
+            'bootstrap' => '^5.0.0',
+            'jquery' => '^3.6',
+            '@popperjs/core' => '^2.9',
         ] + $packages;
     }
 
