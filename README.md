@@ -178,6 +178,8 @@ AssetMix version | Branch | CakePHP version | PHP minimum version |
 
 **or** [Paypal me](https://paypal.me/IshanVyas?locale.x=en_GB)
 
+**or** [![Contact me on Codementor](https://www.codementor.io/m-badges/isvyas/get-help.svg)](https://www.codementor.io/@isvyas?refer=badge)
+
 ## Changelog
 Please see [CHANGELOG](CHANGELOG-1.x.md) for more information about recent changes.
 
