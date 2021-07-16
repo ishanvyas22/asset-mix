@@ -12,6 +12,21 @@ Provides integration with your [CakePHP application](https://cakephp.org/) & [La
 
 This branch works with **CakePHP 4.0+**, see [version map](#version-map) for more details.
 
+## ❤️  Support The Development
+**Do you like this project? Support it by donating:**
+
+<a href="https://www.buymeacoffee.com/ishanvyas" target="_blank">
+    <img src="https://www.buymeacoffee.com/assets/img/custom_images/purple_img.png" alt="Buy Me A Coffee" style="height: 41px !important;width: 174px !important;box-shadow: 0px 3px 2px 0px rgba(190, 190, 190, 0.5) !important;-webkit-box-shadow: 0px 3px 2px 0px rgba(190, 190, 190, 0.5) !important;" >
+</a>
+
+<a href="https://www.patreon.com/ishanvyas">
+    <img src="https://c5.patreon.com/external/logo/become_a_patron_button@2x.png" width="160">
+</a>
+
+**or** [Paypal me](https://paypal.me/IshanVyas?locale.x=en_GB)
+
+**or** [![Contact me on Codementor](https://www.codementor.io/m-badges/isvyas/get-help.svg)](https://www.codementor.io/@isvyas?refer=badge)
+
 ## Installation
 
 1. Install the AssetMix plugin with composer:
@@ -164,21 +179,6 @@ AssetMix version | Branch | CakePHP version | PHP minimum version |
 --- | --- | --- | --- |
 1.x | master | >=4.0.0 | >=7.2 |
 0.x | cake3 | >=3.5.0 | >=5.6 |
-
-## ❤️  Support The Development
-**Do you like this project? Support it by donating:**
-
-<a href="https://www.buymeacoffee.com/ishanvyas" target="_blank">
-    <img src="https://www.buymeacoffee.com/assets/img/custom_images/purple_img.png" alt="Buy Me A Coffee" style="height: 41px !important;width: 174px !important;box-shadow: 0px 3px 2px 0px rgba(190, 190, 190, 0.5) !important;-webkit-box-shadow: 0px 3px 2px 0px rgba(190, 190, 190, 0.5) !important;" >
-</a>
-
-<a href="https://www.patreon.com/ishanvyas">
-    <img src="https://c5.patreon.com/external/logo/become_a_patron_button@2x.png" width="160">
-</a>
-
-**or** [Paypal me](https://paypal.me/IshanVyas?locale.x=en_GB)
-
-**or** [![Contact me on Codementor](https://www.codementor.io/m-badges/isvyas/get-help.svg)](https://www.codementor.io/@isvyas?refer=badge)
 
 ## Changelog
 Please see [CHANGELOG](CHANGELOG-1.x.md) for more information about recent changes.
