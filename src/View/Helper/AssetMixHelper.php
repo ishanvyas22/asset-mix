@@ -17,7 +17,7 @@ class AssetMixHelper extends Helper
      *
      * @var array<string>
      */
-    protected $helpers = ['Html', 'Url'];
+    public $helpers = ['Html', 'Url'];
 
     /**
      * Creates a link element for CSS stylesheets with versioned asset.
