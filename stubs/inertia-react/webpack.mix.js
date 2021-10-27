@@ -1,7 +1,7 @@
 const mix = require('laravel-mix');
 
 mix.setPublicPath('./webroot')
-    .react('assets/js/app.js', 'webroot/js')
+    .js('assets/js/app.js', 'webroot/js').react()
     .sass('assets/sass/app.scss', 'webroot/css')
     .webpackConfig({
         output: {

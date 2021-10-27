@@ -149,7 +149,7 @@ trait StubsPathTrait
      */
     public function getVueWebpackMixJsPath(): array
     {
-        $webpackConfigPath = $this->getBaseCommonStubsPath() . 'webpack.mix.js';
+        $webpackConfigPath = $this->getBaseVueStubsPath() . 'webpack.mix.js';
 
         return [
             'from' => $webpackConfigPath,
