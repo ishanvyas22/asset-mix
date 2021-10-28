@@ -298,6 +298,7 @@ class AssetMixCommand extends Command
             'sass' => '^1.20.1',
             'sass-loader' => '^8.0.0',
             'vue' => '^2.5.18',
+            'vue-loader' => '^15.9.8',
             'vue-template-compiler' => '^2.6.10',
         ] + $packages;
     }
@@ -357,6 +358,7 @@ class AssetMixCommand extends Command
             'portal-vue' => '^1.5.1',
             'vue' => '^2.6.11',
             'vue-meta' => '^2.3.1',
+            'vue-loader' => '^15.9.8',
             'vue-template-compiler' => '^2.6.11',
             'bootstrap' => '^4.0.0',
         ] + $packages;

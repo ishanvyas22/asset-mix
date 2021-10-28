@@ -177,7 +177,7 @@ class AssetMixCommandTest extends TestCase
             "@import '~bootstrap/scss/bootstrap';",
             file_get_contents($directoryPaths['to_assets_sass_app'])
         );
-        $this->assertStringContainsString(".react('assets/js/app.js', 'webroot/js')", $webpackMixJsContents);
+        $this->assertStringContainsString(".js('assets/js/app.js', 'webroot/js').react()", $webpackMixJsContents);
     }
 
     public function testGenerateCommandCreatesInertiaVueScaffolding()

@@ -2,7 +2,7 @@ const mix = require('laravel-mix');
 const path = require('path');
 
 mix.setPublicPath('./webroot')
-    .js('assets/js/app.js', 'webroot/js')
+    .js('assets/js/app.js', 'webroot/js').vue()
     .sass('assets/sass/app.scss', 'webroot/css')
     .webpackConfig({
         output: {
