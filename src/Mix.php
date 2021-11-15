@@ -27,6 +27,14 @@ class Mix
      */
     public function __invoke($path, $manifestDirectory = ''): string
     {
+        $urlDomain = '';
+        // remove the scheme and domain from the front of the path if it has one
+        // https://regex101.com/r/FyT9T4/1
+        if (preg_match('@^([a-z]+://[^/]+)(/.+)$@', $path, $matches)) {
+            $urlDomain = $matches[1];
+            $path = $matches[2];
+        }
+
         if (! starts_with($path, '/')) {
             $path = "/{$path}";
         }
@@ -70,7 +78,7 @@ class Mix
             throw new Exception("Unable to locate AssetMix file: {$path}.");
         }
 
-        return $manifestDirectory . $manifest[$path];
+        return $urlDomain . $manifestDirectory . $manifest[$path];
     }
 
     /**

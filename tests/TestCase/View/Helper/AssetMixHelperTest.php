@@ -5,6 +5,7 @@ namespace AssetMix\Test\TestCase\View\Helper;
 
 use AssetMix\Mix;
 use AssetMix\View\Helper\AssetMixHelper;
+use Cake\Core\Configure;
 use Cake\Filesystem\Folder;
 use Cake\TestSuite\TestCase;
 use Cake\View\View;
@@ -189,5 +190,37 @@ class AssetMixHelperTest extends TestCase
         $this->assertStringContainsString('<script', $result);
         $this->assertStringContainsString('/js/app.js?id=f059fcadc7eba26be9ae', $result);
         $this->assertStringNotContainsString('defer', $result);
+    }
+
+    /**
+     * Test `css()` function returns proper url when using a CDN
+     *
+     * @return void
+     */
+    public function testStyleTagWithExternalBaseUrl()
+    {
+        Configure::write('App.cssBaseUrl', 'https://example.com/css/');
+
+        $this->_copyWithoutVersion();
+
+        $result = $this->AssetMix->css('main');
+
+        $this->assertStringContainsString('https://example.com/css/main.css', $result);
+    }
+
+    /**
+     * Test `script()` function returns proper url when using a CDN
+     *
+     * @return void
+     */
+    public function testScriptTagWithExternalBaseUrl()
+    {
+        Configure::write('App.jsBaseUrl', 'https://example.com/js/');
+
+        $this->_copyWithoutVersion();
+
+        $result = $this->AssetMix->script('app');
+
+        $this->assertStringContainsString('https://example.com/js/app.js', $result);
     }
 }
