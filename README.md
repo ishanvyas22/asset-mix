@@ -27,6 +27,12 @@ This branch works with **CakePHP 4.0+**, see [version map](#version-map) for mor
 
 **or** [![Contact me on Codementor](https://www.codementor.io/m-badges/isvyas/get-help.svg)](https://www.codementor.io/@isvyas?refer=badge)
 
+### Follow me
+- [GitHub](https://github.com/ishanvyas22)
+- [Instagram](https://www.instagram.com/ishancodes)
+- [LinkedIn](https://www.linkedin.com/in/ishan-vyas-314111112)
+- [Twitter](https://twitter.com/ishanvyas22)
+
 ## Installation
 
 1. Install the AssetMix plugin with composer:
