@@ -19,7 +19,7 @@
     "require": {
         "ext-json": "*",
         "ext-mbstring": "*",
-        "cakephp/cakephp": "^4.0.0"
+        "cakephp/cakephp": "^4.3.0"
     },
     "require-dev": {
         "cakephp/cakephp-codesniffer": "^4.2.0",
