@@ -1,4 +1,5 @@
 <?php
+
 namespace AssetMix;
 
 use Exception;
@@ -25,11 +26,13 @@ class Mix
      */
     public function __invoke($path, $manifestDirectory = '')
     {
-        if (! starts_with($path, '/')) {
+        if (!starts_with($path, '/')) {
             $path = "/{$path}";
         }
 
-        if ($manifestDirectory && ! starts_with($manifestDirectory, '/')) {
+        $path = preg_replace('/\?.*/', '', $path);
+
+        if ($manifestDirectory && !starts_with($manifestDirectory, '/')) {
             $manifestDirectory = "/{$manifestDirectory}";
         }
 
@@ -49,8 +52,8 @@ class Mix
         }
 
         $manifestPath = WWW_ROOT . $manifestDirectory . '/mix-manifest.json';
-        if (! isset(self::$manifests[$manifestPath])) {
-            if (! file_exists($manifestPath)) {
+        if (!isset(self::$manifests[$manifestPath])) {
+            if (!file_exists($manifestPath)) {
                 throw new Exception('The Mix manifest does not exist.');
             }
 
@@ -64,7 +67,7 @@ class Mix
         }
 
         $manifest = self::$manifests[$manifestPath];
-        if (! isset($manifest[$path])) {
+        if (!isset($manifest[$path])) {
             throw new Exception("Unable to locate AssetMix file: {$path}.");
         }
 
