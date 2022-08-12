@@ -1,6 +1,4 @@
 <?php
-declare(strict_types=1);
-
 namespace AssetMix\View\Helper;
 
 use AssetMix\Mix;
@@ -19,7 +17,7 @@ class AssetMixHelper extends Helper
      *
      * @var array<string>
      */
-    protected $helpers = ['Html', 'Url'];
+    public $helpers = ['Html', 'Url'];
 
     /**
      * Creates a link element for CSS stylesheets with versioned asset.
@@ -28,7 +26,7 @@ class AssetMixHelper extends Helper
      * @param array<mixed> $options Options array.
      * @return string|null CSS `<link />` or `<style />` tag, depending on the type of link.
      */
-    public function css(string $path, array $options = []): ?string
+    public function css(string $path, array $options = [])
     {
         // Get css file path, add extension if not provided, skip if url provided
         if (strpos($path, '//') !== false) {
@@ -51,10 +49,9 @@ class AssetMixHelper extends Helper
      * @return string|null String of `<script />` tags or null if block is specified in options
      *   or if $once is true and the file has been included before.
      */
-    public function script(string $url, array $options = []): ?string
+    public function script(string $url, array $options = [])
     {
-        $defaults = ['defer' => true];
-        $options += $defaults;
+        $options = array_merge($options, ['defer' => true]);
 
         // Get css file path, add extension if not provided, skip if url provided
         if (strpos($url, '//') !== false) {

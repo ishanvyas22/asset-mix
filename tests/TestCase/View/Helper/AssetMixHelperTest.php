@@ -158,7 +158,7 @@ class AssetMixHelperTest extends TestCase
         $this->assertContains('href="/css/main.css?id=9c4259d5465e35535a2a"', $result);
     }
 
-        /**
+    /**
      * Test `css()` function returns proper tag
      * with asset timestamping enabled
      *
