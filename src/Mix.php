@@ -25,7 +25,8 @@ class Mix
      */
     public function __invoke($path, $manifestDirectory = '')
     {
-        if (! starts_with($path, '/')) {
+        $path = preg_replace('/\?.*/', '', $path);
+        if ($path && ! starts_with($path, '/')) {
             $path = "/{$path}";
         }
 
