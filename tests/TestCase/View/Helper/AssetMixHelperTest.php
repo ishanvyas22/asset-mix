@@ -1,4 +1,5 @@
 <?php
+
 namespace AssetMix\Test\TestCase\View\Helper;
 
 use AssetMix\Mix;
@@ -6,6 +7,7 @@ use AssetMix\View\Helper\AssetMixHelper;
 use Cake\Filesystem\Folder;
 use Cake\TestSuite\TestCase;
 use Cake\View\View;
+use Cake\Core\Configure;
 
 /**
  * AssetMix\View\Helper\AssetMixHelper Test Case
@@ -26,7 +28,10 @@ class AssetMixHelperTest extends TestCase
     {
         parent::setUp();
 
-        mkdir(TEST_APP_DIR . 'webroot');
+        $webroot = TEST_APP_DIR . 'webroot';
+        if (!file_exists($webroot)) {
+            mkdir($webroot);
+        }
 
         $view = new View();
         $this->AssetMix = new AssetMixHelper($view);
@@ -63,7 +68,7 @@ class AssetMixHelperTest extends TestCase
             $sourceFilename = 'mix-manifest-with-version.json';
         }
 
-        if (! copy(COMPARE_PATH . $sourceFilename, WWW_ROOT . $destinationFilename)) {
+        if (!copy(COMPARE_PATH . $sourceFilename, WWW_ROOT . $destinationFilename)) {
             throw new \Exception('Unable to copy mix-manifest.json file');
         }
     }
@@ -98,7 +103,7 @@ class AssetMixHelperTest extends TestCase
         $files = glob(WWW_ROOT . '*');
 
         foreach ($files as $file) {
-            if (! is_file($file)) {
+            if (!is_file($file)) {
                 continue;
             }
 
@@ -115,7 +120,7 @@ class AssetMixHelperTest extends TestCase
     {
         $this->_copyWithoutVersion();
 
-        $result = $this->AssetMix->css('main');
+        $result = $this->AssetMix->css('main.css');
 
         $this->assertContains('<link', $result);
         $this->assertContains('rel="stylesheet"', $result);
@@ -156,6 +161,23 @@ class AssetMixHelperTest extends TestCase
     }
 
     /**
+     * Test `css()` function returns proper tag
+     * with asset timestamping enabled
+     *
+     * @return void
+     */
+    public function testStyleTagWithTimestamp()
+    {
+        $this->_copyWithoutVersion();
+
+        $result = $this->AssetMix->css('main.css?1660315070');
+
+        $this->assertContains('<link', $result);
+        $this->assertContains('rel="stylesheet"', $result);
+        $this->assertContains('href="/css/main.css', $result);
+    }
+
+    /**
      * Test `script()` function returns proper tag
      * with versioning enabled
      *
@@ -169,6 +191,23 @@ class AssetMixHelperTest extends TestCase
 
         $this->assertContains('<script', $result);
         $this->assertContains('/js/app.js?id=f059fcadc7eba26be9ae', $result);
+        $this->assertContains('defer="defer"', $result);
+    }
+
+    /**
+     * Test `script()` function returns proper tag
+     * with asset timestamping enabled
+     *
+     * @return void
+     */
+    public function testScriptTagWithTimestamp()
+    {
+        $this->_copyWithoutVersion();
+
+        $result = $this->AssetMix->script('app.js?1660315070');
+
+        $this->assertContains('<script', $result);
+        $this->assertContains('/js/app.js', $result);
         $this->assertContains('defer="defer"', $result);
     }
 }
