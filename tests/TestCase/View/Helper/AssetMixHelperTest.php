@@ -1,5 +1,4 @@
 <?php
-
 namespace AssetMix\Test\TestCase\View\Helper;
 
 use AssetMix\Mix;
@@ -7,7 +6,6 @@ use AssetMix\View\Helper\AssetMixHelper;
 use Cake\Filesystem\Folder;
 use Cake\TestSuite\TestCase;
 use Cake\View\View;
-use Cake\Core\Configure;
 
 /**
  * AssetMix\View\Helper\AssetMixHelper Test Case
@@ -29,7 +27,7 @@ class AssetMixHelperTest extends TestCase
         parent::setUp();
 
         $webroot = TEST_APP_DIR . 'webroot';
-        if (!file_exists($webroot)) {
+        if (! file_exists($webroot)) {
             mkdir($webroot);
         }
 
@@ -68,7 +66,7 @@ class AssetMixHelperTest extends TestCase
             $sourceFilename = 'mix-manifest-with-version.json';
         }
 
-        if (!copy(COMPARE_PATH . $sourceFilename, WWW_ROOT . $destinationFilename)) {
+        if (! copy(COMPARE_PATH . $sourceFilename, WWW_ROOT . $destinationFilename)) {
             throw new \Exception('Unable to copy mix-manifest.json file');
         }
     }
@@ -103,7 +101,7 @@ class AssetMixHelperTest extends TestCase
         $files = glob(WWW_ROOT . '*');
 
         foreach ($files as $file) {
-            if (!is_file($file)) {
+            if (! is_file($file)) {
                 continue;
             }
 
@@ -120,7 +118,7 @@ class AssetMixHelperTest extends TestCase
     {
         $this->_copyWithoutVersion();
 
-        $result = $this->AssetMix->css('main.css');
+        $result = $this->AssetMix->css('main');
 
         $this->assertContains('<link', $result);
         $this->assertContains('rel="stylesheet"', $result);
@@ -160,7 +158,7 @@ class AssetMixHelperTest extends TestCase
         $this->assertContains('href="/css/main.css?id=9c4259d5465e35535a2a"', $result);
     }
 
-    /**
+        /**
      * Test `css()` function returns proper tag
      * with asset timestamping enabled
      *
