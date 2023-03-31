@@ -374,10 +374,9 @@ class AssetMixCommand extends Command
     {
         return [
             '@babel/preset-react' => '^7.0.0',
-            '@inertiajs/inertia' => '^0.6.1',
-            '@inertiajs/inertia-react' => '^0.4.1',
-            'react-dom' => '^16.2.0',
-            'react' => '^16.2.0',
+            '@inertiajs/react' => '^1.0.2',
+            'react-dom' => '^18.2.0',
+            'react' => '^18.2.0',
         ] + $packages;
     }
 }

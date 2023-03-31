@@ -227,12 +227,9 @@ class AssetMixCommandTest extends TestCase
         $packageJsonContents = file_get_contents($packagePaths['to']);
 
         $this->commonDirectoryExistsAssertions($directoryPaths);
+       
         $this->assertStringContainsString(
-            '"@inertiajs/inertia": "',
-            $packageJsonContents
-        );
-        $this->assertStringContainsString(
-            '"@inertiajs/inertia-react": "',
+            '"@inertiajs/react": "',
             $packageJsonContents
         );
         $this->assertStringContainsString(
@@ -244,7 +241,7 @@ class AssetMixCommandTest extends TestCase
             $packageJsonContents
         );
         $this->assertStringContainsString(
-            "import { InertiaApp } from '@inertiajs/inertia-react'",
+            "import { createInertiaApp } from '@inertiajs/react'",
             file_get_contents($directoryPaths['to_assets_js_app'])
         );
         $this->assertStringContainsString(".setPublicPath('./webroot')", $webpackMixJsContents);
