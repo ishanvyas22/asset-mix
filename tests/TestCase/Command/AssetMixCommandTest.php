@@ -227,7 +227,7 @@ class AssetMixCommandTest extends TestCase
         $packageJsonContents = file_get_contents($packagePaths['to']);
 
         $this->commonDirectoryExistsAssertions($directoryPaths);
-       
+
         $this->assertStringContainsString(
             '"@inertiajs/react": "',
             $packageJsonContents
