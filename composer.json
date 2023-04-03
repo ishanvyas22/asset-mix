@@ -49,5 +49,10 @@
         "test:types": "phpstan analyse --ansi --memory-limit=-1",
         "test": "phpunit --colors=always",
         "test-setup": "cp phpunit.xml.dist phpunit.xml"
+    },
+    "config": {
+        "allow-plugins": {
+            "dealerdirect/phpcodesniffer-composer-installer": true
+        }
     }
 }
