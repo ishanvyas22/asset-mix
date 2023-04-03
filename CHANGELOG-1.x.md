@@ -1,6 +1,16 @@
 # Release Notes
 
-## [Unreleased](https://github.com/ishanvyas22/asset-mix/compare/1.4.0...master)
+## [Unreleased](https://github.com/ishanvyas22/asset-mix/compare/1.5.0...master)
+
+## [1.5.0 (2023-04-03)](https://github.com/ishanvyas22/asset-mix/compare/1.4.0...1.5.0)
+
+## Added
+
+- Add dealerdirect/phpcodesniffer-composer-installer package in allow-plugins config
+
+## Updated
+
+- Update react related stub, bumps @inertiajs/react package to ^1.0.2. Thanks to @toggenation (https://github.com/ishanvyas22/asset-mix/pull/41)
 
 ## [1.4.0 (2022-01-22)](https://github.com/ishanvyas22/asset-mix/compare/1.3.1...1.4.0)
 
