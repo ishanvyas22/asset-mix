@@ -1,6 +1,17 @@
 # Release Notes
 
-## [Unreleased](https://github.com/ishanvyas22/asset-mix/compare/1.3.1...master)
+## [Unreleased](https://github.com/ishanvyas22/asset-mix/compare/1.4.0...master)
+
+## [1.4.0 (2022-01-22)](https://github.com/ishanvyas22/asset-mix/compare/1.3.1...1.4.0)
+
+### Fixed
+
+- Unable to find assets with external cssBaseUrl and jsBaseUrl. Thanks to @amayer-hc (https://github.com/ishanvyas22/asset-mix/pull/36)
+
+### Updated
+
+- Laravel mix to v6. Thanks to @glennforrest (https://github.com/ishanvyas22/asset-mix/pull/33)
+- CakePHP dependency to 4.3, in order to remove deprecation warnings in `routes.php` file. Thanks to @Andream98 (https://github.com/ishanvyas22/asset-mix/pull/37)
 
 ## [1.3.1 (2021-07-11)](https://github.com/ishanvyas22/asset-mix/compare/1.3.0...1.3.1)
 
