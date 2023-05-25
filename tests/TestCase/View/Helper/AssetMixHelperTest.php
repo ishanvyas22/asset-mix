@@ -7,6 +7,8 @@ use AssetMix\Mix;
 use AssetMix\View\Helper\AssetMixHelper;
 use Cake\Core\Configure;
 use Cake\Filesystem\Folder;
+use Cake\Http\ServerRequest;
+use Cake\Routing\Router;
 use Cake\TestSuite\TestCase;
 use Cake\View\View;
 
@@ -66,7 +68,7 @@ class AssetMixHelperTest extends TestCase
             $sourceFilename = 'mix-manifest-with-version.json';
         }
 
-        if (! copy(COMPARE_PATH . $sourceFilename, WWW_ROOT . $destinationFilename)) {
+        if (!copy(COMPARE_PATH . $sourceFilename, WWW_ROOT . $destinationFilename)) {
             throw new \Exception('Unable to copy mix-manifest.json file');
         }
     }
@@ -101,7 +103,7 @@ class AssetMixHelperTest extends TestCase
         $files = glob(WWW_ROOT . '*');
 
         foreach ($files as $file) {
-            if (! is_file($file)) {
+            if (!is_file($file)) {
                 continue;
             }
 
@@ -222,5 +224,62 @@ class AssetMixHelperTest extends TestCase
         $result = $this->AssetMix->script('app');
 
         $this->assertStringContainsString('https://example.com/js/app.js', $result);
+    }
+
+    /**
+     * Test `css()` function works when serving out of a /subdir
+     *
+     * @return void
+     */
+    public function testRemoveBaseDirIfServingFromSubdirectory()
+    {
+        $subdir = '/subdir';
+
+        Configure::write('App.base', $subdir);
+
+        $request = new ServerRequest([
+            'base' => $subdir,
+            'webroot' => $subdir . '/',
+        ]);
+
+        Router::reload();
+
+        Router::setRequest($request);
+
+        $this->_copyWithVersion();
+
+        $result = $this->AssetMix->css('main');
+
+        $this->assertStringContainsString($subdir . '/css/main.css', $result);
+    }
+
+    /**
+     * Test `script()` throws exception when serving from subdir and App.base missing
+     *
+     * @return void
+     */
+    public function testSubdirWithoutAppBaseThrowsException()
+    {
+        $subdir = '/subdir';
+
+        Configure::write('App.base', false);
+
+        // url is /subdir/controller/action
+        $request = new ServerRequest([
+            'base' => $subdir,
+            'webroot' => $subdir . '/',
+        ]);
+
+        Router::reload();
+
+        Router::setRequest($request);
+
+        $this->_copyWithVersion();
+
+        $this->expectException(\Exception::class);
+
+        $this->expectExceptionMessage("Unable to locate AssetMix file: {$subdir}/js/app.js.");
+
+        $result = $this->AssetMix->script('app');
     }
 }

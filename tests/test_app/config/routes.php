@@ -6,6 +6,6 @@ use Cake\Routing\Router;
 
 Router::reload();
 
-Router::scope('/', function (RouteBuilder $routes) {
+$routes->scope('/', function (RouteBuilder $routes) {
     $routes->fallbacks(DashedRoute::class);
 });

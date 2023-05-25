@@ -9,5 +9,5 @@ window.Vue = Vue;
 Vue.component('app-greet', AppGreet);
 
 const app = new Vue({
-  el: '#app'
+    el: '#app'
 });

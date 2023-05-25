@@ -5,5 +5,5 @@ import React from 'react';
  * when your application has been setup with inertiajs.
  */
 export default function Display() {
-    return <div>Hello world!</div>;
+    return <div> Hello world! </div>;
 }

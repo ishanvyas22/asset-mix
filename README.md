@@ -178,6 +178,9 @@ bin/cake asset_mix generate inertia-react
 ```bash
 bin/cake asset_mix generate react --dir=resources
 ```
+## Serving CakePHP out of a Subdirectory
+Please see [docs/ServingFromSubdirectory](docs/ServingFromSudirectory.md)
+
 
 ## Version map
 

@@ -3,6 +3,7 @@ declare(strict_types=1);
 
 namespace AssetMix;
 
+use Cake\Core\Configure;
 use Exception;
 
 /**
@@ -35,11 +36,22 @@ class Mix
             $path = $matches[2];
         }
 
-        if (! starts_with($path, '/')) {
+        // strip subdir if exists
+        $subdir = Configure::read('App.base');
+
+        if ($subdir) {
+            $path = preg_replace(sprintf('+^%s+', $subdir), '', $path);
+        }
+
+        // strip asset timestamp query string
+        // /js/app.js?1674622148 becomes /js/app.js
+        $path = preg_replace('/\?.*/', '', $path);
+
+        if (!starts_with($path, '/')) {
             $path = "/{$path}";
         }
 
-        if ($manifestDirectory && ! starts_with($manifestDirectory, '/')) {
+        if ($manifestDirectory && !starts_with($manifestDirectory, '/')) {
             $manifestDirectory = "/{$manifestDirectory}";
         }
 
@@ -59,8 +71,8 @@ class Mix
         }
 
         $manifestPath = WWW_ROOT . $manifestDirectory . '/mix-manifest.json';
-        if (! isset(self::$manifests[$manifestPath])) {
-            if (! file_exists($manifestPath)) {
+        if (!isset(self::$manifests[$manifestPath])) {
+            if (!file_exists($manifestPath)) {
                 throw new Exception('The Mix manifest does not exist.');
             }
 
@@ -74,7 +86,8 @@ class Mix
         }
 
         $manifest = self::$manifests[$manifestPath];
-        if (! isset($manifest[$path])) {
+
+        if (!isset($manifest[$path])) {
             throw new Exception("Unable to locate AssetMix file: {$path}.");
         }
 
