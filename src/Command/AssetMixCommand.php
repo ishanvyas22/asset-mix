@@ -10,6 +10,8 @@ use Cake\Console\Arguments;
 use Cake\Console\ConsoleIo;
 use Cake\Console\ConsoleOptionParser;
 use Exception;
+use UnexpectedValueException;
+use function Cake\I18n\__;
 
 class AssetMixCommand extends Command
 {
@@ -20,14 +22,14 @@ class AssetMixCommand extends Command
      *
      * @var \AssetMix\Utility\FileUtility
      */
-    private $filesystem;
+    private FileUtility $filesystem;
 
     /**
      * Preset type provided via argument.
      *
      * @var string|null
      */
-    private $preset;
+    private ?string $preset = null;
 
     /**
      * Directory name where all assets(js, css) files will reside.
@@ -52,7 +54,6 @@ class AssetMixCommand extends Command
             ->addArgument('preset', [
                 'help' => __('The preset/scaffolding type. Defaults to <info>vue</info>'),
                 'choices' => ['bootstrap', 'vue', 'react', 'inertia-vue', 'inertia-react'],
-                'default' => 'vue',
             ])
             ->addOption('dir', [
                 'short' => 'd',
@@ -89,7 +90,7 @@ class AssetMixCommand extends Command
      * @param \Cake\Console\ConsoleIo $io Console input/output
      * @return void
      */
-    private function updatePackageJsonFile($io)
+    private function updatePackageJsonFile(ConsoleIo $io): void
     {
         $path = $this->getPackageJsonPath();
 
@@ -103,11 +104,11 @@ class AssetMixCommand extends Command
     /**
      * Writes `package.json` file.
      *
-     * @param  array<mixed> $packages Content to write into the file.
-     * @param  string $to Path to create the file.
+     * @param array<mixed> $packages Content to write into the file.
+     * @param string $to Path to create the file.
      * @return void
      */
-    private function writePackageJsonFile($packages, $to)
+    private function writePackageJsonFile(array $packages, string $to): void
     {
         if (! is_string($this->preset)) {
             throw new Exception('Invalid preset value');
@@ -136,7 +137,7 @@ class AssetMixCommand extends Command
      * @param \Cake\Console\ConsoleIo $io Console input/output
      * @return void
      */
-    private function copyWebpackMixJsFile($args, $io)
+    private function copyWebpackMixJsFile(Arguments $args, ConsoleIo $io): void
     {
         $dirName = $args->getOption('dir');
 
@@ -159,7 +160,7 @@ class AssetMixCommand extends Command
      * @param \Cake\Console\ConsoleIo $io Console input/output
      * @return void
      */
-    private function copyAssetsDirectory($args, $io)
+    private function copyAssetsDirectory(Arguments $args, ConsoleIo $io): void
     {
         $dirName = $args->getOption('dir');
         $assetPath = ROOT . DS . $dirName;
@@ -182,7 +183,7 @@ class AssetMixCommand extends Command
      * @param string $dirName Directory name.
      * @return string Updated file contents.
      */
-    private function setWebpackMixFileContents($filePath, $dirName)
+    private function setWebpackMixFileContents(string $filePath, string $dirName): string
     {
         $currentWebpackContents = file_get_contents($filePath);
 
@@ -208,7 +209,7 @@ class AssetMixCommand extends Command
      *
      * @return array<string>
      */
-    private function getPackageJsonPath()
+    private function getPackageJsonPath(): array
     {
         if (! is_string($this->preset)) {
             throw new Exception('Invalid preset value');
@@ -227,7 +228,7 @@ class AssetMixCommand extends Command
      *
      * @return array<mixed>
      */
-    private function getPackageJsonFileContentsAsArray()
+    private function getPackageJsonFileContentsAsArray(): array
     {
         if (! is_string($this->preset)) {
             throw new Exception('Invalid preset value');
@@ -243,7 +244,13 @@ class AssetMixCommand extends Command
             throw new Exception('Invalid path');
         }
 
-        return json_decode((string)file_get_contents($path['from']), true);
+        $decoded = json_decode((string)file_get_contents($path['from']), true);
+
+        if (!$decoded) {
+            throw new UnexpectedValueException(sprintf('%s does not contain a valid JSON', $path['from']));
+        }
+
+        return (array)$decoded;
     }
 
     /**
@@ -251,7 +258,7 @@ class AssetMixCommand extends Command
      *
      * @return array<string>
      */
-    private function getWebpackMixJsPath()
+    private function getWebpackMixJsPath(): array
     {
         if (! is_string($this->preset)) {
             throw new Exception('Invalid preset value');
@@ -270,7 +277,7 @@ class AssetMixCommand extends Command
      *
      * @return array<string>
      */
-    private function getAssetsDirPaths()
+    private function getAssetsDirPaths(): array
     {
         if (! is_string($this->preset)) {
             throw new Exception('Invalid preset value');
@@ -288,10 +295,10 @@ class AssetMixCommand extends Command
      * Update packages array for vue.
      *
      * @phpcs:disable SlevomatCodingStandard.Classes.UnusedPrivateElements
-     * @param  array<mixed> $packages Existing packages array to update.
+     * @param array<mixed> $packages Existing packages array to update.
      * @return array<mixed>
      */
-    private function updateVuePackagesArray($packages)
+    private function updateVuePackagesArray(array $packages): array
     {
         return [
             'resolve-url-loader' => '^2.3.1',
@@ -306,10 +313,10 @@ class AssetMixCommand extends Command
     /**
      * Update packages array for bootstrap.
      *
-     * @param  array<mixed> $packages Existing packages array to update.
+     * @param array<mixed> $packages Existing packages array to update.
      * @return array<mixed>
      */
-    private function updateBootstrapPackagesArray($packages)
+    private function updateBootstrapPackagesArray(array $packages): array
     {
         return [
             'bootstrap' => '^5.0.0',
@@ -321,10 +328,10 @@ class AssetMixCommand extends Command
     /**
      * Update packages array for react.
      *
-     * @param  array<mixed> $packages Existing packages array to update.
+     * @param array<mixed> $packages Existing packages array to update.
      * @return array<mixed>
      */
-    private function updateReactPackagesArray($packages)
+    private function updateReactPackagesArray(array $packages): array
     {
         foreach ($packages as $packageName => $version) {
             if (in_array($packageName, ['vue', 'vue-template-compiler'])) {
@@ -345,10 +352,10 @@ class AssetMixCommand extends Command
     /**
      * Update packages array for inertia-vue.
      *
-     * @param  array<string> $packages Existing packages array to update.
+     * @param array<string> $packages Existing packages array to update.
      * @return array<string>
      */
-    private function updateInertiavuePackagesArray($packages)
+    private function updateInertiavuePackagesArray(array $packages): array
     {
         return [
             '@fullhuman/postcss-purgecss' => '^1.3.0',
@@ -367,10 +374,10 @@ class AssetMixCommand extends Command
     /**
      * Update packages array for inertia-react.
      *
-     * @param  array<string> $packages Existing packages array to update.
+     * @param array<string> $packages Existing packages array to update.
      * @return array<string>
      */
-    private function updateInertiareactPackagesArray($packages)
+    private function updateInertiareactPackagesArray(array $packages): array
     {
         return [
             '@babel/preset-react' => '^7.0.0',

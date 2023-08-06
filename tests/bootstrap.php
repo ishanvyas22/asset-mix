@@ -1,6 +1,7 @@
 <?php
 declare(strict_types=1);
 
+use AssetMix\AssetMixPlugin;
 use Cake\Cache\Cache;
 use Cake\Core\Configure;
 use Cake\Core\Plugin;
@@ -79,4 +80,4 @@ $config = [
 ];
 ConnectionManager::setConfig('test', $config);
 
-Plugin::getCollection()->add(new \AssetMix\Plugin());
+Plugin::getCollection()->add(new AssetMixPlugin());

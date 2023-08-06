@@ -14,9 +14,9 @@ class Mix
     /**
      * Mix manifests array
      *
-     * @var array<string>
+     * @var array<array<mixed>>
      */
-    private static $manifests = [];
+    private static array $manifests = [];
 
     /**
      * Get the path to a versioned Mix file.
@@ -26,7 +26,7 @@ class Mix
      * @return string
      * @throws \Exception
      */
-    public function __invoke($path, $manifestDirectory = ''): string
+    public function __invoke(string $path, string $manifestDirectory = ''): string
     {
         $urlDomain = '';
         // remove the scheme and domain from the front of the path if it has one
@@ -39,19 +39,19 @@ class Mix
         // strip subdir if exists
         $subdir = Configure::read('App.base');
 
-        if ($subdir) {
+        if (is_string($subdir)) {
             $path = preg_replace(sprintf('+^%s+', $subdir), '', $path);
         }
 
         // strip asset timestamp query string
         // /js/app.js?1674622148 becomes /js/app.js
-        $path = preg_replace('/\?.*/', '', $path);
+        $path = preg_replace('/\?.*/', '', $path ?? '');
 
-        if (!starts_with($path, '/')) {
+        if (!str_starts_with($path ?? '', '/')) {
             $path = "/{$path}";
         }
 
-        if ($manifestDirectory && !starts_with($manifestDirectory, '/')) {
+        if ($manifestDirectory && !str_starts_with($manifestDirectory, '/')) {
             $manifestDirectory = "/{$manifestDirectory}";
         }
 
@@ -59,7 +59,7 @@ class Mix
             $content = file_get_contents(WWW_ROOT . $manifestDirectory . '/hot');
 
             if ($content === false) {
-                throw new \Exception('Invalid manifest directory contents');
+                throw new Exception('Invalid manifest directory contents');
             }
 
             $url = rtrim($content);
@@ -76,13 +76,13 @@ class Mix
                 throw new Exception('The Mix manifest does not exist.');
             }
 
-            $manifestFileContent = file_get_contents($manifestPath);
+            $manifestFileContent = json_decode(file_get_contents($manifestPath) ?: '', true);
 
-            if ($manifestFileContent === false) {
+            if (!$manifestFileContent || !is_array($manifestFileContent)) {
                 throw new Exception('The Mix manifest file content is not valid.');
             }
 
-            self::$manifests[$manifestPath] = json_decode($manifestFileContent, true);
+            self::$manifests[$manifestPath] = $manifestFileContent;
         }
 
         $manifest = self::$manifests[$manifestPath];
