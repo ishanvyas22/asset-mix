@@ -6,7 +6,7 @@ namespace AssetMix\Test\TestCase\Command;
 use AssetMix\StubsPathTrait;
 use AssetMix\Utility\FileUtility;
 use Cake\Command\Command;
-use Cake\TestSuite\ConsoleIntegrationTestTrait;
+use Cake\Console\TestSuite\ConsoleIntegrationTestTrait;
 use Cake\TestSuite\TestCase;
 
 /**
@@ -22,7 +22,7 @@ class AssetMixCommandTest extends TestCase
      *
      * @var FileUtility
      */
-    private $filesystem;
+    private FileUtility $filesystem;
 
     /**
      * @inheritDoc
@@ -31,8 +31,11 @@ class AssetMixCommandTest extends TestCase
     {
         parent::setUp();
 
-        $this->useCommandRunner();
-
+        $this->setAppNamespace();
+        $this->configApplication(
+            'TestApp\Application',
+            [CONFIG]
+        );
         $this->filesystem = new FileUtility();
     }
 

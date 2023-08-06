@@ -15,7 +15,7 @@ interface FileUtilityInterface
      * @param string $to Path of new location
      * @return bool
      */
-    public function copy($from, $to);
+    public function copy(string $from, string $to): bool;
 
     /**
      * Copy files and directories recursively.
@@ -24,7 +24,7 @@ interface FileUtilityInterface
      * @param string $destination Destination path to copy to.
      * @return void
      */
-    public function recursiveCopy($source, $destination);
+    public function recursiveCopy(string $source, string $destination): void;
 
     /**
      * Checks if give file or directory exists
@@ -32,7 +32,7 @@ interface FileUtilityInterface
      * @param string $path Location of a file/directory
      * @return bool
      */
-    public function exists($path);
+    public function exists(string $path): bool;
 
     /**
      * Create new directory
@@ -41,15 +41,15 @@ interface FileUtilityInterface
      * @param array<string> $options Configuration options
      * @return bool
      */
-    public function mkdir($path, $options = []);
+    public function mkdir(string $path, array $options = []): bool;
 
     /**
      * Remove(delete) files or directories
      *
-     * @param string|array<string> $paths Path of a file/directory to delete
+     * @param array<string>|string $paths Path of a file/directory to delete
      * @return void
      */
-    public function delete($paths);
+    public function delete(string|array $paths): void;
 
     /**
      * Writes into a file with give contents.
@@ -60,5 +60,5 @@ interface FileUtilityInterface
      * @return bool Returns true on success, false otherwise.
      * @throws \Exception In case of failure.
      */
-    public function write($filename, $content);
+    public function write(string $filename, string $content): bool;
 }

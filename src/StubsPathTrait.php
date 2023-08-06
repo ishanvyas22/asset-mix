@@ -223,7 +223,7 @@ trait StubsPathTrait
      * @param string|null $dirname Custom directory name.
      * @return array<string>
      */
-    public function getVueAssetsDirPaths($dirname = null): array
+    public function getVueAssetsDirPaths(?string $dirname = null): array
     {
         if ($dirname === null) {
             $dirname = AssetMixCommand::ASSETS_DIR_NAME;
@@ -249,7 +249,7 @@ trait StubsPathTrait
      * @param string|null $dirname Custom directory name.
      * @return array<string>
      */
-    public function getInertiaVueAssetsDirPaths($dirname = null): array
+    public function getInertiaVueAssetsDirPaths(?string $dirname = null): array
     {
         if ($dirname === null) {
             $dirname = AssetMixCommand::ASSETS_DIR_NAME;
@@ -274,7 +274,7 @@ trait StubsPathTrait
      * @param string|null $dirname Custom directory name.
      * @return array<string>
      */
-    public function getInertiaReactAssetsDirPaths($dirname = null): array
+    public function getInertiaReactAssetsDirPaths(?string $dirname = null): array
     {
         if ($dirname === null) {
             $dirname = AssetMixCommand::ASSETS_DIR_NAME;
@@ -299,7 +299,7 @@ trait StubsPathTrait
      * @param string|null $dirname Custom directory name.
      * @return array<string>
      */
-    public function getBootstrapAssetsDirPaths($dirname = null): array
+    public function getBootstrapAssetsDirPaths(?string $dirname = null): array
     {
         if ($dirname === null) {
             $dirname = AssetMixCommand::ASSETS_DIR_NAME;
@@ -324,7 +324,7 @@ trait StubsPathTrait
      * @param string|null $dirname Custom directory name.
      * @return array<string>
      */
-    public function getReactAssetsDirPaths($dirname = null): array
+    public function getReactAssetsDirPaths(?string $dirname = null): array
     {
         if ($dirname === null) {
             $dirname = AssetMixCommand::ASSETS_DIR_NAME;

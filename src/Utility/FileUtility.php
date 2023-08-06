@@ -4,6 +4,7 @@ declare(strict_types=1);
 namespace AssetMix\Utility;
 
 use Exception;
+use FilesystemIterator;
 use RecursiveDirectoryIterator;
 use RecursiveIteratorIterator;
 
@@ -15,7 +16,7 @@ class FileUtility implements FileUtilityInterface
     /**
      * @inheritDoc
      */
-    public function copy($from, $to)
+    public function copy(string $from, string $to): bool
     {
         if (copy($from, $to)) {
             return true;
@@ -27,13 +28,14 @@ class FileUtility implements FileUtilityInterface
     /**
      * @inheritDoc
      */
-    public function recursiveCopy($source, $destination)
+    public function recursiveCopy(string $source, string $destination): void
     {
         $iterator = new RecursiveIteratorIterator(
-            new RecursiveDirectoryIterator($source, RecursiveDirectoryIterator::SKIP_DOTS),
+            new RecursiveDirectoryIterator($source, FilesystemIterator::SKIP_DOTS),
             RecursiveIteratorIterator::SELF_FIRST
         );
 
+        /** @var \SplFileInfo $item */
         foreach ($iterator as $item) {
             if ($item->isDir()) {
                 $this->mkdir($destination . DS . $iterator->getSubPathName());
@@ -49,7 +51,7 @@ class FileUtility implements FileUtilityInterface
     /**
      * @inheritDoc
      */
-    public function exists($path)
+    public function exists(string $path): bool
     {
         return file_exists($path);
     }
@@ -57,7 +59,7 @@ class FileUtility implements FileUtilityInterface
     /**
      * @inheritDoc
      */
-    public function mkdir($path, $options = [])
+    public function mkdir(string $path, array $options = []): bool
     {
         if ($this->exists($path)) {
             return false;
@@ -69,7 +71,7 @@ class FileUtility implements FileUtilityInterface
     /**
      * @inheritDoc
      */
-    public function delete($paths)
+    public function delete(string|array $paths): void
     {
         if (! is_array($paths)) {
             $paths = [$paths];
@@ -94,13 +96,14 @@ class FileUtility implements FileUtilityInterface
      * @param string $path Path of the directory to remove.
      * @return void
      */
-    private function deleteDir($path)
+    private function deleteDir(string $path): void
     {
-        $it = new RecursiveDirectoryIterator($path, RecursiveDirectoryIterator::SKIP_DOTS);
+        $it = new RecursiveDirectoryIterator($path, FilesystemIterator::SKIP_DOTS);
         $files = new RecursiveIteratorIterator(
             $it,
             RecursiveIteratorIterator::CHILD_FIRST
         );
+        /** @var \SplFileInfo $file */
         foreach ($files as $file) {
             if ($file->isDir()) {
                 rmdir($file->getRealPath());
@@ -115,7 +118,7 @@ class FileUtility implements FileUtilityInterface
     /**
      * @inheritDoc
      */
-    public function write($filename, $content)
+    public function write(string $filename, string $content): bool
     {
         if (! file_exists($filename)) {
             touch($filename);

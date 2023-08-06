@@ -6,11 +6,11 @@ namespace AssetMix\Test\TestCase\View\Helper;
 use AssetMix\Mix;
 use AssetMix\View\Helper\AssetMixHelper;
 use Cake\Core\Configure;
-use Cake\Filesystem\Folder;
 use Cake\Http\ServerRequest;
 use Cake\Routing\Router;
 use Cake\TestSuite\TestCase;
 use Cake\View\View;
+use Exception;
 
 /**
  * AssetMix\View\Helper\AssetMixHelper Test Case
@@ -22,7 +22,7 @@ class AssetMixHelperTest extends TestCase
      *
      * @var \AssetMix\View\Helper\AssetMixHelper
      */
-    public $AssetMix;
+    public AssetMixHelper $AssetMix;
 
     /**
      * @inheritDoc
@@ -31,7 +31,9 @@ class AssetMixHelperTest extends TestCase
     {
         parent::setUp();
 
-        mkdir(TEST_APP_DIR . 'webroot');
+        if (!file_exists(WWW_ROOT)) {
+            mkdir(WWW_ROOT);
+        }
 
         $view = new View();
         $this->AssetMix = new AssetMixHelper($view);
@@ -46,11 +48,7 @@ class AssetMixHelperTest extends TestCase
 
         parent::tearDown();
 
-        $dir = new Folder(TEST_APP_DIR . 'webroot');
-        $dir->delete();
-
         $this->_cleanUp();
-
         Mix::reset();
     }
 
@@ -69,7 +67,7 @@ class AssetMixHelperTest extends TestCase
         }
 
         if (!copy(COMPARE_PATH . $sourceFilename, WWW_ROOT . $destinationFilename)) {
-            throw new \Exception('Unable to copy mix-manifest.json file');
+            throw new Exception('Unable to copy mix-manifest.json file');
         }
     }
 
@@ -276,10 +274,10 @@ class AssetMixHelperTest extends TestCase
 
         $this->_copyWithVersion();
 
-        $this->expectException(\Exception::class);
+        $this->expectException(Exception::class);
 
         $this->expectExceptionMessage("Unable to locate AssetMix file: {$subdir}/js/app.js.");
 
-        $result = $this->AssetMix->script('app');
+        $this->AssetMix->script('app');
     }
 }

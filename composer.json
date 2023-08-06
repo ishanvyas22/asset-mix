@@ -19,12 +19,12 @@
     "require": {
         "ext-json": "*",
         "ext-mbstring": "*",
-        "cakephp/cakephp": "^4.3.0"
+        "cakephp/cakephp": "5.x-dev"
     },
     "require-dev": {
-        "cakephp/cakephp-codesniffer": "^4.2.0",
-        "phpunit/phpunit": "^8.0",
-        "phpstan/phpstan": "^0.12.32"
+        "cakephp/cakephp-codesniffer": "^5.1.0",
+        "phpunit/phpunit": "^10.2",
+        "phpstan/phpstan": "^1.10.27"
     },
     "autoload": {
         "psr-4": {
@@ -54,5 +54,7 @@
         "allow-plugins": {
             "dealerdirect/phpcodesniffer-composer-installer": true
         }
-    }
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true
 }
