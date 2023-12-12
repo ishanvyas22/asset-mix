@@ -3,14 +3,14 @@
 [![Latest Stable Version](https://poser.pugx.org/ishanvyas22/asset-mix/v/stable)](https://packagist.org/packages/ishanvyas22/asset-mix)
 [![Total Downloads](https://poser.pugx.org/ishanvyas22/asset-mix/downloads)](https://packagist.org/packages/ishanvyas22/asset-mix)
 [![License](https://poser.pugx.org/ishanvyas22/asset-mix/license)](https://packagist.org/packages/ishanvyas22/asset-mix)
-[![CakePHP](https://img.shields.io/badge/cakephp-%5E4.0.0-red?logo=cakephp)](https://book.cakephp.org/4/en/index.html)
+[![CakePHP](https://img.shields.io/badge/cakephp-%5E5.0.0-red?logo=cakephp)](https://book.cakephp.org/5/en/index.html)
 ![Tests](https://github.com/ishanvyas22/asset-mix/workflows/Run%20tests/badge.svg?branch=master)
 ![PHPStan Check](https://github.com/ishanvyas22/asset-mix/workflows/Run%20PHPStan/badge.svg?branch=master)
 ![Coding Style Check](https://github.com/ishanvyas22/asset-mix/workflows/Check%20Coding%20Style/badge.svg?branch=master)
 
 Provides integration with your [CakePHP application](https://cakephp.org/) & [Laravel Mix](https://laravel-mix.com).
 
-This branch works with **CakePHP 4.0+**, see [version map](#version-map) for more details.
+This branch works with **CakePHP 5.0+**, see [version map](#version-map) for more details.
 
 ## ❤️  Support The Development
 **Do you like this project? Support it by donating:**
@@ -186,11 +186,12 @@ Please see [docs/ServingFromSubdirectory](docs/ServingFromSudirectory.md)
 
 AssetMix version | Branch | CakePHP version | PHP minimum version |
 --- | --- | --- | --- |
-1.x | master | >=4.0.0 | >=7.2 |
+2.x | cake5 | >=5.0.0 | >=8.1 |
+1.x | cake4 | >=4.0.0 | >=7.2 |
 0.x | cake3 | >=3.5.0 | >=5.6 |
 
 ## Changelog
-Please see [CHANGELOG](CHANGELOG-1.x.md) for more information about recent changes.
+Please see [CHANGELOG](CHANGELOG-2.x.md) for more information about recent changes.
 
 ## Reference
 To see this plugin into action you can refer to this [project](https://github.com/ishanvyas22/cakephpvue-spa), which will provide more insight.
